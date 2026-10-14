@@ -1,0 +1,12 @@
+{
+    "targetSet": {
+        "Programs/TestNewFont/TestNewFont": {
+            "activeTargetType": "ITSboard"
+        },
+        "Programs/GS_Aufgabe_1/GS_Aufgabe_1": {
+            "activeTargetType": "ITSboard"
+        }
+    },
+    "activeSolution": "../Programs/GS_Aufgabe_1/GS_Aufgabe_1.csolution.yml",
+    "activeTarget": "ITSboard"
+}
