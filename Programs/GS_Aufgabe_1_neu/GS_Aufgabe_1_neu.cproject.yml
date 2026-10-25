@@ -173,13 +173,22 @@ project:
     # Header-Dateien für das Programm
     - group: Program/User/Inc
       files:
-        - file: ../../ITS_BRD_LIB/Inc/lcd.h
+        - file: Inc/stack.h
+        - file: Inc/scanner.h
+        - file: Inc/display.h
+        - file: Inc/arith_div.h
+        - file: Inc/arith_mul.h
+        - file: Inc/arith_sub.h
 
 
     # Benutzerdefinierte Programmdateien
     - group: Program/User/Src
       files:
         - file: Src/main.c
+        - file: Src/stack.c
+        - file: Src/scanner.c
+        - file: Src/display.c
+
 
 
   components:
