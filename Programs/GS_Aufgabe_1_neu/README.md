@@ -13,4 +13,4 @@ Error-handling für arith-funktionen jeweils implementieren:
 
 Modulkonzept "ordentlich" aufzeichnen:
 -> danach die Modulbeschreibungen in den jew. header-files im doxygen-Format anpassen
-
+-> main-funktion sourcecode hinzufügen

@@ -180,6 +180,7 @@ project:
         - file: Inc/arith_mul.h
         - file: Inc/arith_sub.h
         - file: Inc/tests.h
+        - file: Inc/arith_add.h
 
 
     # Benutzerdefinierte Programmdateien
@@ -193,6 +194,7 @@ project:
         - file: Src/arith_mul.c
         - file: Src/arith_sub.c
         - file: Src/tests.c
+        - file: Src/arith_add.c
 
 
 
