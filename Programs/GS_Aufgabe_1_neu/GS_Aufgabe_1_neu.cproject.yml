@@ -179,6 +179,7 @@ project:
         - file: Inc/arith_div.h
         - file: Inc/arith_mul.h
         - file: Inc/arith_sub.h
+        - file: Inc/tests.h
 
 
     # Benutzerdefinierte Programmdateien
@@ -188,6 +189,10 @@ project:
         - file: Src/stack.c
         - file: Src/scanner.c
         - file: Src/display.c
+        - file: Src/arith_div.c
+        - file: Src/arith_mul.c
+        - file: Src/arith_sub.c
+        - file: Src/tests.c
 
 
 
