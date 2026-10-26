@@ -41,3 +41,12 @@ enum Status pop(int *val){
    }
    return STACK_UNDERFLOW;
 }
+
+enum Status p_show(int *val){
+   if(stackpointer > -1){
+       *val = stack[stackpointer];
+       return SUCCESS;
+   }
+   return STACK_UNDERFLOW;
+}
+
