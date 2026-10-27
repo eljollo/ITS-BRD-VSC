@@ -3,7 +3,7 @@
 #include "stack.h"
 #include <limits.h>
 
-int arith_div(void){
+enum Status arith_div(void){
     int operand1 = 0;
     int* adress_of_operand1 = &operand1; //holds the address of the variable operand1
     int operand2 = 0;
@@ -22,5 +22,5 @@ int arith_div(void){
     
     int result = operand2 / operand1;
     push(result);
-    return 0;
+    return SUCCESS;
 }

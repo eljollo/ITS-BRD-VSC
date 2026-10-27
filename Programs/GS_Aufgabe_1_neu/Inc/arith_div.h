@@ -7,4 +7,4 @@
  *
  * @return Bei einem Fehler den entsprechenden Fehlercode(siehe error_handling.h) ansonsten SUCCESS
  **********************************************************************/
-extern int arith_div(); 
+ extern enum Status arith_div(); 

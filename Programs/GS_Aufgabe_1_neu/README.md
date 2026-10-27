@@ -1,14 +1,14 @@
 ToDos:
 Overflow-Checks implementieren:
 -> arith_div: erledigt.
--> arith_mul: erledigt
--> arith_sub:
+-> arith_mul:
+-> arith_sub: erledigt.
 -> arith_add:
 
 Error-handling für arith-funktionen jeweils implementieren:
--> arith_div:
+-> arith_div: erledigt
 -> arith_mul: erledigt
--> arith_sub:
+-> arith_sub: erledigt
 -> arith_add:
 
 Modulkonzept "ordentlich" aufzeichnen:
