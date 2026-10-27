@@ -7,4 +7,4 @@
  *
  * @return Bei einem Fehler -1 ansonsten 0
  **********************************************************************/
-extern int arith_mul();
+enum Status arith_mul();

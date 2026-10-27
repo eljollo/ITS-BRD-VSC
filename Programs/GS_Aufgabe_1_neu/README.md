@@ -1,16 +1,19 @@
 ToDos:
 Overflow-Checks implementieren:
--> arith_div:
--> arith_mul:
+-> arith_div: erledigt.
+-> arith_mul: erledigt
 -> arith_sub:
 -> arith_add:
 
 Error-handling für arith-funktionen jeweils implementieren:
 -> arith_div:
--> arith_mul:
+-> arith_mul: erledigt
 -> arith_sub:
 -> arith_add:
 
 Modulkonzept "ordentlich" aufzeichnen:
 -> danach die Modulbeschreibungen in den jew. header-files im doxygen-Format anpassen
+-> arith-functions in arithmetics-Modul zusammenfassen(arithmetics.h, arithmetics.c)
 -> main-funktion sourcecode hinzufügen
+
+Pretty-Printer und Linter testen/konfigurieren:
