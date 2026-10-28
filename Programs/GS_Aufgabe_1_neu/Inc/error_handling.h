@@ -7,5 +7,6 @@ enum Status {
     ARITH_OVERFLOW,     // Bereichsüberschreitung arith. Operationen
     STACK_OVERFLOW,     // Stack Overflow
     STACK_UNDERFLOW,    // Stack Underflow
+    EMPTY_STACK,        // Stack empty (e.g. function p or function P when no element on stack)
 };
 #endif

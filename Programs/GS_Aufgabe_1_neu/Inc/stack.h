@@ -11,19 +11,63 @@ extern void init(void);
  *
  * @brief Fuegt ein Element in die Menge ein.
  *
- * @param val Element, das eingefuegt wird
+ * @param XXX
  *
- * @return Bei einem Fehler -1 ansonsten 0
+ * @return XXX
  **********************************************************************/
 extern enum Status push(int val);
 
 /**
  **********************************************************************
  *
- * @brief Fuegt ein Element in die Menge ein.
+ * @brief XXX.
  *
- * @param val Element, das eingefuegt wird
+ * @param XXX
  *
- * @return Bei einem Fehler -1 ansonsten 0
+ * @return XXX
  **********************************************************************/
 extern enum Status pop(int *val);
+
+/**
+ **********************************************************************
+ *
+ * @brief XXX
+ *
+ * @param XXX
+ *
+ * @return XXX
+ **********************************************************************/
+extern enum Status funct_p(int *val);
+
+/**
+ **********************************************************************
+ *
+ * @brief XXX
+ *
+ * @param XXX
+ *
+ * @return XXX
+ **********************************************************************/
+extern enum Status funct_pthree(int *elem_counter, int values[3]);
+
+/**
+ **********************************************************************
+ *
+ * @brief XXX
+ *
+ * @param XXX
+ *
+ * @return XXX
+ **********************************************************************/
+extern enum Status funct_d(void);
+
+/**
+ **********************************************************************
+ *
+ * @brief XXX
+ *
+ * @param XXX
+ *
+ * @return XXX
+ **********************************************************************/
+extern enum Status funct_r(void);
