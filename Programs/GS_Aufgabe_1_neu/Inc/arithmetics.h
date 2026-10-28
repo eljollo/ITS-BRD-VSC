@@ -5,7 +5,7 @@
  *
  * @brief Header-Datei für die arithmetischen Operationen des Moduls arithmetics.
  *
- * @author Lasse
+ * @author Lasse Bruhn, Matr.-Nr.: 2880211
  *
  * @date 2024-06-10
  *

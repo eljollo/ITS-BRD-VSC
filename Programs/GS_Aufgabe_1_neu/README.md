@@ -15,8 +15,8 @@ Modulkonzept "ordentlich" aufzeichnen:
 -> arith-functions in arithmetics-Modul zusammenfassen(arithmetics.h, arithmetics.c): erledigt.
 -> danach die Modulbeschreibungen in den jew. header-files im doxygen-Format anpassen
 -> testfälle-matrix(tabelle) erstellen
--> main-funktion-Konzept überlegen
--> main-funktion sourcecode hinzufügen
+-> main-funktion-Konzept überlegen: (erledigt).
+-> main-funktion sourcecode hinzufügen: erledigt.
 
 Pretty-Printer und Linter testen/konfigurieren:
 

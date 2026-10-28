@@ -81,7 +81,7 @@ enum Status funct_r(void){
     if (stackpointer >= 1) {
         int tmp = stack[stackpointer];
         stack[stackpointer] = stack[stackpointer-1];
-        stack[stackpointer] = tmp;
+        stack[stackpointer-1] = tmp;
         return SUCCESS;
     }
     return STACK_UNDERFLOW;

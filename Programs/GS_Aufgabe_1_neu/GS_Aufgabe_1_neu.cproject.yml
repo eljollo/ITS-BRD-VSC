@@ -178,6 +178,7 @@ project:
         - file: Inc/display.h
         - file: Inc/tests.h
         - file: Inc/arithmetics.h
+        - file: Inc/main.h
 
 
     # Benutzerdefinierte Programmdateien

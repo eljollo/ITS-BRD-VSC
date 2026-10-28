@@ -1,3 +1,11 @@
+/**
+* @file arithmetics.c
+* @author Lasse Bruhn, Matr.Num.: 2880211
+* @date Oct 2026
+*
+* @brief contains the implementations of the arithmetic functions add, subtract, multiply and divide.
+*/
+
 #include "arithmetics.h"
 #include "error_handling.h"
 #include "stack.h"

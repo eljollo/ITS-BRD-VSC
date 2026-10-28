@@ -93,6 +93,7 @@ DbgMCU_APB1_Fz = 0x00000000;
 // </h>
 DbgMCU_APB2_Fz = 0x00000000;
 
+<<<<<<< HEAD
 // <<< end of configuration section >>>
 // File: STM32F405_415_407_417_427_437_429_439.dbgconf
 // Version: 1.0.0
@@ -141,4 +142,6 @@ DbgMCU_APB1_Fz = 0x00000000;
 // </h>
 DbgMCU_APB2_Fz = 0x00000000;
 
+=======
+>>>>>>> eljollo/main
 // <<< end of configuration section >>>
