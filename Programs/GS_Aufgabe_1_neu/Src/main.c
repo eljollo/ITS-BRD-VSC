@@ -84,6 +84,12 @@ int main(void) {
                print_stdout(ausgabe);
             
             }
+            if (status == EMPTY_STACK) {
+               clear_stdout();
+               char ausgabe[TEXT_LENGTH];
+               sprintf(ausgabe, "Stack ist leer");
+               print_stdout(ausgabe);
+            }
             break;
          }
          case PRT_ALL: {
@@ -93,10 +99,16 @@ int main(void) {
             if (status == SUCCESS) {
                clear_stdout();
                for (int i = 0; i < counter; i++) {
-                  char ausgabe[16];
-                 sprintf(ausgabe, "%d\n", intarray[i]);
+                  char ausgabe[TEXT_LENGTH];
+                  sprintf(ausgabe, "%d\n", intarray[i]);
                   print_stdout(ausgabe);
                }
+            }
+            if (status == EMPTY_STACK) {
+               clear_stdout();
+               char ausgabe[TEXT_LENGTH];
+               sprintf(ausgabe, "Stack ist leer");
+               print_stdout(ausgabe);
             }
             break;
          }
@@ -133,7 +145,7 @@ int main(void) {
          }
       }
 
-      if (status != SUCCESS) {
+      if (status != SUCCESS && status != EMPTY_STACK) {
          fehlermodus = true;
          print_error(status);
       }
