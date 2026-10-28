@@ -78,6 +78,7 @@ int main(void) {
             int val;
             status = funct_p(&val);
             if (status == SUCCESS) {
+               clear_stdout();
                char ausgabe[TEXT_LENGTH];
                sprintf(ausgabe, "%d\n", val);
                print_stdout(ausgabe);
@@ -88,8 +89,9 @@ int main(void) {
          case PRT_ALL: {
             int intarray[3];
             int counter;
-            status = funct_pthree(intarray, &counter);
+            status = funct_pthree(&counter, intarray);
             if (status == SUCCESS) {
+               clear_stdout();
                for (int i = 0; i < counter; i++) {
                   char ausgabe[16];
                  sprintf(ausgabe, "%d\n", intarray[i]);
