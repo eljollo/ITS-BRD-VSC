@@ -19,6 +19,7 @@
 #include "token.h"
 #include <stdbool.h>
 #include <stdio.h>
+#include "arithmetics.h"
 // #include ""
 
 // Konstanten
@@ -57,9 +58,15 @@ int main(void) {
    init_stack();
    bool fehlermodus = false;
 
+   
+
    while (1) {
       enum Status status = SUCCESS;
       T_token eingabe = next_token();
+
+      if (fehlermodus && eingabe.tok != CLEAR) {
+         continue;
+      }
 
       switch (eingabe.tok) {
          // stack functions

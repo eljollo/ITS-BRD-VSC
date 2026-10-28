@@ -8,7 +8,7 @@
  *        echos pressed digit keys.
  */
 
-#include "display.h"
+#include "../Inc/display.h"
 #include "LCD_GUI.h"
 #include "LCD_Touch.h"
 #include "keypad.h"
