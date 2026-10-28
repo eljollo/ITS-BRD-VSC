@@ -20,5 +20,16 @@ Modulkonzept "ordentlich" aufzeichnen:
 
 Pretty-Printer und Linter testen/konfigurieren:
 
-Testfälle: 
+/****************************************************************/
 
+Testfälle (nach Modulen gruppiert, Legende: S = "test successfull", F = "test failed", N = "test not executed yet"):
+arithmetics-Modul:
+-> add(): 
+- "2 4 +" == 6: S 
+-> sub(): 
+-> mul():
+-> div():
+
+stack-Modul:
+
+Input-tests(depend on multiple modules):

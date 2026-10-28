@@ -2,7 +2,7 @@
  ******************************************************************************
  * @file    main.h
  * @author  Lasse Bruhn, Matr.Num.: 2880211, Thomas Ramba, Matr.Num.: ...
- * @brief   contains the header of the main function
+ * @brief   contains the header of the main function and the declaration of used constants in main.c
  ******************************************************************************
  */
 
