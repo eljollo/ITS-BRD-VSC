@@ -17,8 +17,12 @@
 #include "display.h"
 #include "stack.h"
 #include "token.h"
+#include <stdbool.h>
+#include <stdio.h>
 // #include ""
 
+// Konstanten
+#define TEXT_LENGTH 20
 
 // error funktion
 static void print_error(enum Status status) {
@@ -51,6 +55,7 @@ int main(void) {
    // TASCHENRECHNER
    init_display();
    init_stack();
+   bool fehlermodus = false;
 
    while (1) {
       enum Status status = SUCCESS;
@@ -58,44 +63,72 @@ int main(void) {
 
       switch (eingabe.tok) {
          // stack functions
+         case NUMBER: {
+            status = push(eingabe.val);
+            break;
+         }
          case PRT: {      
             int val;
             status = funct_p(&val);
-            if (status != SUCCESS) {
-               print_error(status);
+            if (status == SUCCESS) {
+               char ausgabe[TEXT_LENGTH];
+               sprintf(ausgabe, "%d\n", val);
+               print_stdout(ausgabe);
+            
             }
-         break;
+            break;
          }
          case PRT_ALL: {
             int intarray[3];
             int counter;
             status = funct_pthree(intarray, &counter);
-            if (status != SUCCESS) {
-               print_error(status);
+            if (status == SUCCESS) {
+               for (int i = 0; i < counter; i++) {
+                  char ausgabe[16];
+                 sprintf(ausgabe, "%d\n", intarray[i]);
+                  print_stdout(ausgabe);
+               }
             }
-         break;
+            break;
          }
          case DOUBLE: {
             status = funct_d();
-            if (status != SUCCESS) {
-               print_error(status);
-            }
-         break;
+            break;
          }
          case SWAP: {
             status = funct_r();
-            if (status != SUCCESS) {
-               print_error(status);
-            }
-         break;            
+            break;            
          }
          // arithmetic functions
-         case PLUS: {}
-         case MINUS: {}
-         case MULT: {}
-         case DIV: {}
-         case CLEAR: {}
+         case PLUS: {
+            status = add();
+            break;            
+         }
+         case MINUS: {
+            status = subtract();
+            break;            
+         }
+         case MULT: {
+            status = multiply();
+            break;            
+         }
+         case DIV: {
+            status = divide();
+            break;            
+         }
+         case CLEAR: {
+            init_stack();
+            set_normal_mode();
+            fehlermodus = false;
+            break;
+         }
       }
+
+      if (status != SUCCESS) {
+         fehlermodus = true;
+         print_error(status);
+      }
+
    }
 }
 
