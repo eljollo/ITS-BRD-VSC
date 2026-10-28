@@ -3,7 +3,7 @@
  *
  * @file arithmetics.h
  *
- * @brief Header-Datei für die arithmetischen Operationen.
+ * @brief Header-Datei für die arithmetischen Operationen des Moduls arithmetics.
  *
  * @author Lasse
  *
@@ -21,7 +21,7 @@
  *
  * @return Bei einem Fehler den entsprechenden Fehlercode(siehe error_handling.h) ansonsten SUCCESS
  **********************************************************************/
-extern enum Status add();
+extern enum Status add(void);
 
 /**
  **********************************************************************
@@ -32,7 +32,7 @@ extern enum Status add();
  *
  * @return Bei einem Fehler den entsprechenden Fehlercode(siehe error_handling.h) ansonsten SUCCESS
  **********************************************************************/
-extern enum Status subtract();
+extern enum Status subtract(void);
 
 /**
  **********************************************************************
@@ -43,7 +43,7 @@ extern enum Status subtract();
  *
  * @return Bei einem Fehler den entsprechenden Fehlercode(siehe error_handling.h) ansonsten SUCCESS
  **********************************************************************/
-extern enum Status multiply();
+extern enum Status multiply(void);
 
 /**
  **********************************************************************
@@ -54,4 +54,4 @@ extern enum Status multiply();
  *
  * @return Bei einem Fehler den entsprechenden Fehlercode(siehe error_handling.h) ansonsten SUCCESS
  **********************************************************************/
- extern enum Status divide(); 
+ extern enum Status divide(void); 
