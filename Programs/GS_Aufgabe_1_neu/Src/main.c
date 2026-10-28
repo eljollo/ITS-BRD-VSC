@@ -9,6 +9,7 @@
 
 // #include "LCD_GUI.h"
 // #include "LCD_Touch.h"
+#include "main.h"
 #include "error_handling.h"
 #include "init.h"
 // #include "lcd.h"
@@ -93,7 +94,7 @@ int main(void) {
             if (status == SUCCESS) {
                clear_stdout();
                for (int i = 0; i < counter; i++) {
-                  char ausgabe[16];
+                  char ausgabe[AUSGABE_LENGTH];
                  sprintf(ausgabe, "%d\n", intarray[i]);
                   print_stdout(ausgabe);
                }
