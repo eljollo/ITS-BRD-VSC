@@ -12,8 +12,8 @@ Error-handling für arith-funktionen jeweils implementieren:
 -> arith_add: erledigt.
 
 Modulkonzept "ordentlich" aufzeichnen:
+-> arith-functions in arithmetics-Modul zusammenfassen(arithmetics.h, arithmetics.c): erledigt.
 -> danach die Modulbeschreibungen in den jew. header-files im doxygen-Format anpassen
--> arith-functions in arithmetics-Modul zusammenfassen(arithmetics.h, arithmetics.c)
 -> main-funktion sourcecode hinzufügen
 
 Pretty-Printer und Linter testen/konfigurieren:
