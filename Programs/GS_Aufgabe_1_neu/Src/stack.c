@@ -18,7 +18,7 @@ static int stack[STACK_SIZE];
 
 // reset stack
 // muss hier auch noch die fehlermeldung resettet werden? (siehe Aufgabenblatt Seite 2)
-void init(void){
+void init_stack(void){
     stackpointer = -1;
 }
 
