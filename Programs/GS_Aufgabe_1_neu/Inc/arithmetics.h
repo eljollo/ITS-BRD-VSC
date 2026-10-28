@@ -21,7 +21,7 @@
  *
  * @return Bei einem Fehler den entsprechenden Fehlercode(siehe error_handling.h) ansonsten SUCCESS
  **********************************************************************/
-extern enum Status arith_add();
+extern enum Status add();
 
 /**
  **********************************************************************
@@ -32,7 +32,7 @@ extern enum Status arith_add();
  *
  * @return Bei einem Fehler den entsprechenden Fehlercode(siehe error_handling.h) ansonsten SUCCESS
  **********************************************************************/
-extern enum Status arith_sub();
+extern enum Status subtract();
 
 /**
  **********************************************************************
@@ -43,7 +43,7 @@ extern enum Status arith_sub();
  *
  * @return Bei einem Fehler den entsprechenden Fehlercode(siehe error_handling.h) ansonsten SUCCESS
  **********************************************************************/
-extern enum Status arith_mul();
+extern enum Status multiply();
 
 /**
  **********************************************************************
@@ -54,4 +54,4 @@ extern enum Status arith_mul();
  *
  * @return Bei einem Fehler den entsprechenden Fehlercode(siehe error_handling.h) ansonsten SUCCESS
  **********************************************************************/
- extern enum Status arith_div(); 
+ extern enum Status divide(); 

@@ -26,7 +26,7 @@ enum Status add(void){
     return SUCCESS;
 }
 
-enum Status arith_sub(void){
+enum Status subtract(void){
     int operand1 = 0;
     int* address_of_operand1 = &operand1; //holds the address of the variable operand1
     int operand2 = 0;
@@ -48,7 +48,7 @@ enum Status arith_sub(void){
     return SUCCESS;
 }
 
-enum Status arith_mul(void){
+enum Status multiply(void){
     int operand1 = 0;
     int* adress_of_operand1 = &operand1; //holds the address of the variable operand1
     int operand2 = 0;
@@ -76,7 +76,7 @@ enum Status arith_mul(void){
     return SUCCESS;
 }
 
-enum Status arith_div(void){
+enum Status divide(void){
     int operand1 = 0;
     int* adress_of_operand1 = &operand1; //holds the address of the variable operand1
     int operand2 = 0;
