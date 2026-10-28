@@ -29,6 +29,7 @@
             "command": "pyocd",
             "options": {
                 "cwd": "${workspaceFolder}/Programs/GS_Aufgabe_1_neu",
+                "cwd": "${workspaceFolder}/Programs/GS_Aufgabe_1_neu",
                 "shell": {
                     "executable": "/bin/bash",
                     "args": [
@@ -52,6 +53,7 @@
             "command": "pyocd",
             "options": {
                 "cwd": "${workspaceFolder}/Programs/GS_Aufgabe_1_neu",
+                "cwd": "${workspaceFolder}/Programs/GS_Aufgabe_1_neu",
                 "shell": {
                     "executable": "/bin/bash",
                     "args": [
@@ -73,6 +75,7 @@
             "type": "shell",
             "command": "pyocd",
             "options": {
+                "cwd": "${workspaceFolder}/Programs/GS_Aufgabe_1_neu",
                 "cwd": "${workspaceFolder}/Programs/GS_Aufgabe_1_neu",
                 "shell": {
                     "executable": "/bin/bash",
@@ -109,6 +112,7 @@
             "type": "shell",
             "command": "pyocd",
             "options": {
+                "cwd": "${workspaceFolder}/Programs/GS_Aufgabe_1_neu",
                 "cwd": "${workspaceFolder}/Programs/GS_Aufgabe_1_neu",
                 "shell": {
                     "executable": "/bin/bash",

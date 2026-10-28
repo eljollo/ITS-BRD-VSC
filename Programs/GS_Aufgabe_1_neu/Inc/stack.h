@@ -4,26 +4,70 @@
  * @brief 
  *
  **********************************************************************/
-extern void init(void);
+extern void init_stack(void);
 
 /**
  **********************************************************************
  *
  * @brief Fuegt ein Element in die Menge ein.
  *
- * @param val Element, das eingefuegt wird
+ * @param XXX
  *
- * @return Bei einem Fehler -1 ansonsten 0
+ * @return XXX
  **********************************************************************/
 extern enum Status push(int val);
 
 /**
  **********************************************************************
  *
- * @brief Fuegt ein Element in die Menge ein.
+ * @brief XXX.
  *
- * @param val* Pointer, der auf die Variable zeigt, in die der Wert vom Stack geschrieben wird
+ * @param XXX
  *
- * @return Bei einem Fehler -1 ansonsten 0
+ * @return XXX
  **********************************************************************/
 extern enum Status pop(int *val);
+
+/**
+ **********************************************************************
+ *
+ * @brief XXX
+ *
+ * @param XXX
+ *
+ * @return XXX
+ **********************************************************************/
+extern enum Status funct_p(int *val);
+
+/**
+ **********************************************************************
+ *
+ * @brief XXX
+ *
+ * @param XXX
+ *
+ * @return XXX
+ **********************************************************************/
+extern enum Status funct_pthree(int *elem_counter, int values[3]);
+
+/**
+ **********************************************************************
+ *
+ * @brief XXX
+ *
+ * @param XXX
+ *
+ * @return XXX
+ **********************************************************************/
+extern enum Status funct_d(void);
+
+/**
+ **********************************************************************
+ *
+ * @brief XXX
+ *
+ * @param XXX
+ *
+ * @return XXX
+ **********************************************************************/
+extern enum Status funct_r(void);
