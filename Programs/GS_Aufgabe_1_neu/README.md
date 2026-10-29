@@ -42,3 +42,7 @@ arithmetics-Modul:
 
 stack-Modul:
 
+Bereichsueberschreitungs-Tests:
+- "1 2-p 1024*p 1024*p 1024*p" == Bereichsueberschreitung": F (overflow schon nach "1 2-p 1024*p")
+- "2147483648*p" == 2147483648: S
+- "1 2-p 2147483648*p" == : F("Ungueltige Eingabe")
