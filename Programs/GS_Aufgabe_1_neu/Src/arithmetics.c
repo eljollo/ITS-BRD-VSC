@@ -10,7 +10,7 @@
 #include "error_handling.h"
 #include "stack.h"
 #include <limits.h>
-#include <stdlib.h>
+// #include <stdlib.h>
 
 enum Status add(void){
     int operand1 = 0;
@@ -84,16 +84,16 @@ enum Status multiply(void){
     }
 
     /*overflow checks*/
-    if (operand1 > 0 && operand2 > 0 && abs(operand1) > (abs(INT_MAX) / operand2)){
+    if (operand1 > 0 && operand2 > 0 && operand1 > INT_MAX / operand2){
         return ARITH_OVERFLOW;
     }
-    if (operand1 > 0 && operand2 < 0 && abs(operand1) > (abs(INT_MIN) / abs(operand2))){
+    if (operand1 > 0 && operand2 < 0 && operand2 < INT_MIN / operand1){
         return ARITH_OVERFLOW;
     }
-    if (operand1 < 0 && operand2 > 0 && abs(operand1) > (abs(INT_MIN) / abs(operand2))){
+    if (operand1 < 0 && operand2 > 0 && operand1 < INT_MIN / operand2){
         return ARITH_OVERFLOW;
     }
-    if (operand1 < 0 && operand2 < 0 && abs(operand1) > (abs(INT_MAX) / abs(operand2))){
+    if (operand1 < 0 && operand2 < 0 && operand1 < INT_MAX / operand2){
         return ARITH_OVERFLOW;
     }
 
