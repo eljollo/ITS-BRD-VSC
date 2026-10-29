@@ -1,7 +1,7 @@
 /**
  ******************************************************************************
  * @file    main.c
- * @author  Lasse Bruhn, Matr.Num.: 2880211, Thomas Ramba, Matr.Num.: ...
+ * @author  Lasse Bruhn, Matr.Num.: 2880211, Thomas Ramba, Matr.Num.: 284259
  * @brief   contains the implementation of the main function
  ******************************************************************************
  */
@@ -83,7 +83,12 @@ int main(void) {
                char ausgabe[TEXT_LENGTH];
                sprintf(ausgabe, "%d\n", val);
                print_stdout(ausgabe);
-            
+            }
+            if (status == EMPTY_STACK) {
+               clear_stdout();
+               char ausgabe[TEXT_LENGTH];
+               sprintf(ausgabe, "Stack ist leer");
+               print_stdout(ausgabe);
             }
             break;
          }
@@ -94,10 +99,16 @@ int main(void) {
             if (status == SUCCESS) {
                clear_stdout();
                for (int i = 0; i < counter; i++) {
-                  char ausgabe[AUSGABE_LENGTH];
+                  char ausgabe[TEXT_LENGTH];
                  sprintf(ausgabe, "%d\n", intarray[i]);
                   print_stdout(ausgabe);
                }
+            }
+            if (status == EMPTY_STACK) {
+               clear_stdout();
+               char ausgabe[TEXT_LENGTH];
+               sprintf(ausgabe, "Stack ist leer");
+               print_stdout(ausgabe);
             }
             break;
          }
@@ -140,7 +151,7 @@ int main(void) {
          }
       }
 
-      if (status != SUCCESS) {
+      if (status != SUCCESS && status != EMPTY_STACK) {
          fehlermodus = true;
          print_error(status);
       }

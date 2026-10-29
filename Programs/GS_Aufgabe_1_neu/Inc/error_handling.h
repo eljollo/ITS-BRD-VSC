@@ -1,3 +1,10 @@
+/**
+ * @file error_handling.h
+ * @author Thomas Ramba, Matr.Num.: 284259
+ * @date Oct 2026
+ * @brief File for declaration of error messages.
+ */
+
 #ifndef ERROR_HANDLING_H
 #define ERROR_HANDLING_H
 // enum to cover error codes of functions return value

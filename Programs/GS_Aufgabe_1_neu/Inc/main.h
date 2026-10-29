@@ -1,17 +1,10 @@
 /**
  ******************************************************************************
  * @file    main.h
- * @author  Lasse Bruhn, Matr.Num.: 2880211, Thomas Ramba, Matr.Num.: ...
+ * @author  Lasse Bruhn, Matr.Num.: 2880211, Thomas Ramba, Matr.Num.: 284259
  * @brief   contains the header of the main function and the declaration of used constants in main.c
  ******************************************************************************
  */
-
-/**
- **********************************************************************
- *
- * @brief declaration of used constants in main.c
- **********************************************************************/
-const int AUSGABE_LENGTH = 16;
 
 /**
  **********************************************************************
