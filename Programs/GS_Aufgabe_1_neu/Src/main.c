@@ -154,6 +154,7 @@ int main(void) {
       if (status != SUCCESS && status != EMPTY_STACK) {
          fehlermodus = true;
          print_error(status);
+         continue;
       }
 
    }
