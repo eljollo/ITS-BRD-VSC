@@ -15,16 +15,13 @@
 
 enum Status add(void) {
    int operand1 = 0;
-   int *address_of_operand1 =
-       &operand1; // holds the address of the variable operand1
    int operand2 = 0;
-   int *address_of_operand2 = &operand2;
 
-   enum Status status = pop(address_of_operand1);
+   enum Status status = pop(&operand1); // pops value to the address of operand1
    if (status != SUCCESS) {
       return status;
    }
-   status = pop(address_of_operand2);
+   status = pop(&operand2); // wert auf den der stackpointer zeigt, wird an adresse von operand2 gespeichert
    if (status != SUCCESS) {
       return status;
    }
@@ -44,19 +41,15 @@ enum Status add(void) {
 
 enum Status subtract(void) {
    int operand1 = 0;
-   int *address_of_operand1 =
-       &operand1; // holds the address of the variable operand1
    int operand2 = 0;
-   int *address_of_operand2 =
-       &operand2; // holds the address of the variable operand2
 
    enum Status status =
-       pop(address_of_operand1); // pops value to the address of operand1
+       pop(&operand1); // pops value to the address of operand1
    if (status != SUCCESS) {
       return status;
    }
    status =
-       pop(address_of_operand2); // wert auf den der stackpointer zeigt, wird an
+       pop(&operand2); // wert auf den der stackpointer zeigt, wird an
                                  // adresse von operand2 gespeichert
    if (status != SUCCESS) {
       return status;
@@ -77,18 +70,14 @@ enum Status subtract(void) {
 
 enum Status multiply(void) {
    int operand1 = 0;
-   int *adress_of_operand1 =
-       &operand1; // holds the address of the variable operand1
    int operand2 = 0;
-   int *adress_of_operand2 =
-       &operand2; // holds the address of the variable operand2
 
    enum Status status =
-       pop(adress_of_operand1); // pops value to the address of operand1
+       pop(&operand1); // pops value to the address of operand1
    if (status != SUCCESS) {
       return status;
    }
-   status = pop(adress_of_operand2); // wert auf den der stackpointer zeigt,
+   status = pop(&operand2); // wert auf den der stackpointer zeigt,
                                      // wird an adresse von operand2 gespeichert
    if (status != SUCCESS) {
       return status;
@@ -115,17 +104,13 @@ enum Status multiply(void) {
 
 enum Status divide(void) {
    int operand1 = 0;
-   int *adress_of_operand1 =
-       &operand1; // holds the address of the variable operand1
    int operand2 = 0;
-   int *adress_of_operand2 =
-       &operand2; // holds the address of the variable operand2
 
-   enum Status status = pop(adress_of_operand1);
+   enum Status status = pop(&operand1); // pops value to the address of operand1
    if (status != SUCCESS) {
       return status;
    }
-   status = pop(adress_of_operand2); // pops value to the address of operand2
+   status = pop(&operand2); // pops value to the address of operand2
    if (status != SUCCESS) {
       return status;
    }
@@ -141,4 +126,46 @@ enum Status divide(void) {
    int result = operand2 / operand1;
    push(result);
    return SUCCESS;
+}
+
+// double
+enum Status funct_d(void) {
+    int operand1 = 0;
+
+   enum Status status = pop(&operand1); // pops value to the address of operand1
+   if (status != SUCCESS) {
+      return status;
+   }
+   status = push(operand1);
+   if (status != SUCCESS) {
+      return status;
+   }
+   status = push(operand1);
+   if (status != SUCCESS) {
+      return status;
+   }
+}
+
+
+// reverse
+enum Status funct_r(void) {
+    int operand1 = 0;
+    int operand2 = 0;
+
+    enum Status status = pop(&operand1); // pops value to the address of operand1
+    if (status != SUCCESS) {
+       return status;
+    }
+    status = pop(&operand2); // pops value to the address of operand1
+   if (status != SUCCESS) {
+      return status;
+   }
+   status = push(operand2);
+   if (status != SUCCESS) {
+      return status;
+   }
+   status = push(operand1);
+   if (status != SUCCESS) {
+      return status;
+   }
 }

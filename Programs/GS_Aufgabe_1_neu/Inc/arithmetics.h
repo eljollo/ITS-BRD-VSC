@@ -60,3 +60,26 @@ extern enum Status multiply(void);
  error_handling.h) ansonsten SUCCESS
  **********************************************************************/
 extern enum Status divide(void);
+
+
+/**
+ **********************************************************************
+ *
+ * @brief XXX
+ *
+ * @param XXX
+ *
+ * @return XXX
+ **********************************************************************/
+extern enum Status funct_d(void);
+
+/**
+ **********************************************************************
+ *
+ * @brief XXX
+ *
+ * @param XXX
+ *
+ * @return XXX
+ **********************************************************************/
+extern enum Status funct_r(void);
