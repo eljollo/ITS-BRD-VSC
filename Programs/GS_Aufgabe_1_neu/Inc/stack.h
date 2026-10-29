@@ -9,11 +9,8 @@
 /**
  **********************************************************************
  *
-<<<<<<< HEAD
  * @brief Initialisiert den Stack samt Stackpointer
-=======
  * @brief sets the stackpointer to -1, so that the stack is empty
->>>>>>> Lasse
  *
  **********************************************************************/
 extern void init_stack(void);
