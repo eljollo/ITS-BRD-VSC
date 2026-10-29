@@ -23,13 +23,17 @@ Pretty-Printer und Linter testen/konfigurieren:
 /****************************************************************/
 
 Testfälle (nach Modulen gruppiert, Legende: S = "test successfull", F = "test failed", N = "test not executed yet"):
+Beispiel-Eingabesequenz:
+- "25 8 67+r/p" == 3: S
 arithmetics-Modul:
 -> add(): 
 - "2 4 +" == 6: S 
 -> sub(): 
+- "" == :
 -> mul():
+- "" == :
 -> div():
-
+- "" == :
 stack-Modul:
 
 Input-tests(depend on multiple modules):

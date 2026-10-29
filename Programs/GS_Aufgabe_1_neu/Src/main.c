@@ -137,6 +137,7 @@ int main(void) {
       if (status != SUCCESS) {
          fehlermodus = true;
          print_error(status);
+         continue;
       }
 
    }

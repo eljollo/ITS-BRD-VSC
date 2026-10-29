@@ -9,7 +9,7 @@
 /**
  **********************************************************************
  *
- * @brief 
+ * @brief sets the stackpointer to -1, so that the stack is empty
  *
  **********************************************************************/
 extern void init_stack(void);
@@ -79,3 +79,13 @@ extern enum Status funct_d(void);
  * @return XXX
  **********************************************************************/
 extern enum Status funct_r(void);
+
+/**
+ **********************************************************************
+ *
+ * @brief function C clears the stack and i
+ *
+ * @param XXX
+ *
+ * @return XXX
+ **********************************************************************/
