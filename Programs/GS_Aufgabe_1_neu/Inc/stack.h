@@ -1,10 +1,10 @@
 /**
-* @file stack.c
-* @author Thomas Ramba, Matr.Num.: 284259
-* @date Oct 2026
-*
-* @brief This file contains the header file of the stack module.
-*/
+ * @file stack.c
+ * @author Thomas Ramba, Matr.Num.: 284259
+ * @date Oct 2026
+ *
+ * @brief This file contains the header file of the stack module.
+ */
 
 /**
  **********************************************************************
@@ -22,14 +22,15 @@ extern void init_stack(void);
  *
  * @param val ist der übergebene / eingegebene Wert
  *
- * @return status ob erfolgreich oder overflow 
+ * @return status ob erfolgreich oder overflow
  **********************************************************************/
 extern enum Status push(int val);
 
 /**
  **********************************************************************
  *
- * @brief gibt den obersten wert vom stack zurück und löscht diesen (verschiebt den stackpointer eins nach unten).
+ * @brief gibt den obersten wert vom stack zurück und löscht diesen (verschiebt
+ *den stackpointer eins nach unten).
  *
  * @param *val adresse um Stackwert zu speichern
  *
@@ -40,7 +41,8 @@ extern enum Status pop(int *val);
 /**
  **********************************************************************
  *
- * @brief druckt den obersten Wert des Stacks auf das Display ohne den Stack zu verändern.
+ * @brief druckt den obersten Wert des Stacks auf das Display ohne den Stack zu
+ *verändern.
  *
  * @param *val adresse um Stackwert zu speichern
  *
@@ -51,9 +53,11 @@ extern enum Status funct_p(int *val);
 /**
  **********************************************************************
  *
- * @brief druckt die bis zu 3 obersten Werte des Stacks auf das Display ohne den Stack zu verändern
+ * @brief druckt die bis zu 3 obersten Werte des Stacks auf das Display ohne den
+ *Stack zu verändern
  *
- * @param *elem_counter zählt wie viele elemente vom stack gelesen werden, das array values[3] speichert die Werte, die vom stack gelesen werden
+ * @param *elem_counter zählt wie viele elemente vom stack gelesen werden, das
+ *array values[3] speichert die Werte, die vom stack gelesen werden
  *
  * @return status ob erfolgreich oder overflow
  **********************************************************************/

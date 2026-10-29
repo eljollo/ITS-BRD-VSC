@@ -1,9 +1,6 @@
 #include "tests.h"
+#include "arithmetics.h"
 #include "error_handling.h"
 #include "stack.h"
-#include "arithmetics.h"
 
-
-enum Status tests() {
-    return SUCCESS;
-}
+enum Status tests() { return SUCCESS; }
