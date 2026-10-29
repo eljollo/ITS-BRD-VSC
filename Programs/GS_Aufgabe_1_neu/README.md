@@ -18,7 +18,7 @@ Modulkonzept "ordentlich" aufzeichnen:
 -> main-funktion-Konzept überlegen: (erledigt).
 -> main-funktion sourcecode hinzufügen: erledigt.
 
-Pretty-Printer und Linter testen/konfigurieren:
+Pretty-Printer und Linter testen/konfigurieren und durchführen: erledigt.
 
 /****************************************************************/
 
