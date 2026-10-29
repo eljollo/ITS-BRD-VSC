@@ -68,10 +68,13 @@ enum Status funct_pthree(int *elem_counter, int values[3]){
 
 // Funktion d (dupliziert den obersten Eintrag des Stacks)
 enum Status funct_d(void){
-    if (stackpointer < STACK_SIZE -1) {
+    if (stackpointer < STACK_SIZE -1 && stackpointer > -1) {
         stackpointer ++ ;
         stack[stackpointer] = stack[stackpointer-1] ;
         return SUCCESS;   
+    }
+    if (stackpointer <= -1){
+        return STACK_UNDERFLOW;
     }
     return STACK_OVERFLOW;
 }
