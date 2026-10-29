@@ -9,7 +9,11 @@
 /**
  **********************************************************************
  *
+<<<<<<< HEAD
  * @brief Initialisiert den Stack samt Stackpointer
+=======
+ * @brief sets the stackpointer to -1, so that the stack is empty
+>>>>>>> Lasse
  *
  **********************************************************************/
 extern void init_stack(void);
@@ -17,65 +21,65 @@ extern void init_stack(void);
 /**
  **********************************************************************
  *
- * @brief Fuegt ein Element in die Menge ein.
+ * @brief legt einen Wert als oberstes Element auf den Stack.
  *
- * @param XXX
+ * @param val ist der übergebene / eingegebene Wert
  *
- * @return XXX
+ * @return status ob erfolgreich oder overflow 
  **********************************************************************/
 extern enum Status push(int val);
 
 /**
  **********************************************************************
  *
- * @brief XXX.
+ * @brief gibt den obersten wert vom stack zurück und löscht diesen (verschiebt den stackpointer eins nach unten).
  *
- * @param XXX
+ * @param *val adresse um Stackwert zu speichern
  *
- * @return XXX
+ * @return status ob erfolgreich oder overflow
  **********************************************************************/
 extern enum Status pop(int *val);
 
 /**
  **********************************************************************
  *
- * @brief XXX
+ * @brief druckt den obersten Wert des Stacks auf das Display ohne den Stack zu verändern.
  *
- * @param XXX
+ * @param *val adresse um Stackwert zu speichern
  *
- * @return XXX
+ * @return status ob erfolgreich oder overflow
  **********************************************************************/
 extern enum Status funct_p(int *val);
 
 /**
  **********************************************************************
  *
- * @brief XXX
+ * @brief druckt die bis zu 3 obersten Werte des Stacks auf das Display ohne den Stack zu verändern
  *
- * @param XXX
+ * @param *elem_counter zählt wie viele elemente vom stack gelesen werden, das array values[3] speichert die Werte, die vom stack gelesen werden
  *
- * @return XXX
+ * @return status ob erfolgreich oder overflow
  **********************************************************************/
 extern enum Status funct_pthree(int *elem_counter, int values[3]);
 
 /**
  **********************************************************************
  *
- * @brief XXX
+ * @brief legt den Wert vom stack erneut auf den stack
  *
- * @param XXX
+ * @param void
  *
- * @return XXX
+ * @return status ob erfolgreich oder overflow
  **********************************************************************/
 extern enum Status funct_d(void);
 
 /**
  **********************************************************************
  *
- * @brief XXX
+ * @brief vertauscht die obersten beiden Werte vom stack
  *
  * @param XXX
  *
- * @return XXX
+ * @return status ob erfolgreich oder overflow
  **********************************************************************/
 extern enum Status funct_r(void);
