@@ -1,10 +1,10 @@
 /**
-* @file stack.c
-* @author Thomas Ramba, Matr.Num.: 284259
-* @date Oct 2026
-*
-* @brief This file contains the header file of the stack module.
-*/
+ * @file stack.c
+ * @author Thomas Ramba, Matr.Num.: 284259
+ * @date Oct 2026
+ *
+ * @brief This file contains the header file of the stack module.
+ */
 
 /**
  **********************************************************************
