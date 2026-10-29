@@ -127,3 +127,47 @@ enum Status divide(void) {
    push(result);
    return SUCCESS;
 }
+
+// double
+enum Status funct_d(void) {
+    int operand1 = 0;
+
+   enum Status status = pop(&operand1); // pops value to the address of operand1
+   if (status != SUCCESS) {
+      return status;
+   }
+   status = push(operand1);
+   if (status != SUCCESS) {
+      return status;
+   }
+   status = push(operand1);
+   if (status != SUCCESS) {
+      return status;
+   }
+   return SUCCESS;
+}
+
+
+// reverse
+enum Status funct_r(void) {
+    int operand1 = 0;
+    int operand2 = 0;
+
+    enum Status status = pop(&operand1); // pops value to the address of operand1
+    if (status != SUCCESS) {
+       return status;
+    }
+    status = pop(&operand2); // pops value to the address of operand1
+   if (status != SUCCESS) {
+      return status;
+   }
+   status = push(operand2);
+   if (status != SUCCESS) {
+      return status;
+   }
+   status = push(operand1);
+   if (status != SUCCESS) {
+      return status;
+   }
+    return SUCCESS;
+}

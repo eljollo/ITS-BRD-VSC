@@ -177,6 +177,7 @@ project:
         - file: Inc/scanner.h
         - file: Inc/display.h
         - file: Inc/tests.h
+        - file: Inc/output.h
         - file: Inc/arithmetics.h
         - file: Inc/main.h
 
@@ -189,6 +190,7 @@ project:
         - file: Src/scanner.c
         - file: Src/display.c
         - file: Src/tests.c
+        - file: Src/output.c
         - file: Src/arithmetics.c
 
 

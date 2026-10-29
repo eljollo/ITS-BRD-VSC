@@ -31,10 +31,9 @@
                 "cwd": "${workspaceFolder}/Programs/GS_Aufgabe_1_neu",
                 "cwd": "${workspaceFolder}/Programs/GS_Aufgabe_1_neu",
                 "shell": {
-                    "executable": "cmd.exe",
+                    "executable": "/bin/bash",
                     "args": [
-                        "/d",
-                        "/c"
+                        "-c"
                     ]
                 }
             },
@@ -56,10 +55,9 @@
                 "cwd": "${workspaceFolder}/Programs/GS_Aufgabe_1_neu",
                 "cwd": "${workspaceFolder}/Programs/GS_Aufgabe_1_neu",
                 "shell": {
-                    "executable": "cmd.exe",
+                    "executable": "/bin/bash",
                     "args": [
-                        "/d",
-                        "/c"
+                        "-c"
                     ]
                 }
             },
@@ -80,10 +78,9 @@
                 "cwd": "${workspaceFolder}/Programs/GS_Aufgabe_1_neu",
                 "cwd": "${workspaceFolder}/Programs/GS_Aufgabe_1_neu",
                 "shell": {
-                    "executable": "cmd.exe",
+                    "executable": "/bin/bash",
                     "args": [
-                        "/d",
-                        "/c"
+                        "-c"
                     ]
                 }
             },
@@ -118,10 +115,9 @@
                 "cwd": "${workspaceFolder}/Programs/GS_Aufgabe_1_neu",
                 "cwd": "${workspaceFolder}/Programs/GS_Aufgabe_1_neu",
                 "shell": {
-                    "executable": "cmd.exe",
+                    "executable": "/bin/bash",
                     "args": [
-                        "/d",
-                        "/c"
+                        "-c"
                     ]
                 }
             },
