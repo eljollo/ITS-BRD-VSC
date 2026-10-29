@@ -27,13 +27,15 @@ Beispiel-Eingabesequenz:
 - "25 8 67+r/p" == 3: S
 arithmetics-Modul:
 -> add(): 
-- "2 4 +" == 6: S 
+- "2 4 +p" == 6: S 
 -> sub(): 
-- "" == :
+- "9 10-p" == -1: S
 -> mul():
-- "" == :
+- "6 10*p" == 60: S
 -> div():
-- "" == :
+- "4 2/p" == 2: S
+- "11 3/p" == 3: S
+- "12 5/p" == 2: S
 stack-Modul:
 
 Input-tests(depend on multiple modules):
