@@ -48,11 +48,11 @@ int main(void) {
          break;
       }
       case PRT: {
-         funct_p();
+         status = funct_p();
          break;
       }
       case PRT_ALL: { // in funktion umziehen-> push & pop nutzen 
-         funct_pthree();
+         status = funct_pthree();
          break;
       }
       case DOUBLE: {
@@ -94,7 +94,7 @@ int main(void) {
       }
       }
 
-      if (status != SUCCESS && status != EMPTY_STACK) {
+      if (status != SUCCESS ) {
          fehlermodus = true;
          print_error(status);
       }

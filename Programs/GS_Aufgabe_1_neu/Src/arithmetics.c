@@ -144,6 +144,7 @@ enum Status funct_d(void) {
    if (status != SUCCESS) {
       return status;
    }
+   return SUCCESS;
 }
 
 
@@ -168,4 +169,5 @@ enum Status funct_r(void) {
    if (status != SUCCESS) {
       return status;
    }
+    return SUCCESS;
 }

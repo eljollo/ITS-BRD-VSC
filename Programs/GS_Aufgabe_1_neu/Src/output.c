@@ -7,7 +7,7 @@
 #define TEXT_LENGTH 20
 
 // error funktion
-static void print_error(enum Status status) {
+void print_error(enum Status status) {
    set_err_mode();
    switch (status) {
    case DIV_BY_ZERO:
@@ -42,6 +42,7 @@ enum Status funct_p(void) {
     char ausgabe[TEXT_LENGTH];
     sprintf(ausgabe, "%d\n", operand1);
     print_stdout(ausgabe);
+    push(operand1);
     return SUCCESS;
 }
 
@@ -49,20 +50,27 @@ enum Status funct_p(void) {
 enum Status funct_pthree(void) {
     int intarray[3];
     int counter = 0;
-    enum Status status = pop(&intarray[0]); // pops value to the address of operand1
-    if (status != SUCCESS) {
-        return EMPTY_STACK;
-    }
-    for (counter = 1 ; counter < 3 && status == SUCCESS ; counter++) {
-        status = pop(&intarray[counter]);
-    }
+    enum Status status;
+
     clear_stdout();
-    while (counter>=0) {
+
+    for(counter = 0; counter < 3; counter++) {
+        status = pop(&intarray[counter]);
+        if (status != SUCCESS) {
+            break;
+        }
         char ausgabe[TEXT_LENGTH];
         sprintf(ausgabe, "%d\n", intarray[counter]);
         print_stdout(ausgabe);
+    }
+
+    if(counter == 0)
+    {
+        return EMPTY_STACK;
+    }
+    counter -= 1;
+    for (; counter >= 0; counter--) {
         push(intarray[counter]);
-        counter--;
     }
     return SUCCESS;
 
