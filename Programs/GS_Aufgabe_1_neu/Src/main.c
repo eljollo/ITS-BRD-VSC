@@ -132,6 +132,12 @@ int main(void) {
             fehlermodus = false;
             break;
          }
+         default: {
+            set_err_mode();
+            print_stdout("Ungueltige Eingabe");
+            fehlermodus = true;
+            break;
+         }
       }
 
       if (status != SUCCESS) {
