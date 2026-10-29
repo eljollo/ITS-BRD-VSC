@@ -1,6 +1,6 @@
 /**
 * @file stack.c
-* @author Thomas Ramba, Matr.Num.: ...
+* @author Thomas Ramba, Matr.Num.: 2842594
 * @date Oct 2026
 *
 * @brief This module implements a a stack for stack-operations.

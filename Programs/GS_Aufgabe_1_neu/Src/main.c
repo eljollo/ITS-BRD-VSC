@@ -1,14 +1,15 @@
 /**
  ******************************************************************************
  * @file    main.c
- * @author  Franz Korf
- * @brief   Kleines Testprogramm fuer neu erstelle Fonts.
+ * @author  Lasse Bruhn, Matr.Num.: 2880211, Thomas Ramba, Matr.Num.: 284259
+ * @brief   contains the implementation of the main function
  ******************************************************************************
  */
 /* Includes ------------------------------------------------------------------*/
 
 // #include "LCD_GUI.h"
 // #include "LCD_Touch.h"
+#include "main.h"
 #include "error_handling.h"
 #include "init.h"
 // #include "lcd.h"
@@ -82,7 +83,6 @@ int main(void) {
                char ausgabe[TEXT_LENGTH];
                sprintf(ausgabe, "%d\n", val);
                print_stdout(ausgabe);
-            
             }
             if (status == EMPTY_STACK) {
                clear_stdout();
@@ -100,7 +100,7 @@ int main(void) {
                clear_stdout();
                for (int i = 0; i < counter; i++) {
                   char ausgabe[TEXT_LENGTH];
-                  sprintf(ausgabe, "%d\n", intarray[i]);
+                 sprintf(ausgabe, "%d\n", intarray[i]);
                   print_stdout(ausgabe);
                }
             }
@@ -141,6 +141,12 @@ int main(void) {
             init_stack();
             set_normal_mode();
             fehlermodus = false;
+            break;
+         }
+         default: {
+            set_err_mode();
+            print_stdout("Ungueltige Eingabe");
+            fehlermodus = true;
             break;
          }
       }
