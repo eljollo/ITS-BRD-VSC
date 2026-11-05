@@ -8,8 +8,11 @@
         },
         "Programs/GS_Aufgabe_1_neu/GS_Aufgabe_1_neu": {
             "activeTargetType": "ITSboard"
+        },
+        "Programs/GSAufgabe2/GSAufgabe2": {
+            "activeTargetType": "ITSboard"
         }
     },
-    "activeSolution": "../Programs/GS_Aufgabe_1_neu/GS_Aufgabe_1_neu.csolution.yml",
+    "activeSolution": "../Programs/GSAufgabe2/GSAufgabe2.csolution.yml",
     "activeTarget": "ITSboard"
 }
