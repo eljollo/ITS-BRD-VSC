@@ -28,7 +28,7 @@
             "type": "shell",
             "command": "pyocd",
             "options": {
-                "cwd": "${workspaceFolder}/Programs/GSAufgabe2",
+                "cwd": "${workspaceFolder}/Programs/Drehgeber",
                 "cwd": "${workspaceFolder}/Programs/GS_Aufgabe_1_neu",
                 "shell": {
                     "executable": "/bin/bash",
@@ -52,7 +52,7 @@
             "type": "shell",
             "command": "pyocd",
             "options": {
-                "cwd": "${workspaceFolder}/Programs/GSAufgabe2",
+                "cwd": "${workspaceFolder}/Programs/Drehgeber",
                 "cwd": "${workspaceFolder}/Programs/GS_Aufgabe_1_neu",
                 "shell": {
                     "executable": "/bin/bash",
@@ -75,7 +75,7 @@
             "type": "shell",
             "command": "pyocd",
             "options": {
-                "cwd": "${workspaceFolder}/Programs/GSAufgabe2",
+                "cwd": "${workspaceFolder}/Programs/Drehgeber",
                 "cwd": "${workspaceFolder}/Programs/GS_Aufgabe_1_neu",
                 "shell": {
                     "executable": "/bin/bash",
@@ -112,7 +112,7 @@
             "type": "shell",
             "command": "pyocd",
             "options": {
-                "cwd": "${workspaceFolder}/Programs/GSAufgabe2",
+                "cwd": "${workspaceFolder}/Programs/Drehgeber",
                 "cwd": "${workspaceFolder}/Programs/GS_Aufgabe_1_neu",
                 "shell": {
                     "executable": "/bin/bash",

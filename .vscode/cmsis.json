@@ -11,8 +11,11 @@
         },
         "Programs/GSAufgabe2/GSAufgabe2": {
             "activeTargetType": "ITSboard"
+        },
+        "Programs/Drehgeber/Drehgeber": {
+            "activeTargetType": "ITSboard"
         }
     },
-    "activeSolution": "../Programs/GSAufgabe2/GSAufgabe2.csolution.yml",
+    "activeSolution": "../Programs/Drehgeber/Drehgeber.csolution.yml",
     "activeTarget": "ITSboard"
 }
