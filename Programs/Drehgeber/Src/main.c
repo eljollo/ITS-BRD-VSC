@@ -11,6 +11,7 @@
 #include "LCD_Touch.h"
 #include "init.h"
 #include "lcd.h"
+#include "timer.h"
 #include "stm32f4xx_hal.h"
 
 int main(void) {
