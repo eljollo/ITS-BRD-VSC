@@ -208,6 +208,8 @@ Sie werden aufgefordert, eine MDK Community-Lizenz für die nicht-kommerzielle N
 2. Klicken Sie in dem CMSIS-Menü auf den Hammer ("Build Solution") Das Projekt sollte nun ohne Fehler gebaut werden.
 3. Klicken Sie in dem CMSIS-Menü auf das Pfeil (Load & Run) um das Projekt auf das Board zu übertragen und dort laufen zu lassen, oder auf den Käfer (Load & Debug) , um das Projekt auf das Board zu übertragen und dort das Programm im Einzelschritt Modus laufen zu lassen. 
 
+Wenn der Build `cmake not found` meldet, aktivieren Sie die Umgebung für die aktuell ausgewählte Solution erneut: Öffnen Sie deren `vcpkg-configuration.json` im Explorer und wählen Sie **Update Tool registry** und danach **Reactivate Environment**. CMake wird über diese Umgebung bereitgestellt; eine separate systemweite CMake-Installation ist nicht erforderlich.
+
 # Neues Projekt erstellen
 
 1. Öffnen Sie das Terminal in VS Code durch Klicken auf "Terminal" > "Neues Terminal" in der Menüleiste oder durch Drücken von `Strg+Shift+ö` (Windows/Linux) oder `Cmd+Shift+ö` (macOS).

@@ -24,6 +24,7 @@ cmsis-tools-environment:
   tools:
     - name: pyOCD
       version: v0.46.1
+      version: v0.46.1
       origin: built-in
       provider:
         type: vscode-extension
@@ -86,5 +87,5 @@ cmsis-tools-environment:
       provider:
         type: vscode-extension
         id: arm.vscode-cmsis-debugger
-      directory: c:/Users/thoma/.vscode/extensions/arm.vscode-cmsis-debugger-1.10.1-win32-x64/tools/gdb/bin
+      directory: /Users/Lasse/.vscode/extensions/arm.vscode-cmsis-debugger-1.10.0-darwin-arm64/tools/gdb/bin
       manual: https://developer.arm.com/Tools%20and%20Software/GNU%20Toolchain
