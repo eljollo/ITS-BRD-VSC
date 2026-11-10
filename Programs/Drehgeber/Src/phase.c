@@ -44,7 +44,7 @@ typedef struct {
 typedef enum {
     DIRECTION_UNKNOWN,
     DIRECTION_FORWARD,
-    DIRECTION_BACKWARD
+    DIRECTION_BACKWARD,
 } Direction ;
 
 
@@ -81,7 +81,7 @@ void phase_reset(){
 int phase_table[4][4] = {   {0, 1, ERROR, -1},
                             {-1, 0, 1, ERROR},
                             {ERROR, -1, 0, 1},
-                            {1, ERROR, -1, 0}
+                            {1, ERROR, -1, 0},
                         };
 
 // phase_bits zu phase_table index

@@ -41,18 +41,17 @@ int main(void) {
    
    // START SUPERLOOP
 
-   // main.c – am Anfang eines Super-Loop-Durchlaufs
-   Phase current = io_read_phase_sample(); // get pin A and B & timestamp und setze sie in 
+   // // Einlesen Phase (+ timestamp) und S6 (Reset-Button)
+   // Phase current = io_read_phase_sample(); // get pin A and B & timestamp und setze sie in 
+   // bool reset_pressed = io_read_s6();
 
-   bool reset_pressed = io_read_s6();
-
-
-   // mit eingelesenen Werten arbeiten
-   phase_process(current);    // phase current
+   // // mit eingelesenen Werten arbeiten
+   // phase_process(current);    // phase current verarbeiten   
    
-   
-   
+   // calculation-Funktion ausführen
 
+   // LED-Output (Fehler, Richtung, Zähler Phasenwechsel) -> Alles aus state
+   // Display-Output
 
 
 }
