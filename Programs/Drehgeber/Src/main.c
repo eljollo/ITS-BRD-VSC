@@ -11,7 +11,13 @@
 #include "LCD_Touch.h"
 #include "init.h"
 #include "lcd.h"
+#include "LCD_general.h"
+#include "timer.h"
 #include "stm32f4xx_hal.h"
+#include "../Inc/calculations.h"
+#include "../Inc/i_o_module.h"
+#include "../Inc/phase.h"
+#include "../Inc/main.h"
 
 int main(void) {
    initITSboard(); // Initialisierung des ITS Boards
@@ -20,7 +26,7 @@ int main(void) {
    TP_Init(false); // Initialisierung des LCD Boards mit Touch
 
    // Begruessungstext
-   lcdPrintlnS("Hallo liebes TI-Labor (c-project)");
+   lcdPrintlnS("Hallo Welt! ");
 
    // Test in Endlosschleife
    const int POLL_DELAY = 10000;

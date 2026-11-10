@@ -10,7 +10,7 @@
 /Programs/*/clang_tidy_result.txt
 __pycache__/
 
-/Programs/Drehgeber/*.*.yml
+# /Programs/Drehgeber/*.*.yml
 
 # Ignore User specific setting
 /Programs/*/*.uvguix.*
