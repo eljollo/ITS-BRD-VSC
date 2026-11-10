@@ -41,9 +41,17 @@ int main(void) {
    
    // START SUPERLOOP
 
-   // get pin A and B
+   // main.c – am Anfang eines Super-Loop-Durchlaufs
+   Phase current = io_read_phase_sample(); // get pin A and B & timestamp und setze sie in 
 
-   // phase current
+   bool reset_pressed = io_read_s6();
+
+
+   // mit eingelesenen Werten arbeiten
+   phase_process(current);    // phase current
+   
+   
+   
 
 
    // phase current zu phase previous

@@ -55,8 +55,8 @@ typedef struct {
 
     int32_t phase_counter;
     
-    uint32_t last_change_ticks;
-    bool has_last_change;
+    uint32_t last_change_ticks; // für phasenwechsel und phasenzähler gleich
+    bool has_last_change;       // gab es seit reset einen gültigen phassenwechsel
 
     Direction last_direction;
     bool error;
@@ -99,7 +99,36 @@ static int phase_index(uint8_t phase_bits){
 // Phasenzähler (zählt anzahl Phasenwechsel, erhält Zeitstempel )
 
 void phase_process(Phase current){
-    // TO DO 
+    if (state.error) {
+        return;
+    }
+    int current_phase = phase_index(current.phase_bits);                // aktuelle phase ausgehend von phase_bits
+    if (current_phase==-1) {
+        state.error = true;
+        return;
+    }
+    if (state.has_previous) {                                           // wenn previous existiert
+        int previous_phase = phase_index(state.previous.phase_bits);    // vorherige phase ausgehend von phase_bits
+        if (current_phase!=previous_phase) {                            // phasenwechsel ? (wenn previous und ungleich aktueller phase)
+            int phase_change = phase_table[previous_phase][current_phase];
+            if (phase_change!=ERROR) {                                  // Fehlersituation ? (wurde eine phase übersprungen?)
+                state.has_last_change = true;                           // legit phasenwechsel seit reset boolean
+                state.last_change_ticks = current.timer_ticks;          // timer setzen bei phasenwechsel
+                if (phase_change == 1) {
+                    state.last_direction = DIRECTION_FORWARD;           // Drehrichtung
+                }
+                if (phase_change == -1) {
+                    state.last_direction = DIRECTION_BACKWARD;          // Drehrichtung
+                }
+                state.phase_counter += phase_change;                     // phasenzähler aktualisieren
+            } else {
+                state.error = true;
+                return;
+            }
+        }
+    }
+    state.has_previous = true;
+    state.previous = current;
 }
 
 
