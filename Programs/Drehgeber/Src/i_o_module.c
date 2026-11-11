@@ -12,3 +12,9 @@
 // // I/O liest Phase mit Zeitstempel und gibt sie an phase weiter
 // Phase io_read_phase_sample() // setzt die phase bits in ein "Phase current"
 
+
+// WEITERE ANFORDERUNGEN: 
+// timer ticks müssen in 64 Bit abgelegt werden
+
+// io_show_reset_state();  oder ähnliche funktion um 
+

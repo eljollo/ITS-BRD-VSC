@@ -1,3 +1,11 @@
+/**
+ * @file phase.c
+ * @author Thomas Ramba, Matr.Num.: 2842594
+ * @date Nov 2026
+ *
+ * @brief enthält Implementierungen der in phase.h deklarierten Funktionen.
+ */
+
 // Phasenübergang & Phasenzähler
 // Zugriff auf Phase C-Struct um Phase bzw deren veränderung zu checken
 
@@ -26,6 +34,8 @@
 // Zeitstempel zum Zählerstand          – wann der letzte gezählte Wechsel beobachtet wurde; das braucht deine Geschwindigkeitsberechnung.
 // Kennzeichen für den ersten Messwert  – beim Start gibt es noch keine „letzte Phase“, mit der man vergleichen könnte
 
+#include "phase.h"
+#include "structs.h"
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -33,34 +43,22 @@
 // Konstanten
 #define ERROR 99
 
-// struct als datentyp für inhalt / informationen der Phase
-typedef struct {
-    uint8_t phase_bits;
-    uint32_t timer_ticks;
-} Phase;
-
-
-// enum für direction
-typedef enum {
-    DIRECTION_UNKNOWN,
-    DIRECTION_FORWARD,
-    DIRECTION_BACKWARD,
-} Direction ;
-
-
 // struct als datentyp für Zustand der Phase
 typedef struct {
     Phase previous;
     bool has_previous;
 
-    int32_t phase_counter;
+    int64_t phase_counter;
     
-    uint32_t last_change_ticks; // für phasenwechsel und phasenzähler gleich
+    uint64_t last_change_ticks; // für phasenwechsel und phasenzähler gleich
     bool has_last_change;       // gab es seit reset einen gültigen phassenwechsel
+
+    uint64_t change_number;     // anzahl an phasenwechsel (richtungsunabhängig)
 
     Direction last_direction;
     bool error;
 } PhaseState;
+
 
 
 // Variable um Zustand festzuhalten
@@ -69,11 +67,12 @@ static PhaseState state;
 
 // phase reset
 void phase_reset(){ 
-    state.has_previous = false;
-    state.phase_counter = 0 ;
-    state.has_last_change = false;
-    state.last_direction = DIRECTION_UNKNOWN;
-    state.error = false;
+    state = (PhaseState){0}; // nicere alternative zu unten
+    // state.has_previous = false;
+    // state.phase_counter = 0 ;
+    // state.has_last_change = false;
+    // state.last_direction = DIRECTION_UNKNOWN;
+    // state.error = false;
 }
 
 
@@ -87,10 +86,10 @@ int phase_table[4][4] = {   {0, 1, ERROR, -1},
 // phase_bits zu phase_table index
 static int phase_index(uint8_t phase_bits){
     switch (phase_bits) {
-        case 0U: return 0;  // phase a
-        case 2U: return 1;  // phase b
-        case 3U: return 2;  // phase c
-        case 1U: return 3;  // phase d
+        case 0U: return 0;  // phase a 00
+        case 2U: return 1;  // phase b 10
+        case 3U: return 2;  // phase c 11
+        case 1U: return 3;  // phase d 01
         default: return -1;
     }
 }
@@ -120,7 +119,8 @@ void phase_process(Phase current){
                 if (phase_change == -1) {
                     state.last_direction = DIRECTION_BACKWARD;          // Drehrichtung
                 }
-                state.phase_counter += phase_change;                     // phasenzähler aktualisieren
+                state.phase_counter += phase_change;                    // phasenzähler aktualisieren
+                state.change_number++;                                  // wechsel-counter inkrementieren
             } else {
                 state.error = true;
                 return;
@@ -132,5 +132,23 @@ void phase_process(Phase current){
 }
 
 
+bool phase_has_error(void) {
+    return state.error;
+}
 
-// timestamp aufnehmen
+
+Direction phase_get_last_direction(void) {
+    return state.last_direction;
+}
+
+
+PhaseCountSnapshot phase_get_counter_sample(void) {
+    PhaseCountSnapshot result = {
+        .count = state.phase_counter,
+        .change_ticks = state.last_change_ticks,
+        .change_number = state.change_number,
+        .has_last_change = state.has_last_change,
+    };
+
+    return result;
+}
