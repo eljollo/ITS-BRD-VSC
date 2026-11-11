@@ -66,15 +66,17 @@ extern void change_winkegeschwindigkeit_output_n3(char number_new);
   ******************************************************************************
   */
 extern const int BIT_COMP; // wird in inputoutput.c auf passenden Wert für Vergleich gesetzt
-extern const bool S6_IS_PRESSED;
+extern bool s6_is_pressed;
 extern bool reads_button_s6_for_reset();
 
 /**
   ****************************************************************************** 
   * @author  Lasse Bruhn, Matr.-Nr.: 2880211
-  * @brief   liest Adressbereich der GPIOs
+  * @brief   liest Adressbereich der GPIOs PF0-PF7 (Pins IN0-IN7) aus und gibt den aktuellen Zustand als Integer zurück
+  *          (für Zustandsermittlung in phase/main, d.h. welche Phase aktuell?).
   ******************************************************************************
   */
+extern int read_gpio_pin0_to_pin7();
 
 /*LED-Output-Functions:*/
 
