@@ -174,12 +174,17 @@ project:
     - group: Program/User/Inc
       files:
         - file: ../../ITS_BRD_LIB/Inc/lcd.h
-
-
+        - file: Inc/main.h
+        - file: Inc/calculations.h
+        - file: Inc/phase.h
+        - file: Inc/io_module.h
     # Benutzerdefinierte Programmdateien
     - group: Program/User/Src
       files:
         - file: Src/main.c
+        - file: Src/phase.c
+        - file: Src/calculations.c
+        - file: Src/io_module.c
 
 
   components:

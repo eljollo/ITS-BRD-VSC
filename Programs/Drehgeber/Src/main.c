@@ -6,7 +6,6 @@
  ******************************************************************************
  */
 /* Includes ------------------------------------------------------------------*/
-
 #include "LCD_GUI.h"
 #include "LCD_Touch.h"
 #include "init.h"
@@ -14,7 +13,7 @@
 #include "LCD_general.h"
 #include "timer.h"
 #include "stm32f4xx_hal.h"
-
+#include "main.h"
 int main(void) {
    initITSboard(); // Initialisierung des ITS Boards
 
