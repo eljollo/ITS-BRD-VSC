@@ -176,8 +176,9 @@ project:
         - file: ../../ITS_BRD_LIB/Inc/lcd.h
         - file: Inc/main.h
         - file: Inc/calculations.h
-        - file: Inc/phase.h
         - file: Inc/inputoutput.h
+        - file: Inc/phase.h
+        - file: Inc/timer.h
 
     # Benutzerdefinierte Programmdateien
     - group: Program/User/Src
@@ -186,7 +187,7 @@ project:
         - file: Src/phase.c
         - file: Src/calculations.c
         - file: Src/inputoutput.c
-
+        - file: Src/timer.c
 
   components:
     - component: ARM::CMSIS:CORE
