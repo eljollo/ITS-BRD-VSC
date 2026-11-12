@@ -67,6 +67,16 @@ extern void change_winkegeschwindigkeit_output_n1(char number_new);
 extern void change_winkegeschwindigkeit_output_n2(char number_new);
 extern void change_winkegeschwindigkeit_output_n3(char number_new);
 
+/**
+  ****************************************************************************** 
+  * @author  Lasse Bruhn, Matr.-Nr.: 2880211
+  * @param   void
+  * @brief   initialisiert GPIOs, d.h. setzt alle Bits auf 0
+  ******************************************************************************
+  */
+  extern void init_gpio();
+
+
 /*ReadPINs-Functions:*/
 /**
   ****************************************************************************** 
@@ -88,7 +98,7 @@ extern bool reads_button_s6_for_reset();
   *          (für Zustandsermittlung in phase/main, d.h. welche Phase aktuell?).
   ******************************************************************************
   */
-extern int read_gpio_pin0_to_pin7();
+extern uint32_t read_gpio_pin0_to_pin7();
 
 /**
   ****************************************************************************** 
