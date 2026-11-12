@@ -86,7 +86,6 @@ extern void change_winkegeschwindigkeit_output_n3(char number_new);
   *          ob S6 gedrückt wurde. Falls gedrückt, wird S6_IS_PRESSED auf true gesetzt.
   ******************************************************************************
   */
-extern const int BIT_COMP; // wird in inputoutput.c auf passenden Wert für Vergleich gesetzt
 extern bool s6_is_pressed;
 extern bool reads_button_s6_for_reset();
 
@@ -144,6 +143,10 @@ extern void write_phase_number_to_led(uint8_t latest_count);
   *          show_error schaltet LED21 an
   ******************************************************************************
   */
+#define LED23_FORWARD (1U << 7)
+#define LED22_BACKWARD (1U << 6)
+#define LED21_ERROR (1U << 5)
+
 extern void last_turn_forward();
 extern void last_turn_backward();
 extern void show_error();

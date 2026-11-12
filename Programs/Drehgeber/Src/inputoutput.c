@@ -6,6 +6,9 @@
 #include "stm32f4xx_hal.h"
 #include "stm32f4xx.h"
 #include "../Inc/inputoutput.h"
+
+#define BIT_COMP (1U << 6)
+
 /**
   ******************************************************************************
   * @file    inputoutput.c
@@ -13,6 +16,7 @@
   * @brief   enthält Definitionen, bzw. Implementierungen der in inputoutput.h deklarierten Funktionen
   ******************************************************************************
   */
+//declare cursor-constants
 
 //Display - initialisierungsausgabe:
 void initial_display_output(void) {
@@ -93,30 +97,12 @@ void change_winkegeschwindigkeit_output_n3(char number_new) {
 }
 
 //init GPIOs:
-void init_gpio() {
-    //GPIOD: PD0 bis PD7 als Output (01) konfigurieren, restliche als Output
-    GPIOF->MODER &= ~0x0000FFFFU; //need to replace with matching constants
-    GPIOD->MODER |=  0x00005555U;
-
-    //GPIOE: PE1 bis PE7 als Output (01) konfigurieren (PE0 bleibt unberührt)
-    GPIOF->MODER &= ~0x0000FFFCU;
-    GPIOE->MODER |=  0x00005554U;
-
-    //GPIOF: PF0 und PF1 als Input (00) konfigurieren
-    GPIOF->MODER &= ~(GPIO_MODER_MODER0 | GPIO_MODER_MODER1);
-
-    //setzt alle Bits auf 0: (Input- und Output-Bereiche)
-    led_reset();
-    GPIOF->ODR = 0;
-}
+//define config-constants:
 
 //ReadPINs-Functions:
-
-const int BIT_COMP = 1234; // wird noch auf passenden Wert für Bit-Vergleich gesetzt //unint32-wert nötig
 bool s6_is_pressed = false;
 bool reads_button_s6_for_reset() {
-    s6_is_pressed = true;
-    s6_is_pressed = BIT_COMP & GPIOF->IDR; //bitweiser vergleich mit BIT_COMP
+    s6_is_pressed = (GPIOF->IDR & BIT_COMP) != 0U; //bitweiser vergleich mit BIT_COMP
     return s6_is_pressed;
 }
 
@@ -130,23 +116,23 @@ IoInputs inputs;
 IoInputs read_input() {
     inputs.reset_pressed = reads_button_s6_for_reset();
     inputs.phase_bits = read_gpio_pin0_to_pin7(); //niedrigwertigste letzte 2 bits per bit-Operation
-    inputs.raw_timer_ticks = 12;//platzhalter, hier wird read_timer() aufgerufen //liest timer-Register aus
+    inputs.raw_timer_ticks = read_timer();//platzhalter, hier wird read_timer() aufgerufen //liest timer-Register aus
     return inputs;
 }
 
 //LED-Output-Functions:
 void write_phase_number_to_led(uint8_t latest_count) {
-    GPIOE->ODR = latest_count;
+    GPIOD->ODR = latest_count;
 }
 
 void last_turn_forward() {
-    GPIOD->ODR = 123; //platzhalter
+    GPIOE->BSRR = LED23_FORWARD; //platzhalter d23 anpassen an bsrr jew.
 }
 void last_turn_backward() {
-    GPIOD->ODR = 123; //platzhalter
+    GPIOE->BSRR = LED22_BACKWARD; //platzhalter d22
 }
 void show_error() {
-    GPIOD->ODR = 0b0011; //platzhalter
+    GPIOE->BSRR = LED21_ERROR;
 }
 
 void led_reset() {
