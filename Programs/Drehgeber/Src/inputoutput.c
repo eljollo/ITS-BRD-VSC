@@ -100,9 +100,11 @@ bool reads_button_s6_for_reset() {
     return s6_is_pressed;
 }
 
-int read_gpio_pin0_to_pin7() {return 1;}
+int read_gpio_pin0_to_pin7() {return 1;} //called in read_input()
+
 //init struct for input:
 IoInputs inputs;
+
 IoInputs read_input() {
     inputs.reset_pressed = reads_button_s6_for_reset();
     inputs.phase_bits = 12;//platzhalter, hier wird io-funktion aufgerufen //niedrigwertigste letzte 2 bits
@@ -110,8 +112,15 @@ IoInputs read_input() {
 }
 
 //LED-Output-Functions:
-void write_phase_number_to_led(int param) {}
+void write_phase_number_to_led(uint8_t latest_count) {}
 
 void last_turn_forward() {}
 void last_turn_backward() {}
 void show_error() {}
+
+void led_reset() {}
+
+//timer-IO-functions:
+uint32_t read_timer() {}
+
+void timer_reset() {}

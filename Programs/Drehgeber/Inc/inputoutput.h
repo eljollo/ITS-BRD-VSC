@@ -1,6 +1,8 @@
 #include <stdbool.h>
+#include <stdint.h>
 #include "stm32f4xx_hal.h"
 #include "stm32f4xx.h"
+#include "timer.h"
 /**
   ******************************************************************************
   * @file    inputoutput.h 
@@ -109,11 +111,20 @@ IoInputs extern read_input();
 /**
   ****************************************************************************** 
   * @author  Lasse Bruhn, Matr.-Nr.: 2880211
+  * @brief   Setzt in Register/Adressen, die LEDs steuern alle Bits auf 0
+  ******************************************************************************
+  */
+  //define constant 0x0000...
+extern void led_reset();
+
+/**
+  ****************************************************************************** 
+  * @author  Lasse Bruhn, Matr.-Nr.: 2880211
   * @brief   Nimmt einen int-Wert an und schreibt die niedrigwertigsten 8 Bit
   *          in den Adressbereich, der die LED-Ausgabe von D8-D15(GPIOs PD0 bis PD7) steuert.
   ******************************************************************************
   */
-extern void write_phase_number_to_led(int);
+extern void write_phase_number_to_led(uint8_t latest_count);
 
 /**
   ****************************************************************************** 
@@ -126,3 +137,22 @@ extern void write_phase_number_to_led(int);
 extern void last_turn_forward();
 extern void last_turn_backward();
 extern void show_error();
+
+/*timer-IO-Functions */
+/**
+  ****************************************************************************** 
+  * @author  Lasse Bruhn, Matr.-Nr.: 2880211
+  * @param   
+  * @brief   liest aktuellen Wert vom CNT-Register aus und 
+  ******************************************************************************
+  */
+  extern uint32_t read_timer();
+
+/**
+  ****************************************************************************** 
+  * @author  Lasse Bruhn, Matr.-Nr.: 2880211
+  * @param   
+  * @brief   setzt alle Bits im Timer-Register(CNT) auf 0
+  ******************************************************************************
+  */  
+  extern void timer_reset();
