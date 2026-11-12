@@ -24,8 +24,22 @@ int main(void) {
    GUI_init(DEFAULT_BRIGHTNESS); // Initialisierung des LCD Boards mit Touch
    TP_Init(false); // Initialisierung des LCD Boards mit Touch
 
-   // Begruessungstext
+   //testcalls
    initial_display_output();
+   //winkeltests:
+   change_winkel_output_1('1');
+   change_winkel_output_2('2');
+   change_winkel_output_3('3');
+   change_winkel_output_4('4');
+   change_winkel_output_n1('5');
+   //geschwindigkeitstests:
+   change_winkegeschwindigkeit_output_1('1');
+   change_winkegeschwindigkeit_output_2('2');
+   change_winkegeschwindigkeit_output_3('3');
+   change_winkegeschwindigkeit_output_4('4');
+   change_winkegeschwindigkeit_output_n1('1');
+   change_winkegeschwindigkeit_output_n2('2');
+   change_winkegeschwindigkeit_output_n3('3');
 
    // Test in Endlosschleife
    const int POLL_DELAY = 10000;

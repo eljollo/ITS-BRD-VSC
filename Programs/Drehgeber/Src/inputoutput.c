@@ -1,59 +1,92 @@
 #include <stdbool.h>
+#include <stdint.h>
 #include "lcd.h"
+#include "stm32f4xx_hal.h"
 #include "../Inc/inputoutput.h"
 /**
   ******************************************************************************
   * @file    inputoutput.c
   * @author  Lasse Bruhn, Matr.-Nr.: 2880211
-  * @brief   enthält Implementierungen der in inputoutput.h deklarierten Funktionen
+  * @brief   enthält Definitionen, bzw. Implementierungen der in inputoutput.h deklarierten Funktionen
   ******************************************************************************
   */
 
 //Display - initialisierungsausgabe:
 void initial_display_output(void) {
-    lcdPrintlnS("Hallo Welt! ");
+    lcdGotoXY(1, 3);
+    lcdPrintlnS("Winkel: ");
+    lcdGotoXY(1, 10);
+    lcdPrintlnS("Geschwindigkeit: ");
+    lcdGotoXY(13, 3);
+    lcdPrintC(',');
+    lcdGotoXY(35, 3);
+    lcdPrintlnS("Grad");
+    lcdGotoXY(25, 10);
+    lcdPrintC(',');
+    lcdGotoXY(35, 10);
+    lcdPrintlnS("Grad/s");
 }
 
 //Display - winkelausgabe:
 void change_winkel_output_1(char number_new) {
-    lcdPrintlnS(&number_new); //platzhalter-Anweisung
+    lcdGotoXY(12, 3);
+    lcdPrintC(number_new); 
 }
 
 void change_winkel_output_2(char number_new) {
-    lcdPrintlnS(&number_new); //platzhalter-Anweisung
+    lcdGotoXY(11, 3);
+    lcdPrintC(number_new);
 }
 
 void change_winkel_output_3(char number_new) {
-    lcdPrintlnS(&number_new); //platzhalter-Anweisung
+    lcdGotoXY(10, 3);
+    lcdPrintC(number_new);
+}
+
+void change_winkel_output_4(char number_new) {
+    lcdGotoXY(9, 3);
+    lcdPrintC(number_new);
 }
 
 void change_winkel_output_n1(char number_new) {
-    lcdPrintlnS(&number_new); //platzhalter-Anweisung
+    lcdGotoXY(14, 3);
+    lcdPrintC(number_new);
 }
 
 //Display - winkelgeschwindigkeitsausgabe:
 void change_winkegeschwindigkeit_output_1(char number_new) {
-    lcdPrintlnS(&number_new); //platzhalter-Anweisung
+    lcdGotoXY(24, 10);
+    lcdPrintC(number_new);
 }
 
 void change_winkegeschwindigkeit_output_2(char number_new) {
-    lcdPrintlnS(&number_new); //platzhalter-Anweisung
+    lcdGotoXY(23, 10);
+    lcdPrintC(number_new);
 }
 
 void change_winkegeschwindigkeit_output_3(char number_new) {
-    lcdPrintlnS(&number_new); //platzhalter-Anweisung
+    lcdGotoXY(22, 10);
+    lcdPrintC(number_new);
+}
+
+void change_winkegeschwindigkeit_output_4(char number_new) {
+    lcdGotoXY(21, 10);
+    lcdPrintC(number_new);
 }
 
 void change_winkegeschwindigkeit_output_n1(char number_new) {
-    lcdPrintlnS(&number_new); //platzhalter-Anweisung
+    lcdGotoXY(26, 10);
+    lcdPrintC(number_new);
 }
 
 void change_winkegeschwindigkeit_output_n2(char number_new) {
-    lcdPrintlnS(&number_new); //platzhalter-Anweisung
+    lcdGotoXY(27, 10);
+    lcdPrintC(number_new);
 }
 
 void change_winkegeschwindigkeit_output_n3(char number_new) {
-    lcdPrintlnS(&number_new); //platzhalter-Anweisung
+    lcdGotoXY(28, 10);
+    lcdPrintC(number_new);
 }
 
 //ReadPINs-Functions:
@@ -67,7 +100,7 @@ bool reads_button_s6_for_reset() {
 int read_gpio_pin0_to_pin7() {return 1;}
 
 //LED-Output-Functions:
-void write_phase_number_to_led() {}
+void write_phase_number_to_led(int param) {}
 
 void last_turn_forward() {}
 void last_turn_backward() {}
