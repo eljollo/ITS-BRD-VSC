@@ -131,6 +131,7 @@ IoInputs read_input() {
     inputs.reset_pressed = reads_button_s6_for_reset();
     inputs.phase_bits = read_gpio_pin0_to_pin7(); //niedrigwertigste letzte 2 bits per bit-Operation
     inputs.raw_timer_ticks = 12;//platzhalter, hier wird read_timer() aufgerufen //liest timer-Register aus
+    return inputs;
 }
 
 //LED-Output-Functions:
@@ -145,7 +146,7 @@ void last_turn_backward() {
     GPIOD->ODR = 123; //platzhalter
 }
 void show_error() {
-    GPIOD->ODR = 123; //platzhalter
+    GPIOD->ODR = 0b0011; //platzhalter
 }
 
 void led_reset() {
