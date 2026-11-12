@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include "stm32f4xx_hal.h"
+#include "stm32f4xx.h"
 /**
   ******************************************************************************
   * @file    inputoutput.h 
@@ -86,6 +87,22 @@ extern bool reads_button_s6_for_reset();
   ******************************************************************************
   */
 extern int read_gpio_pin0_to_pin7();
+
+/**
+  ****************************************************************************** 
+  * @author  Lasse Bruhn, Matr.-Nr.: 2880211
+  * @param   
+  * @brief  liest Werte der GPIOs ein, sowie des timer-Registers und schreibt diese an die entsprechenden Variablen in IoInputs
+  *         nutzt ggf. restliche read-input-functions
+  ******************************************************************************
+*/
+typedef struct {
+    uint8_t phase_bits;       // Kodierung: (B << 1) | A
+    uint32_t raw_timer_ticks; // Rohwert des 32-Bit-Hardwaretimers
+    bool reset_pressed;       // Zustand von S6
+} IoInputs;
+
+IoInputs extern read_input();
 
 /*LED-Output-Functions:*/
 

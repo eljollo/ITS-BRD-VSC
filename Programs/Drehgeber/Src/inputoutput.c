@@ -1,7 +1,9 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include "lcd.h"
+#include "stm32f429xx.h"
 #include "stm32f4xx_hal.h"
+#include "stm32f4xx.h"
 #include "../Inc/inputoutput.h"
 /**
   ******************************************************************************
@@ -93,11 +95,19 @@ void change_winkegeschwindigkeit_output_n3(char number_new) {
 const int BIT_COMP = 1234; // wird noch auf passenden Wert für Bit-Vergleich gesetzt
 bool s6_is_pressed = false;
 bool reads_button_s6_for_reset() {
-    s6_is_pressed = true; //bitweiser vergleich mit BIT_COMP
+    s6_is_pressed = true;
+    s6_is_pressed = BIT_COMP & GPIO_IDR_IDR_3; //bitweiser vergleich mit BIT_COMP
     return s6_is_pressed;
 }
 
 int read_gpio_pin0_to_pin7() {return 1;}
+//init struct for input:
+IoInputs inputs;
+IoInputs read_input() {
+    inputs.reset_pressed = reads_button_s6_for_reset();
+    inputs.phase_bits = 12;//platzhalter, hier wird io-funktion aufgerufen //niedrigwertigste letzte 2 bits
+    inputs.raw_timer_ticks = 12;//platzhalter, hier wird io-funktion aufgerufen //liest timer-Register aus
+}
 
 //LED-Output-Functions:
 void write_phase_number_to_led(int param) {}

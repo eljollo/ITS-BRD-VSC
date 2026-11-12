@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="Seite-1" id="ErhgT02Ojzcl8CdsJaL3">
-        <mxGraphModel dx="1177" dy="1331" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1095" dy="693" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -18,21 +18,20 @@
                 <mxCell id="haKHN1R8-ID33CknFFqF-7" parent="haKHN1R8-ID33CknFFqF-6" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;rotatable=0;part=1;html=1;whiteSpace=wrap;" value="- C-Struct&lt;div&gt;- Phasenübergang&lt;br&gt;- Phasenzähler&lt;/div&gt;&lt;div&gt;- enum Phase-Direction&lt;br&gt;- C-Struct Phase-State&lt;br&gt;-&amp;nbsp;&lt;/div&gt;" vertex="1">
                     <mxGeometry height="130" width="160" y="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="Efy5WU-Rg-B-70_oEfGL-1" edge="1" parent="1" source="haKHN1R8-ID33CknFFqF-8" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=1;entryDx=0;entryDy=0;" target="haKHN1R8-ID33CknFFqF-12">
-                    <mxGeometry relative="1" x="-0.4" as="geometry">
+                <mxCell id="jk6OQZnqiHw_l7RRyU3_-3" edge="1" parent="1" source="haKHN1R8-ID33CknFFqF-8" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" target="haKHN1R8-ID33CknFFqF-12">
+                    <mxGeometry relative="1" x="-0.0309" as="geometry">
                         <Array as="points">
-                            <mxPoint x="420" y="600"/>
-                            <mxPoint x="630" y="600"/>
-                            <mxPoint x="630" y="320"/>
+                            <mxPoint x="590" y="635"/>
+                            <mxPoint x="590" y="280"/>
                         </Array>
-                        <mxPoint x="630" y="430" as="targetPoint"/>
+                        <mxPoint x="480" y="280" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="haKHN1R8-ID33CknFFqF-8" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" value="Timer" vertex="1">
-                    <mxGeometry height="120" width="160" x="300" y="560" as="geometry"/>
+                    <mxGeometry height="150" width="160" x="300" y="560" as="geometry"/>
                 </mxCell>
-                <mxCell id="JL4WKTnHiysOYOjbf7Ja-5" parent="haKHN1R8-ID33CknFFqF-8" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="- ITSBRD/Lib-timer-modul" vertex="1">
-                    <mxGeometry height="70" width="160" y="50" as="geometry"/>
+                <mxCell id="JL4WKTnHiysOYOjbf7Ja-5" parent="haKHN1R8-ID33CknFFqF-8" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="- ITSBRD/Lib-timer-modul&lt;br&gt;&lt;div&gt;- Implementiert außerdem noch nicht bereitgestellte Funktionen&lt;br&gt;&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="100" width="160" y="50" as="geometry"/>
                 </mxCell>
                 <mxCell id="haKHN1R8-ID33CknFFqF-10" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" value="Berechnungsmodul" vertex="1">
                     <mxGeometry height="140" width="160" x="320" y="360" as="geometry"/>
@@ -45,6 +44,17 @@
                 </mxCell>
                 <mxCell id="JL4WKTnHiysOYOjbf7Ja-4" parent="haKHN1R8-ID33CknFFqF-12" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="- Display&lt;div&gt;-&amp;nbsp; IO LED/Tasten&lt;/div&gt;&lt;div&gt;- S6-Abfrage&lt;br&gt;- ADC(einlesen von Drehgeber-Signalen(Bits lesen von PIN-Speicherbereichen&lt;/div&gt;&lt;div&gt;- liest Zeiten für Phase aus&lt;/div&gt;" vertex="1">
                     <mxGeometry height="110" width="210" y="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="jk6OQZnqiHw_l7RRyU3_-1" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" target="haKHN1R8-ID33CknFFqF-8">
+                    <mxGeometry relative="1" x="0.1962" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="190" y="85"/>
+                            <mxPoint x="190" y="340"/>
+                            <mxPoint x="210" y="340"/>
+                            <mxPoint x="210" y="672.5"/>
+                        </Array>
+                        <mxPoint x="280" y="85" as="sourcePoint"/>
+                    </mxGeometry>
                 </mxCell>
                 <mxCell id="haKHN1R8-ID33CknFFqF-15" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="- init()&lt;div&gt;- superloop&lt;/div&gt;" vertex="1">
                     <mxGeometry height="30" width="100" x="290" y="70" as="geometry"/>
