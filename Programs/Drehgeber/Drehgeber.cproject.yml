@@ -174,13 +174,20 @@ project:
     - group: Program/User/Inc
       files:
         - file: ../../ITS_BRD_LIB/Inc/lcd.h
-
+        - file: Inc/main.h
+        - file: Inc/calculations.h
+        - file: Inc/inputoutput.h
+        - file: Inc/phase.h
+        - file: Inc/timer.h
 
     # Benutzerdefinierte Programmdateien
     - group: Program/User/Src
       files:
         - file: Src/main.c
-
+        - file: Src/phase.c
+        - file: Src/calculations.c
+        - file: Src/inputoutput.c
+        - file: Src/timer.c
 
   components:
     - component: ARM::CMSIS:CORE
