@@ -1,4 +1,5 @@
-
+#include "../Inc/i_o_module.h"
+#include "../Inc/phase.h"
 #include <stdint.h>
 
 uint32_t pins = read_gpiof_inputs(); // Platzhalter: tatsächlichen Zugriff in eurer Board-Bibliothek nachsehen

@@ -40,8 +40,11 @@
 
 #include "../Inc/phase.h"
 
+#include "../Inc/i_o_module.h"
+#include "../Inc/phase.h"
 #include <stdbool.h>
 #include <stdint.h>
+
 
 // Konstanten
 #define ERROR 99
