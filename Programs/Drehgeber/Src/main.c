@@ -29,7 +29,7 @@ static const uint64_t TICKS_3_S = 270000000ULL;
 int main(void) {
    initITSboard(); // Initialisierung des ITS Boards
 
-   // GUI_init(DEFAULT_BRIGHTNESS); // Initialisierung des LCD Boards mit Touch
+   GUI_init(DEFAULT_BRIGHTNESS); // Initialisierung des LCD Boards mit Touch
    // TP_Init(false); // Initialisierung des LCD Boards mit Touch
 
    // // Begruessungstext
@@ -53,15 +53,16 @@ int main(void) {
 
    // // WICHTIG!!! I/O MODUL
    // io_init();
+   init_gpio();
 
    // MODUL: timer – Erweiterung des 32-Bit-Zeitstempels initialisieren.
    timer_reset();
 
    // // MODUL: phase – Zähler, Richtung und Fehler initialisieren.
-   phase_reset();
+   //phase_reset();
 
    // // MODUL: display – LCD-Layout einmalig schreiben.
-   // display_init();
+   initial_display_output();
 
 
    // HIER GGF NOCH WEITERE VARIABLEN FÜR DIE BERECHNUNG ANLEGEN ODER ABER STRUCT FÜR BERECHNUNG
@@ -174,6 +175,7 @@ int main(void) {
             // WICHTIG!!! MODUL: DISPLAY – neue Darstellung nur vormerken.
             // Nach nur EINEM Wechsel gibt es noch keine zwei Wechselzeitpunkte: Geschwindigkeit zunächst "--".
             //display_queue_values(angle, speed_valid, speed);
+            update_speed(speed);
 
             // aktueller durchlauf nach berechnung wird startpunkt von neuem zeitfenster
             calc_starting_point = latest;
@@ -185,7 +187,8 @@ int main(void) {
                double angle = calculate_angle(latest.count);
                // MODUL: display
                //display_queue_values(angle, true, 0.0); // neben winkel wird "leere" geschwindigkeit ausgegeben
-
+               update_winkel(angle);
+               //update_display(angle, speed);
                last_calculation_ticks = now_ticks; // Zeitpunkt für startzeitfenster wird aktualisiert
             }
          }

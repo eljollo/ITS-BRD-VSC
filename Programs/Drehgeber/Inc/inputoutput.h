@@ -1,3 +1,4 @@
+#include <math.h>
 #include <stdbool.h>
 #include <stdint.h>
 #include "stm32f4xx_hal.h"
@@ -12,9 +13,8 @@
   ******************************************************************************
   */
 
-/*
-Display-Functions:
-*/
+/*Display-Functions:*/
+
 /**
   ****************************************************************************** 
   * @author  Lasse Bruhn, Matr.-Nr.: 2880211
@@ -28,44 +28,39 @@ extern void initial_display_output(void);
 /**
   ****************************************************************************** 
   * @author  Lasse Bruhn, Matr.-Nr.: 2880211
-  * @param   char number_new
-  * @brief   setzen übergebenes char an übergebener Stelle von Winkelausgabe(1=einer; 2=zehner; 3=hunderter; 4=tausender; n1=zehntel), d.h.
-  *          LCDGoTo(x, y) wird entsprechend vor Ausgabe gesetzt.(Anm.: 360/1200=0,3 grad entspricht 1 Phasenverschiebung ,daher nur 1 Nachkommastelle n1)
-  *          Werden von main aufgerufen, je nach Bedarf
+  * @param   double Winkel
+  * @brief   nimmt aktuellen Winkel als double-Wert an und schreibt diesen in einen char-Buffer, welcher mit einer for-Loop durchlaufen
+             wird. Unterscheidet sich ein Zeichen, im Vergleich zum char-Buffer des vorherigen Durchlaufs, wird das aktuelle ausgegeben und 
+             der alte char-Buffer durch den neuen ersetzt.
   ******************************************************************************
   */
-extern void change_winkel_output_1(char number_new);
-extern void change_winkel_output_2(char number_new);
-extern void change_winkel_output_3(char number_new);
-extern void change_winkel_output_4(char number_new);
-extern void change_winkel_output_n1(char number_new);
+  #define OFFSET_WINKEL_X 10
+  #define OFFSET_WINKEL_Y 11
+  #define BUFFER_SIZE 16
+  #define MAX_INDEX 15 //ggf. BUFFER_SIZE -1 ?
+  extern void update_winkel(double current_winkel);
+/**
+  ****************************************************************************** 
+  * @author  Lasse Bruhn, Matr.-Nr.: 2880211
+  * @param   Geschwindigkeit
+  * @brief   nimmt aktuelle Geschwindigkeit als double-Wert an und schreibt diesen in einen char-Buffer, welcher mit einer for-Loop durchlaufen
+             wird. Unterscheidet sich ein Zeichen, im Vergleich zum char-Buffer des vorherigen Durchlaufs, wird das aktuelle ausgegeben und 
+             der alte char-Buffer durch den neuen ersetzt.
+  ******************************************************************************
+  */
+  #define OFFSET_SPEED_X 10
+  #define OFFSET_SPEED_Y 11
+  extern void update_speed(double current_speed);
 
 /**
   ****************************************************************************** 
   * @author  Lasse Bruhn, Matr.-Nr.: 2880211
-  * @param   char number_new
-  * @brief   setzen übergebenes char an entsprechender Stelle von Winkelgeschwindigkeits-Ausgabe(1=einer; 2=zehner; 3=tausender),
-  *          d.h. LCDGoTo(x, y) wird entsprechend gesetzt.
-  *          Werden von main aufgerufen, je nach Bedarf
+  * @param   double Winkel, double Geschwindigkeit
+  * @brief   ruft update_winkel() und update_geschwindigkeit hintereinander auf.
+             In main ggf. 1-mal pro Super-Loop-Durchlauf aufrufen.
   ******************************************************************************
   */
-extern void change_winkegeschwindigkeit_output_1(char number_new);
-extern void change_winkegeschwindigkeit_output_2(char number_new);
-extern void change_winkegeschwindigkeit_output_3(char number_new);
-extern void change_winkegeschwindigkeit_output_4(char number_new);
-
-/**
-  ****************************************************************************** 
-  * @author  Lasse Bruhn, Matr.-Nr.: 2880211
-  * @param   char number_new
-  * @brief   ändern zeichen an entsprechender  Nachkomma-Stelle von Winkelausgabe(n1=zehntel; n2=hundertstel; n3=tausendstel),
-  *          d.h. LCDGoTo(x, y) wird entsprechend gesetzt.
-  *          Werden von main aufgerufen, je nach Bedarf
-  ******************************************************************************
-  */
-extern void change_winkegeschwindigkeit_output_n1(char number_new);
-extern void change_winkegeschwindigkeit_output_n2(char number_new);
-extern void change_winkegeschwindigkeit_output_n3(char number_new);
+  extern void update_display(double winkel, double geschwindigkeit);
 
 /**
   ****************************************************************************** 

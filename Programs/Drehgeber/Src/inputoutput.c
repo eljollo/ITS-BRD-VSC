@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include <stdint.h>
+#include <stdio.h>
 #include "lcd.h"
 #include "stm32f429xx.h"
 #include "timer.h"
@@ -34,70 +35,56 @@ void initial_display_output(void) {
     lcdPrintlnS("Grad/s");
 }
 
-//Display - winkelausgabe:
-void change_winkel_output_1(char number_new) {
-    lcdGotoXY(12, 3);
-    lcdPrintC(number_new); 
+//update_display_functions:
+
+void update_winkel(double current_winkel) {
+    static char old_winkel_buffer[BUFFER_SIZE] = {0}; //static preserves content between function-calls.
+    char current_winkel_buffer[BUFFER_SIZE];
+    snprintf(current_winkel_buffer, sizeof(current_winkel_buffer), "%8.1f", current_winkel);
+    for (int index = 0; index<=MAX_INDEX; index++) {
+        if (current_winkel_buffer[index] == '\0' &&
+            old_winkel_buffer[index] == '\0') {
+            break;
+        }
+        if (current_winkel_buffer[index] != old_winkel_buffer[index]) {
+            lcdGotoXY(OFFSET_WINKEL_X + index, OFFSET_WINKEL_Y);
+            lcdPrintC(current_winkel_buffer[index]);
+            old_winkel_buffer[index] = current_winkel_buffer[index];
+            break;
+        }
+    }
 }
 
-void change_winkel_output_2(char number_new) {
-    lcdGotoXY(11, 3);
-    lcdPrintC(number_new);
+void update_speed(double current_speed) {
+    static char old_speed_buffer[BUFFER_SIZE] = {0};
+    char current_speed_buffer[BUFFER_SIZE];
+    snprintf(current_speed_buffer, sizeof(current_speed_buffer), "%8.1f", current_speed);
+    for (int index =0; index<=MAX_INDEX; index++) {
+        if (current_speed_buffer[index] == '\0' &&
+            old_speed_buffer[index] == '\0') {
+            break;
+        }
+        if (current_speed_buffer[index] != old_speed_buffer[index]) {
+            lcdGotoXY(OFFSET_SPEED_X + index, OFFSET_SPEED_Y);
+            lcdPrintC(current_speed_buffer[index]);
+            old_speed_buffer[index] = current_speed_buffer[index];
+            break;
+        }
+    }
 }
 
-void change_winkel_output_3(char number_new) {
-    lcdGotoXY(10, 3);
-    lcdPrintC(number_new);
-}
-
-void change_winkel_output_4(char number_new) {
-    lcdGotoXY(9, 3);
-    lcdPrintC(number_new);
-}
-
-void change_winkel_output_n1(char number_new) {
-    lcdGotoXY(14, 3);
-    lcdPrintC(number_new);
-}
-
-//Display - winkelgeschwindigkeitsausgabe:
-void change_winkegeschwindigkeit_output_1(char number_new) {
-    lcdGotoXY(24, 10);
-    lcdPrintC(number_new);
-}
-
-void change_winkegeschwindigkeit_output_2(char number_new) {
-    lcdGotoXY(23, 10);
-    lcdPrintC(number_new);
-}
-
-void change_winkegeschwindigkeit_output_3(char number_new) {
-    lcdGotoXY(22, 10);
-    lcdPrintC(number_new);
-}
-
-void change_winkegeschwindigkeit_output_4(char number_new) {
-    lcdGotoXY(21, 10);
-    lcdPrintC(number_new);
-}
-
-void change_winkegeschwindigkeit_output_n1(char number_new) {
-    lcdGotoXY(26, 10);
-    lcdPrintC(number_new);
-}
-
-void change_winkegeschwindigkeit_output_n2(char number_new) {
-    lcdGotoXY(27, 10);
-    lcdPrintC(number_new);
-}
-
-void change_winkegeschwindigkeit_output_n3(char number_new) {
-    lcdGotoXY(28, 10);
-    lcdPrintC(number_new);
+//in case. delete if not being called from main in final version
+void update_display(double winkel, double geschwindigkeit) {
+    update_winkel(winkel);
+    update_speed(geschwindigkeit);
 }
 
 //init GPIOs:
 //define config-constants:
+void init_gpio() {
+    GPIOD->ODR = 0x00000000;
+    GPIOE->ODR = 0x00000000;
+}
 
 //ReadPINs-Functions:
 bool s6_is_pressed = false;
