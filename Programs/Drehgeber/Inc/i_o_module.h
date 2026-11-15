@@ -14,9 +14,9 @@
 #include <stdint.h>
 
 typedef struct {
-    uint8_t phase_bits;       // Kodierung: (B << 1) | A
-    uint32_t raw_timer_ticks; // Rohwert des 32-Bit-Hardwaretimers
-    bool reset_pressed;       // Zustand von S6
+   uint8_t phase_bits;       // Kodierung: (B << 1) | A
+   uint32_t raw_timer_ticks; // Rohwert des 32-Bit-Hardwaretimers
+   bool reset_pressed;       // Zustand von S6
 } IoInputs;
 
 // WICHTIG!!! I/O MODUL
