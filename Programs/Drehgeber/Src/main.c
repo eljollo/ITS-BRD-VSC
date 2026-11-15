@@ -9,20 +9,19 @@
 
 /* Includes ------------------------------------------------------------------*/
 
-#include "../Inc/main.h"
-#include "../Inc/calculations.h"
-#include "../Inc/i_o_module.h"
-#include "../Inc/init.h"
+#include "main.h"
 #include "LCD_GUI.h"
 #include "LCD_Touch.h"
+#include "calculations.h"
+#include "i_o_module.h"
+#include "init.h"
 #include "lcd.h"
 #include "stm32f4xx_hal.h"
 
 #include <stdbool.h>
 #include <stdint.h>
 
-#include "calculations.h"
-#include "inputoutput.h"
+// #include "inputoutput.h"
 #include "phase.h"
 #include "structs.h"
 #include "timer.h"
@@ -33,30 +32,7 @@ static const uint64_t TICKS_3_S = 270000000ULL;
 int main(void) {
    initITSboard(); // Initialisierung des ITS Boards
 
-   // GUI_init(DEFAULT_BRIGHTNESS); // Initialisierung des LCD Boards mit Touch
-   // TP_Init(false); // Initialisierung des LCD Boards mit Touch
-
-   // // Begruessungstext
-   // lcdPrintlnS("Hallo liebes TI-Labor (c-project)");
-
-   // Test in Endlosschleife
-   // const int POLL_DELAY = 10000;
-   // while (1) {
-   //    HAL_Delay(POLL_DELAY);
-   // }
-
-   // =============================================================================
-   // =============================================================================
-   // =============================================================================
-
-   // über I/O: S6 & Phase mit Zeitstempel lesen (I/O)
-   // aktuelle & vorherige Phase ermitteln -> Phasenwechsel und -zähler (Phase)
-   // Winkel und Winkelgeschwindigkeit berechnen (calculations)
-   // LEDs aktualisieren (I/O)
-   // Display aktualisieren alle 300ms (Display).
-
-   // // WICHTIG!!! I/O MODUL
-   // io_init();
+   init_display_output();
 
    // MODUL: timer – Erweiterung des 32-Bit-Zeitstempels initialisieren.
    timer_reset();
@@ -87,7 +63,9 @@ int main(void) {
        0; // zähler für phasenwechsel unabhängig von richtung
 
    // START SUPERLOOP
-
+   // ####################################################
+   // ####################################################
+   // ####################################################
    for (;;) {
 
       // WICHTIG!!! I/O MODUL
@@ -219,6 +197,16 @@ int main(void) {
                 now_ticks; // Zeitpunkt für startzeitfenster wird aktualisiert
          }
       }
+
+      // START #############################################################
+      // ############################### TBD ###############################
+      // ###################################################################
+      char test[] = snprintf(angle_buff, sizeof(angle_buff), "%8.1f",
+                             winkel); // dashier in main?
+      // END ###############################################################
+      // ############################### TBD ###############################
+      // ###################################################################
+
       // MODUL: display – höchstens ein vorbereitetes Zeichen
       // tatsächlich über das I/O-Modul ausgeben.
       // display_step();
