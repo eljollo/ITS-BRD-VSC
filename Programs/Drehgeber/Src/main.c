@@ -13,22 +13,19 @@
 #include "../Inc/calculations.h"
 #include "../Inc/i_o_module.h"
 #include "../Inc/init.h"
-#include "../Inc/phase.h"
 #include "LCD_GUI.h"
 #include "LCD_Touch.h"
 #include "lcd.h"
 #include "stm32f4xx_hal.h"
 
-
 #include <stdbool.h>
 #include <stdint.h>
 
-#include "../Inc/calculations.h"
-#include "../Inc/inputoutput.h"
-#include "../Inc/phase.h"
-#include "../Inc/structs.h"
+#include "calculations.h"
+#include "inputoutput.h"
+#include "phase.h"
+#include "structs.h"
 #include "timer.h"
-
 
 static const uint64_t TICKS_300_MS = 27000000ULL;
 static const uint64_t TICKS_3_S = 270000000ULL;
