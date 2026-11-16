@@ -4,8 +4,6 @@
 #include "lcd.h"
 #include "stm32f429xx.h"
 #include "timer.h"
-#include "stm32f4xx_hal.h"
-#include "stm32f4xx.h"
 #include "../Inc/inputoutput.h"
 
 #define BIT_COMP (1U << 6)
@@ -18,24 +16,29 @@
   ******************************************************************************
   */
 //declare cursor-constants
-
 //Display - initialisierungsausgabe:
+#define X1 1
+#define X2 13
+#define X3 25
+#define X4 35
+#define Y1 3
+#define Y2 10
 void initial_display_output(void) {
-    lcdGotoXY(1, 3);
+    lcdGotoXY(X1, 3);
     lcdPrintlnS("Winkel: ");
-    lcdGotoXY(1, 10);
+    lcdGotoXY(X1, Y2);
     lcdPrintlnS("Geschwindigkeit: ");
-    lcdGotoXY(13, 3);
+    lcdGotoXY(X2, Y1);
     lcdPrintC(',');
-    lcdGotoXY(35, 3);
+    lcdGotoXY(X4, Y1);
     lcdPrintlnS("Grad");
-    lcdGotoXY(25, 10);
+    lcdGotoXY(X3, Y2);
     lcdPrintC(',');
-    lcdGotoXY(35, 10);
+    lcdGotoXY(X4, Y2);
     lcdPrintlnS("Grad/s");
 }
 
-//update_display_functions:
+//update_display_functions:(docs, siehe inputoutput.h)
 
 void update_winkel(double current_winkel) {
     static char old_winkel_buffer[BUFFER_SIZE] = {0}; //static preserves content between function-calls.
@@ -74,16 +77,18 @@ void update_speed(double current_speed) {
 }
 
 //in case. delete if not being called from main in final version
+/*
 void update_display(double winkel, double geschwindigkeit) {
     update_winkel(winkel);
     update_speed(geschwindigkeit);
 }
-
+*/
 //init GPIOs:
 //define config-constants:
 void init_gpio() {
-    GPIOD->ODR = 0x00000000;
-    GPIOE->ODR = 0x00000000;
+    GPIOD->ODR = 0x0; //constants beim testen anpassen
+    GPIOE->BSRR = 0x0;
+    //GPIOF wird nicht auf 0 gesetzt, da von gedrückten Buttons abh.(Race Conditions vermeiden u.a.)
 }
 
 //ReadPINs-Functions:

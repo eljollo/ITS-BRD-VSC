@@ -1,9 +1,5 @@
-#include <math.h>
 #include <stdbool.h>
 #include <stdint.h>
-#include "stm32f4xx_hal.h"
-#include "stm32f4xx.h"
-#include "timer.h"
 /**
   ******************************************************************************
   * @file    inputoutput.h 
@@ -58,9 +54,10 @@ extern void initial_display_output(void);
   * @param   double Winkel, double Geschwindigkeit
   * @brief   ruft update_winkel() und update_geschwindigkeit hintereinander auf.
              In main ggf. 1-mal pro Super-Loop-Durchlauf aufrufen.
+            loeschen falls nicht benötigt.
   ******************************************************************************
   */
-  extern void update_display(double winkel, double geschwindigkeit);
+  //extern void update_display(double winkel, double geschwindigkeit);
 
 /**
   ****************************************************************************** 

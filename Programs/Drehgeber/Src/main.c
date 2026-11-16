@@ -9,10 +9,7 @@
 /* Includes ------------------------------------------------------------------*/
 
 #include "LCD_GUI.h"
-#include "LCD_Touch.h"
 #include "../Inc/init.h"
-#include "lcd.h"
-#include "stm32f4xx_hal.h"
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -21,7 +18,7 @@
 #include "../Inc/structs.h"
 #include "../Inc/phase.h"
 #include "../Inc/inputoutput.h"
-#include "timer.h"
+#include "../Inc/timer.h"
 
 static const uint64_t TICKS_300_MS = 27000000ULL;
 static const uint64_t TICKS_3_S = 270000000ULL;
@@ -162,10 +159,10 @@ int main(void) {
 
          if (change_since_last_display) {
             // Winkelberechnung
-            double angle = calculate_angle(latest.count);
+            //double angle = calculate_angle(latest.count); //wird hier evtl. nich gebraucht
             
             double speed = 0.0;
-            bool speed_valid = false;
+            bool speed_valid = false; //für geschwindigkeitsberechnung genutzt, deshalb nicht entfernt/auskommentiert
 
             if (has_calc_starting_point && (latest.change_number > calc_starting_point.change_number)) { // wenn calc_starting_point besteht und phase sich verändert hat
                // berechnung der Geschwindigkeit
