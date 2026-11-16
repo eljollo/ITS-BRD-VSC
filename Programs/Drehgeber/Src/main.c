@@ -102,8 +102,8 @@ int main(void) {
       }
 
    
-      // falls S6 gedrückt
-      if (input.reset_pressed) {
+      // falls S6 gedrückt (falsche Prüfung korrigieren)
+      if (input.reset_pressed != true) {
          phase_reset(); // aus phase.c reset 
 
          // WICHTIG!!! DISPLAY MODUL: display – ausstehende alte Wertausgabe verwerfen.

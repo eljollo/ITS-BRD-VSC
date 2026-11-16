@@ -6,7 +6,7 @@
 #include "timer.h"
 #include "../Inc/inputoutput.h"
 
-#define BIT_COMP (1U << 6)
+#define BIT_COMP (1U << 7U) //U: unsigned int
 
 /**
   ******************************************************************************
@@ -87,14 +87,15 @@ void update_display(double winkel, double geschwindigkeit) {
 //define config-constants:
 void init_gpio() {
     GPIOD->ODR = 0x0; //constants beim testen anpassen
-    GPIOE->BSRR = 0x0;
+    GPIOE->BSRR = 0xFFFF0000U;
+    GPIOD->BSRR = 0xFFFF0000U;
     //GPIOF wird nicht auf 0 gesetzt, da von gedrückten Buttons abh.(Race Conditions vermeiden u.a.)
 }
 
 //ReadPINs-Functions:
 bool s6_is_pressed = false;
 bool reads_button_s6_for_reset() {
-    s6_is_pressed = (GPIOF->IDR & BIT_COMP) != 0U; //bitweiser vergleich mit BIT_COMP
+    s6_is_pressed = (GPIOF->IDR & BIT_COMP) != 0U;
     return s6_is_pressed;
 }
 
