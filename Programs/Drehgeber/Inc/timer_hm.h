@@ -6,8 +6,8 @@
  * @brief .
  */
 
-#ifndef TIMER_H
-#define TIMER_H
+#ifndef TIMER_HM_H
+#define TIMER_HM_H
 
 #include <stdint.h>
 

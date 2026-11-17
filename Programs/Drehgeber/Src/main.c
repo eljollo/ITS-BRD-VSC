@@ -9,71 +9,66 @@
 
 /* Includes ------------------------------------------------------------------*/
 
-#include "main.h"
+// #include "main.h"
 #include "LCD_GUI.h"
-#include "LCD_Touch.h"
+// #include "LCD_Touch.h"
 #include "calculations.h"
 #include "i_o_module.h"
 #include "init.h"
-#include "lcd.h"
-#include "stm32f4xx_hal.h"
+// #include "lcd.h"
+// #include "stm32f4xx.h"
+// #include "stm32f4xx_hal.h"
 
 #include <stdbool.h>
 #include <stdint.h>
+#include <stdio.h>
 
 // #include "inputoutput.h"
 #include "phase.h"
-#include "structs.h"
-#include "timer.h"
+#include "timer_hm.h"
 
 static const uint64_t TICKS_300_MS = 27000000ULL;
 static const uint64_t TICKS_3_S = 270000000ULL;
 
 int main(void) {
+
    initITSboard(); // Initialisierung des ITS Boards
+   GUI_init(DEFAULT_BRIGHTNESS);
 
-   init_display_output();
+   init_display_output(); // Display initialisueren
 
-   // MODUL: timer – Erweiterung des 32-Bit-Zeitstempels initialisieren.
-   timer_reset();
+   timer_reset_extension();
 
-   // // MODUL: phase – Zähler, Richtung und Fehler initialisieren.
    phase_reset();
 
-   // // MODUL: display – LCD-Layout einmalig schreiben.
-   // display_init();
+   IoInputs input;
+   // setzt relevante phasenwerte auf 0 / false
+   PhaseCountSnapshot calc_starting_point = {0};
 
-   // HIER GGF NOCH WEITERE VARIABLEN FÜR DIE BERECHNUNG ANLEGEN ODER ABER
-   // STRUCT FÜR BERECHNUNG also:
-   // - startwerte für Berechnung (Berechnungszeitfenster)
-   // --> gibt es bereits einen Zeitfensterstart ? (bool)
-   // --> Timestamp / ticks / letzter Zeitstempel für Berechnung
-   // --> Zählerstand (aus phase struct ?)
-   PhaseCountSnapshot calc_starting_point = {
-       0}; // setzt relevante phasenwerte auf 0 / false
-   bool has_calc_starting_point =
-       false; // checkt obs schon nen startpunkt für Rechnungen gibt
+   bool has_calc_starting_point = false;
 
-   uint64_t last_calculation_ticks =
-       0; // letzte ticks des zeitfensters für berechnung
-   bool has_initial_time =
-       false; // gibt es schon eine startzeit / ersten getrackten wechsel
+   // letzte ticks des zeitfensters für berechnung
+   uint64_t last_calculation_ticks = 0;
+   // wird mMn nicht benötigt, da in PhaseCountSnapshot change_ticks existiert
+   // oder ist dies nochmal losgelöst für die berechnung?
+   // Sollte dann aber dennoch in PhaseCountSnapshot angelegt sein
+   // oder ich müsste es in PhaseCalcSnapshot übersetzen oder so
+   // --> checken wie häufig was wo bereits existiert
 
-   uint64_t last_displayed_change_number =
-       0; // zähler für phasenwechsel unabhängig von richtung
+   // gibt es schon eine startzeit
+   bool has_initial_time = false;
+
+   // zähler für phasenwechsel
+   uint64_t last_displayed_change_number = 0; // zähler für phasenwechsel
 
    // START SUPERLOOP
    // ####################################################
    // ####################################################
    // ####################################################
-   for (;;) {
+   while (true) {
 
-      // WICHTIG!!! I/O MODUL
-      // Phase, Timer-Rohwert und S6 am Anfang der Schleife erfassen
-      // Einlesen Phase (+ timestamp) und S6 (Reset-Button)
-      IoInputs input = read_input();
+      read_all_inputs(&input);
 
-      // MODUL: timer ticks (rohwerte) in fortlaufende Zeit umwandeln
       uint64_t now_ticks = timer_extend(input.raw_timer_ticks);
 
       // setze eingelesene bits & timestamp in struct von phase.c
@@ -91,19 +86,17 @@ int main(void) {
 
       // falls S6 gedrückt
       if (input.reset_pressed) {
-         phase_reset(); // aus phase.c reset
+         phase_reset(); // aus phase.c
 
-         // WICHTIG!!! DISPLAY MODUL: display – ausstehende alte Wertausgabe
-         // verwerfen.
-         initial_display_output();
+         init_display_output();
 
-         // WICHTIG!!! I/O MODUL
-         led_reset();
-         timer_reset();
+         reset_all_leds();
+
+         timer_reset_extension();
 
          has_calc_starting_point = false;
-         calc_starting_point = (PhaseCountSnapshot){
-             0}; // resets PhaseCounterSnapshot informationen
+         // resets PhaseCounterSnapshot informationen
+         calc_starting_point = (PhaseCountSnapshot){0};
          last_displayed_change_number = 0;
          last_calculation_ticks = now_ticks;
 
@@ -115,28 +108,17 @@ int main(void) {
       phase_process(current);
 
       if (phase_has_error()) {
-         // WICHTIG!!! I/O MODUL
-         show_error();
+
+         set_gpioe_error(true);
 
          continue;
       }
 
-      PhaseCountSnapshot latest =
-          phase_get_counter_sample(); // speichert phasen-infos/stats der
-                                      // aktuellen phase
+      // speichert phasen-infos/stats der aktuellen phase
+      PhaseCountSnapshot latest = phase_get_counter_sample();
 
-      Direction direction =
-          phase_get_last_direction(); // nimmt drehrichtung entgegen
-
-      // HIER LED AUSGABE EINFÜGEN ZU:
-      // - RICHTUNG (D23 (vorwärts), D22 (rückwärts))
-      // - ANZAHL PHASENWECHSEL (D8 - D15)
-
-      // WICHTIG!!! I/O MODUL
-      // Umwandlung nach uint8_t liefert die niederwertigsten acht bit
-      write_phase_number_to_led((uint8_t)latest.count);
-      // WICHTIG!!! I/O MODUL
-      write_phase_number_to_led(direction);
+      // nimmt drehrichtung entgegen
+      Direction direction = phase_get_last_direction();
 
       // wenn es noch keinen starzeitpunkt für berechnung gab und ein legiter
       // phasenwechsel stattgefunden hat wird startpunkt für zeitfenster gesetzt
@@ -146,17 +128,14 @@ int main(void) {
          has_calc_starting_point = true;
       }
 
-      uint64_t elapsed =
-          now_ticks -
-          last_calculation_ticks; // verstrichene Zeit = aktueller tick wert
-                                  // minus ticks der letzten berechnung (im 1.
-                                  // durchgang die aktuellen ticks )
+      // verstrichene Zeit = aktueller tick wert minus ticks der letzten
+      // berechnung (im 1. durchgang die aktuellen ticks )
+      uint64_t elapsed = now_ticks - last_calculation_ticks;
 
+      // check ob seit verstrichener Zeit > 300ms eine phase gewechselt hat
       if (elapsed >= TICKS_300_MS) {
          bool change_since_last_display =
-             latest.change_number !=
-             last_displayed_change_number; // check ob seit verstrichener Zeit >
-                                           // 300ms eine phase gewechselt hat
+             latest.change_number != last_displayed_change_number;
 
          if (change_since_last_display) {
             // Winkelberechnung
@@ -165,12 +144,10 @@ int main(void) {
             double speed = 0.0;
             bool speed_valid = false;
 
+            // wenn calc_starting_point besteht und phase sich verändert hat
+            // berechnung der Geschwindigkeit
             if (has_calc_starting_point &&
-                (latest.change_number >
-                 calc_starting_point
-                     .change_number)) { // wenn calc_starting_point besteht und
-                                        // phase sich verändert hat
-               // berechnung der Geschwindigkeit
+                (latest.change_number > calc_starting_point.change_number)) {
                speed_valid =
                    calculate_speed(calc_starting_point, latest, &speed);
             }
@@ -179,6 +156,10 @@ int main(void) {
             // Nach nur EINEM Wechsel gibt es noch keine zwei Wechselzeitpunkte:
             // Geschwindigkeit zunächst "--".
             // display_queue_values(angle, speed_valid, speed);
+
+            snprintf(angle_buff, sizeof(angle_buff), "%8.1f", angle);
+            snprintf(speed_buff, sizeof(speed_buff), "%8.1f", speed);
+            // ggf beide snprintf in funktion fill_buffer oder so überführen
 
             // aktueller durchlauf nach berechnung wird startpunkt von neuem
             // zeitfenster
@@ -189,27 +170,23 @@ int main(void) {
 
          } else if (elapsed >= TICKS_3_S) { // wenn 3s nichts passiert
             double angle = calculate_angle(latest.count);
-            // MODUL: display
-            // display_queue_values(angle, true, 0.0); // neben winkel wird
+
             // "leere" geschwindigkeit ausgegeben
+            snprintf(angle_buff, sizeof(angle_buff), "%8.1f", angle);
 
             last_calculation_ticks =
                 now_ticks; // Zeitpunkt für startzeitfenster wird aktualisiert
          }
       }
 
-      // START #############################################################
-      // ############################### TBD ###############################
-      // ###################################################################
-      char test[] = snprintf(angle_buff, sizeof(angle_buff), "%8.1f",
-                             winkel); // dashier in main?
-      // END ###############################################################
-      // ############################### TBD ###############################
-      // ###################################################################
+      // HIER LED AUSGABE EINFÜGEN ZU:
+      // - RICHTUNG (D23 (vorwärts), D22 (rückwärts))
+      // - ANZAHL PHASENWECHSEL (D8 - D15)
+      set_all_output(direction, phase_has_error(), latest.change_number);
 
       // MODUL: display – höchstens ein vorbereitetes Zeichen
       // tatsächlich über das I/O-Modul ausgeben.
-      // display_step();
+      display_update();
    }
 }
 

@@ -9,7 +9,7 @@
 #ifndef CALCULATIONS_H
 #define CALCULATIONS_H
 
-#include "structs.h"
+#include "phase.h"
 #include <stdbool.h>
 #include <stdint.h>
 

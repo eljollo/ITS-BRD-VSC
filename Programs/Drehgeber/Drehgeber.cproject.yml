@@ -177,9 +177,9 @@ project:
         - file: ../../DisplayWaveshare/Inc/LCD_general.h
         - file: Inc/main.h
         - file: Inc/calculations.h
-        - file: Inc/inputoutput.h
+        - file: Inc/i_o_module.h
         - file: Inc/phase.h
-        - file: Inc/timer.h
+        - file: Inc/timer_hm.h
 
     # Benutzerdefinierte Programmdateien
     - group: Program/User/Src
@@ -187,8 +187,8 @@ project:
         - file: Src/main.c
         - file: Src/phase.c
         - file: Src/calculations.c
-        - file: Src/inputoutput.c
-        - file: Src/timer.c
+        - file: Src/i_o_module.c
+        - file: Src/timer_hm.c
 
   components:
     - component: ARM::CMSIS:CORE

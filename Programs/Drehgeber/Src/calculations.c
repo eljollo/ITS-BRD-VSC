@@ -18,8 +18,8 @@
 
 // struct für älteren Zählerstand
 // berechnung.c
-#include "../Inc/calculations.h"
-#include "../Inc/structs.h"
+#include "calculations.h"
+#include "phase.h"
 #include <stdbool.h>
 
 // 1200 phasenwechsel entsprechen einmal 360 grad
