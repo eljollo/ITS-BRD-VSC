@@ -42,36 +42,16 @@
 // Konstanten
 #define ERROR 99
 
-// struct als datentyp für Zustand der Phase
-typedef struct {
-    Phase previous;
-    bool has_previous;
-
-    int64_t phase_counter;
-    
-    uint64_t last_change_ticks; // für phasenwechsel und phasenzähler gleich
-    bool has_last_change;       // gab es seit reset einen gültigen phassenwechsel
-
-    uint64_t change_number;     // anzahl an phasenwechsel (richtungsunabhängig)
-
-    Direction last_direction;
-    bool error;
-} PhaseState;
-
-
-
-// Variable um Zustand festzuhalten
-static PhaseState state;
 
 
 // phase reset
-void phase_reset(){ 
-    state = (PhaseState){0}; // nicere alternative zu unten
-    // state.has_previous = false;
-    // state.phase_counter = 0 ;
-    // state.has_last_change = false;
-    // state.last_direction = DIRECTION_UNKNOWN;
-    // state.error = false;
+void phase_reset(PhaseState *state){ 
+    *state = (PhaseState){0}; // nicere alternative zu unten
+    /*state.has_previous = false;
+    state.phase_counter = 0 ;
+    state.has_last_change = false;
+    state.last_direction = DIRECTION_UNKNOWN;
+    state.error = false;*/
 }
 
 
@@ -96,7 +76,7 @@ static int phase_index(uint8_t phase_bits){
 // Phasenwechsel + Zeitstempel (Phasenwechsel erhält Zeitstempel der aktuellen Phase wenn Phasenwechsel stattfindet)
 // Phasenzähler (zählt anzahl Phasenwechsel, erhält Zeitstempel )
 
-void phase_process(Phase current){
+void phase_process(Phase current, PhaseState state){
     if (state.error) {
         return;
     }
@@ -131,17 +111,17 @@ void phase_process(Phase current){
 }
 
 
-bool phase_has_error(void) {
+bool phase_has_error(PhaseState state) {
     return state.error;
 }
 
 
-Direction phase_get_last_direction(void) {
+Direction phase_get_last_direction(PhaseState state) {
     return state.last_direction;
 }
 
 
-PhaseCountSnapshot phase_get_counter_sample(void) {
+PhaseCountSnapshot phase_get_counter_sample(PhaseState state) {
     PhaseCountSnapshot result = {
         .count = state.phase_counter,
         .change_ticks = state.last_change_ticks,

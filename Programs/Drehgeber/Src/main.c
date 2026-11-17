@@ -24,6 +24,7 @@ static const uint64_t TICKS_300_MS = 27000000ULL;
 static const uint64_t TICKS_3_S = 270000000ULL;
 
 int main(void) {
+   static PhaseState state;
    initITSboard(); // Initialisierung des ITS Boards
 
    GUI_init(DEFAULT_BRIGHTNESS); // Initialisierung des LCD Boards mit Touch
@@ -56,7 +57,7 @@ int main(void) {
    timer_reset();
 
    // // MODUL: phase – Zähler, Richtung und Fehler initialisieren.
-   //phase_reset();
+   phase_reset(&state);
 
    // // MODUL: display – LCD-Layout einmalig schreiben.
    initial_display_output();
@@ -103,8 +104,8 @@ int main(void) {
 
    
       // falls S6 gedrückt (falsche Prüfung korrigieren)
-      if (input.reset_pressed != true) {
-         phase_reset(); // aus phase.c reset 
+      if (input.reset_pressed == true) {
+         phase_reset(&state); // aus phase.c reset 
 
          // WICHTIG!!! DISPLAY MODUL: display – ausstehende alte Wertausgabe verwerfen.
          initial_display_output();
@@ -122,18 +123,18 @@ int main(void) {
       }
 
       // alles tutti und die aktuelle Phase wird prozessiert => mit eingelesenen Werten arbeiten
-      phase_process(current);
+      phase_process(current, state);
 
-      if(phase_has_error()){
+      if(phase_has_error(state)){
          // WICHTIG!!! I/O MODUL
          show_error();
          
          continue;
       }
 
-      PhaseCountSnapshot latest = phase_get_counter_sample(); // speichert phasen-infos/stats der aktuellen phase
+      PhaseCountSnapshot latest = phase_get_counter_sample(state); // speichert phasen-infos/stats der aktuellen phase
 
-      Direction direction = phase_get_last_direction(); // nimmt drehrichtung entgegen
+      Direction direction = phase_get_last_direction(state); // nimmt drehrichtung entgegen
 
       // HIER LED AUSGABE EINFÜGEN ZU:
       // - RICHTUNG (D23 (vorwärts), D22 (rückwärts))

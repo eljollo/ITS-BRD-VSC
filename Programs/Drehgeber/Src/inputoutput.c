@@ -6,7 +6,7 @@
 #include "timer.h"
 #include "../Inc/inputoutput.h"
 
-#define BIT_COMP (1U << 7U) //U: unsigned int
+#define BIT_COMP (1U << 6) //U: unsigned int, s6 wirklich an der angeshifteten Position?
 
 /**
   ******************************************************************************
@@ -95,11 +95,12 @@ void init_gpio() {
 //ReadPINs-Functions:
 bool s6_is_pressed = false;
 bool reads_button_s6_for_reset() {
-    s6_is_pressed = (GPIOF->IDR & BIT_COMP) != 0U;
+    s6_is_pressed = (BIT_COMP != (GPIOF->IDR & BIT_COMP));
     return s6_is_pressed;
 }
 
 uint32_t read_gpio_pin0_to_pin7() {
+
     return GPIOF->IDR;
 } //called in read_input()
 

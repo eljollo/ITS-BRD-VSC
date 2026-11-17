@@ -13,13 +13,25 @@
 #include "structs.h"
 
 
-/**
-  ****************************************************************************** 
-  * @author  Thomas Ramba, Matr.Num.: 2842594
-  * @brief   . 
-  ******************************************************************************
-  */
-void phase_reset(void);
+// Konstanten
+#define ERROR 99
+
+// struct als datentyp für Zustand der Phase
+typedef struct {
+    Phase previous;
+    bool has_previous;
+
+    int64_t phase_counter;
+    
+    uint64_t last_change_ticks; // für phasenwechsel und phasenzähler gleich
+    bool has_last_change;       // gab es seit reset einen gültigen phassenwechsel
+
+    uint64_t change_number;     // anzahl an phasenwechsel (richtungsunabhängig)
+
+    Direction last_direction;
+    bool error;
+} PhaseState;
+// Variable um Zustand festzuhalten
 
 /**
   ****************************************************************************** 
@@ -27,7 +39,16 @@ void phase_reset(void);
   * @brief   . 
   ******************************************************************************
   */
-void phase_process(Phase current);
+void phase_reset(PhaseState *state);
+
+/**
+  ****************************************************************************** 
+  * @author  Thomas Ramba, Matr.Num.: 2842594
+  * @brief   Nimmt jeweils aktuell verwendete Phase und PhaseState entgegen und setzt Werte von state entsprechend der 
+             Werte von current
+  ******************************************************************************
+  */
+void phase_process(Phase current, PhaseState state);
 
 /**
   ****************************************************************************** 
@@ -36,7 +57,7 @@ void phase_process(Phase current);
   * @return  .
   ******************************************************************************
   */
-bool phase_has_error(void);
+bool phase_has_error(PhaseState state);
 
 /**
   ****************************************************************************** 
@@ -45,7 +66,7 @@ bool phase_has_error(void);
   * @return  .
   ******************************************************************************
   */
-Direction phase_get_last_direction(void);
+Direction phase_get_last_direction(PhaseState state);
 
 /**
   ****************************************************************************** 
@@ -54,6 +75,6 @@ Direction phase_get_last_direction(void);
   * @return  .
   ******************************************************************************
   */
-PhaseCountSnapshot phase_get_counter_sample(void);
+PhaseCountSnapshot phase_get_counter_sample(PhaseState state);
 
 #endif
