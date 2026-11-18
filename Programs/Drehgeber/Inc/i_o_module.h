@@ -26,14 +26,6 @@
 extern char angle_buff[BUFF_SIZE];
 extern char speed_buff[BUFF_SIZE];
 
-// für Hardware IO Bitoperationen
-#define ODR_MASK_PIN_0 (0x01U << 0) // drehgeber IN0 -> PF0
-#define ODR_MASK_PIN_1 (0x01U << 1) // drehgeber IN1 -> PF1
-#define ODR_MASK_PIN_5 (0x01U << 5) // error
-#define ODR_MASK_PIN_6 (0x01U << 6) // backward | reset button
-#define ODR_MASK_PIN_7 (0x01U << 7) // forward
-#define ODR_MASK_ALL 0xFF
-
 // struct für input
 typedef struct {
    bool reset_pressed;       // Zustand von S6
@@ -41,22 +33,21 @@ typedef struct {
    uint32_t raw_timer_ticks; // Rohwert des 32-Bit-Hardwaretimers
 } IoInputs;
 
-typedef struct {
-   double angle;
-   double speed;
-} CalcOutput;
-
 void init_display_output();
 
 void display_update(double angle, double speed);
 
 void read_all_inputs(IoInputs *input);
 
-void set_all_output(Direction direction, bool error, uint64_t phase_changes);
+void set_all_output(Direction direction, bool error, int64_t phase_changes);
 
 void reset_all_leds();
 
 void set_gpioe_error(bool error);
+
+void set_pin_for_oszilloskop();
+
+void reset_pin_for_oszilloskop();
 // ####################################################
 // ####################################################
 // ####################################################

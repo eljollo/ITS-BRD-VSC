@@ -31,6 +31,8 @@
 static const uint64_t TICKS_300_MS = 27000000ULL;
 static const uint64_t TICKS_3_S = 270000000ULL;
 
+// #define OSZI
+
 int main(void) {
    // Initialisierung
    initITSboard();
@@ -70,6 +72,9 @@ int main(void) {
    // ####################################################
    // ####################################################
    while (true) {
+#ifdef OSZI
+      reset_pin_for_oszilloskop();
+#endif
 
       read_all_inputs(&input);
 
@@ -95,8 +100,6 @@ int main(void) {
          init_display_output();
 
          reset_all_leds();
-
-         timer_reset_extension();
 
          has_calc_starting_point = false;
          // resets PhaseCounterSnapshot informationen
@@ -162,9 +165,12 @@ int main(void) {
          }
       }
 
-      set_all_output(direction, phase_has_error(), latest.change_number);
+      set_all_output(direction, phase_has_error(), latest.count);
 
       display_update(calc.angle, calc.speed);
+#ifdef OSZI
+      reset_pin_for_oszilloskop();
+#endif
    }
 }
 

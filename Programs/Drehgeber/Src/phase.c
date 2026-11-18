@@ -39,11 +39,13 @@
 // könnte
 
 #include "phase.h"
-// #include "i_o_module.h"
 #include <stdbool.h>
 #include <stdint.h>
 
-// Variable um Zustand festzuhalten
+// Konstanten
+#define ERROR_CODE 99
+
+// struct um Zustand festzuhalten
 static PhaseState phase_state;
 
 // phase reset
@@ -78,6 +80,8 @@ static int phase_index(uint8_t phase_bits) {
 // Phasenwechsel, erhält Zeitstempel )
 
 void phase_process(Phase current) {
+   // hätte man vermutlich auch als Pointerübergabe von phase_state direkt
+   // machen können
    PhaseState *state = &phase_state;
    if (state->error) {
       return;
@@ -89,23 +93,22 @@ void phase_process(Phase current) {
       return;
    }
    if (state->has_previous) { // wenn previous existiert
-      int previous_phase = phase_index(
-          state->previous
-              .phase_bits); // vorherige phase ausgehend von phase_bits
-      if (current_phase != previous_phase) { // phasenwechsel ? (wenn previous
-                                             // und ungleich aktueller phase)
+      // vorherige phase ausgehend von phase_bits
+      int previous_phase = phase_index(state->previous.phase_bits);
+      // phasenwechsel ? (wenn previous und ungleich aktueller phase)
+      if (current_phase != previous_phase) {
          int phase_change = phase_table[previous_phase][current_phase];
-         if (phase_change !=
-             ERROR_CODE) { // Fehlersituation ? (wurde eine phase übersprungen?)
-            state->has_last_change =
-                true; // legit phasenwechsel seit reset boolean
-            state->last_change_ticks =
-                current.timer_ticks; // timer setzen bei phasenwechsel
+         // Fehlersituation ? (wurde eine phase übersprungen?)
+         if (phase_change != ERROR_CODE) {
+            // legit phasenwechsel seit reset boolean
+            state->has_last_change = true;
+            // timer setzen bei phasenwechsel
+            state->last_change_ticks = current.timer_ticks;
             if (phase_change == 1) {
-               state->last_direction = DIRECTION_FORWARD; // Drehrichtung
+               state->last_direction = DIRECTION_FORWARD;
             }
             if (phase_change == -1) {
-               state->last_direction = DIRECTION_BACKWARD; // Drehrichtung
+               state->last_direction = DIRECTION_BACKWARD;
             }
             state->phase_counter += phase_change; // phasenzähler aktualisieren
             state->change_number++; // wechsel-counter inkrementieren

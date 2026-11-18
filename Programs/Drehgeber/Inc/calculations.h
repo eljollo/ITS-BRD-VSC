@@ -13,6 +13,11 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+typedef struct {
+   double angle;
+   double speed;
+} CalcOutput;
+
 /**
  ******************************************************************************
  * @author  Thomas Ramba, Matr.Num.: 2842594

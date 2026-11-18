@@ -12,9 +12,6 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-// Konstanten
-#define ERROR_CODE 99
-
 // struct als datentyp für inhalt / informationen der Phase
 typedef struct {
    uint8_t phase_bits;

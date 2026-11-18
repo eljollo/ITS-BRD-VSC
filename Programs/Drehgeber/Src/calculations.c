@@ -7,22 +7,12 @@
  * Funktionen.
  */
 
-// Zeitberechnung (timestamp differenz)
-// Zugriff auf Phase C-Struct um Zeiten zu bekommen
-
-// 300 Schlitze/Umdrehung * 4 Phasen/Schlitz = 1200 Phasen/Umdrehung
-
-// Check zeitstamps auf 300 ms
-// Berechnung Winkel
-// Berechnung Winkelgeschwindigkeit
-
-// struct für älteren Zählerstand
-// berechnung.c
+// ============ INLCUDES ============
 #include "calculations.h"
 #include "phase.h"
 #include <stdbool.h>
 
-// 1200 phasenwechsel entsprechen einmal 360 grad
+// 1200 phasenwechsel = 360 grad
 static const double DEGREES_PER_CHANGE = 360.0 / 1200.0;
 
 // 90 timer-ticks pro mikrosekunde
