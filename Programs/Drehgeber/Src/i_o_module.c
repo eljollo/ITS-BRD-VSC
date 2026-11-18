@@ -19,6 +19,7 @@
 #include "timer.h"
 #include <stdbool.h>
 #include <stdint.h>
+#include <stdio.h>
 // #include <stdio.h>
 
 char angle_buff[BUFF_SIZE];
@@ -32,19 +33,26 @@ static bool switch_output = false;
 
 // ============ Display init ============
 void init_display_output() {
+   snprintf(angle_buff, sizeof(angle_buff), "%8.1f", 0.0);
+   snprintf(speed_buff, sizeof(speed_buff), "%8.1f", 0.0);
    lcdGotoXY(X_START_WRITE, Y_COORD_WRITE_ANGLE);
    lcdPrintlnS("Winkel:");
    lcdGotoXY(X_START_WRITE, Y_COORD_WRITE_SPEED);
    lcdPrintlnS("Geschwindigkeit:");
+   lcdGotoXY(X_OFFSET_WRITE_ANGLE, Y_COORD_WRITE_ANGLE);
+   lcdPrintlnS(angle_buff);
    lcdGotoXY(X_OFFSET_WRITE_ANGLE + BUFF_SIZE, Y_COORD_WRITE_ANGLE);
    lcdPrintlnS("Grad");
+   lcdGotoXY(X_OFFSET_WRITE_SPEED, Y_COORD_WRITE_SPEED);
+   lcdPrintlnS(speed_buff);
    lcdGotoXY(X_OFFSET_WRITE_SPEED + BUFF_SIZE, Y_COORD_WRITE_SPEED);
    lcdPrintlnS("Grad/s");
 }
 
 // ============ Display Ausgabe ============
 
-void write_angle_on_display() {
+void write_angle_on_display(double angle) {
+   snprintf(angle_buff, sizeof(angle_buff), "%8.1f", angle);
    if (angle_buff[index_write_from_array] !=
        old_angle_buff[index_write_from_array]) {
       lcdGotoXY(X_OFFSET_WRITE_ANGLE + index_write_from_array,
@@ -60,7 +68,8 @@ void write_angle_on_display() {
    }
 }
 
-void write_speed_on_display() {
+void write_speed_on_display(double speed) {
+   snprintf(speed_buff, sizeof(speed_buff), "%8.1f", speed);
    if (speed_buff[index_write_from_array] !=
        old_speed_buff[index_write_from_array]) {
       lcdGotoXY(X_OFFSET_WRITE_SPEED + index_write_from_array,
@@ -76,11 +85,11 @@ void write_speed_on_display() {
    }
 }
 
-void display_update() {
+void display_update(double angle, double speed) {
    if (!switch_output) {
-      write_angle_on_display();
+      write_angle_on_display(angle);
    } else {
-      write_speed_on_display();
+      write_speed_on_display(speed);
    }
 }
 

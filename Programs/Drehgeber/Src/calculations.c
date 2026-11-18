@@ -32,19 +32,12 @@ double calculate_angle(int64_t phase_count) {
    return (double)phase_count * DEGREES_PER_CHANGE;
 }
 
-bool calculate_speed(PhaseCountSnapshot start, PhaseCountSnapshot end,
-                     double *speed_degrees_per_second) {
-   if (speed_degrees_per_second == 0 || !start.has_last_change ||
-       !end.has_last_change || end.change_ticks <= start.change_ticks ||
-       end.change_number <= start.change_number) {
-      return false;
-   }
-
+double calculate_speed(PhaseCountSnapshot start, PhaseCountSnapshot end) {
    double count_difference = (double)end.count - (double)start.count;
    double tick_difference = (double)(end.change_ticks - start.change_ticks);
-
-   *speed_degrees_per_second = count_difference * DEGREES_PER_CHANGE *
-                               TICKS_PER_SECOND / tick_difference;
-
-   return true;
+   if (tick_difference == 0) {
+      return 0.0;
+   }
+   return count_difference * DEGREES_PER_CHANGE * TICKS_PER_SECOND /
+          tick_difference;
 }

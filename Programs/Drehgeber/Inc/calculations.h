@@ -29,7 +29,6 @@ double calculate_angle(int64_t phase_count);
  * @return  Gibt false zurück, wenn noch keine berechenbare Zeitspanne vorliegt.
  ******************************************************************************
  */
-bool calculate_speed(PhaseCountSnapshot start, PhaseCountSnapshot end,
-                     double *speed_degrees_per_second);
+double calculate_speed(PhaseCountSnapshot start, PhaseCountSnapshot end);
 
 #endif

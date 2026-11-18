@@ -21,18 +21,20 @@
 
 #include <stdbool.h>
 #include <stdint.h>
-#include <stdio.h>
+// #include <stdio.h>
 
 // #include "inputoutput.h"
 #include "phase.h"
+#include "timer.h"
 #include "timer_hm.h"
 
 static const uint64_t TICKS_300_MS = 27000000ULL;
 static const uint64_t TICKS_3_S = 270000000ULL;
 
 int main(void) {
-
-   initITSboard(); // Initialisierung des ITS Boards
+   // Initialisierung
+   initITSboard();
+   initTimer();
    GUI_init(DEFAULT_BRIGHTNESS);
 
    init_display_output(); // Display initialisueren
@@ -41,8 +43,10 @@ int main(void) {
 
    phase_reset();
 
+   CalcOutput calc;
+
    IoInputs input;
-   // setzt relevante phasenwerte auf 0 / false
+
    PhaseCountSnapshot calc_starting_point = {0};
 
    bool has_calc_starting_point = false;
@@ -139,27 +143,8 @@ int main(void) {
 
          if (change_since_last_display) {
             // Winkelberechnung
-            double angle = calculate_angle(latest.count);
-
-            double speed = 0.0;
-            bool speed_valid = false;
-
-            // wenn calc_starting_point besteht und phase sich verändert hat
-            // berechnung der Geschwindigkeit
-            if (has_calc_starting_point &&
-                (latest.change_number > calc_starting_point.change_number)) {
-               speed_valid =
-                   calculate_speed(calc_starting_point, latest, &speed);
-            }
-
-            // WICHTIG!!! MODUL: DISPLAY – neue Darstellung nur vormerken.
-            // Nach nur EINEM Wechsel gibt es noch keine zwei Wechselzeitpunkte:
-            // Geschwindigkeit zunächst "--".
-            // display_queue_values(angle, speed_valid, speed);
-
-            snprintf(angle_buff, sizeof(angle_buff), "%8.1f", angle);
-            snprintf(speed_buff, sizeof(speed_buff), "%8.1f", speed);
-            // ggf beide snprintf in funktion fill_buffer oder so überführen
+            calc.angle = calculate_angle(latest.count);
+            calc.speed = calculate_speed(calc_starting_point, latest);
 
             // aktueller durchlauf nach berechnung wird startpunkt von neuem
             // zeitfenster
@@ -169,24 +154,17 @@ int main(void) {
             last_calculation_ticks = now_ticks;
 
          } else if (elapsed >= TICKS_3_S) { // wenn 3s nichts passiert
-            double angle = calculate_angle(latest.count);
+            calc.angle = calculate_angle(latest.count);
+            calc.speed = calculate_speed(calc_starting_point, latest);
 
-            // "leere" geschwindigkeit ausgegeben
-            snprintf(angle_buff, sizeof(angle_buff), "%8.1f", angle);
-
-            last_calculation_ticks =
-                now_ticks; // Zeitpunkt für startzeitfenster wird aktualisiert
+            // Zeitpunkt für startzeitfenster wird aktualisiert
+            last_calculation_ticks = now_ticks;
          }
       }
 
-      // HIER LED AUSGABE EINFÜGEN ZU:
-      // - RICHTUNG (D23 (vorwärts), D22 (rückwärts))
-      // - ANZAHL PHASENWECHSEL (D8 - D15)
       set_all_output(direction, phase_has_error(), latest.change_number);
 
-      // MODUL: display – höchstens ein vorbereitetes Zeichen
-      // tatsächlich über das I/O-Modul ausgeben.
-      display_update();
+      display_update(calc.angle, calc.speed);
    }
 }
 

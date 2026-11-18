@@ -19,8 +19,8 @@
 #define X_START_WRITE 1
 #define Y_COORD_WRITE_ANGLE 3
 #define Y_COORD_WRITE_SPEED 5
-#define X_OFFSET_WRITE_ANGLE 10
-#define X_OFFSET_WRITE_SPEED 10
+#define X_OFFSET_WRITE_ANGLE 20
+#define X_OFFSET_WRITE_SPEED 20
 #define MAX_INDEX 8
 
 extern char angle_buff[BUFF_SIZE];
@@ -41,9 +41,14 @@ typedef struct {
    uint32_t raw_timer_ticks; // Rohwert des 32-Bit-Hardwaretimers
 } IoInputs;
 
+typedef struct {
+   double angle;
+   double speed;
+} CalcOutput;
+
 void init_display_output();
 
-void display_update();
+void display_update(double angle, double speed);
 
 void read_all_inputs(IoInputs *input);
 
