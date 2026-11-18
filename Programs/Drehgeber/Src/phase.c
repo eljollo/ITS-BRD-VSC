@@ -45,6 +45,15 @@
 // Konstanten
 #define ERROR_CODE 99
 
+// struct als datentyp für Zustand der Phase
+typedef struct {
+   bool has_previous;
+   uint8_t previous_bits;
+   PhaseCountSnapshot counter;
+   Direction last_direction;
+   bool error;
+} PhaseState;
+
 // struct um Zustand festzuhalten
 static PhaseState phase_state;
 
@@ -79,39 +88,40 @@ static int phase_index(uint8_t phase_bits) {
 // Phase wenn Phasenwechsel stattfindet) Phasenzähler (zählt anzahl
 // Phasenwechsel, erhält Zeitstempel )
 
-void phase_process(Phase current) {
+void phase_process(uint8_t phase_bits, uint64_t timer_ticks) {
    // hätte man vermutlich auch als Pointerübergabe von phase_state direkt
    // machen können
    PhaseState *state = &phase_state;
    if (state->error) {
       return;
    }
-   int current_phase = phase_index(
-       current.phase_bits); // aktuelle phase ausgehend von phase_bits
+   // aktuelle phase ausgehend von phase_bits
+   int current_phase = phase_index(phase_bits);
    if (current_phase == -1) {
       state->error = true;
       return;
    }
-   if (state->has_previous) { // wenn previous existiert
+   // wenn previous existiert
+   if (state->has_previous) {
       // vorherige phase ausgehend von phase_bits
-      int previous_phase = phase_index(state->previous.phase_bits);
+      int previous_phase = phase_index(state->previous_bits);
       // phasenwechsel ? (wenn previous und ungleich aktueller phase)
       if (current_phase != previous_phase) {
          int phase_change = phase_table[previous_phase][current_phase];
          // Fehlersituation ? (wurde eine phase übersprungen?)
          if (phase_change != ERROR_CODE) {
-            // legit phasenwechsel seit reset boolean
-            state->has_last_change = true;
             // timer setzen bei phasenwechsel
-            state->last_change_ticks = current.timer_ticks;
+            state->counter.change_ticks = timer_ticks;
             if (phase_change == 1) {
                state->last_direction = DIRECTION_FORWARD;
             }
             if (phase_change == -1) {
                state->last_direction = DIRECTION_BACKWARD;
             }
-            state->phase_counter += phase_change; // phasenzähler aktualisieren
-            state->change_number++; // wechsel-counter inkrementieren
+            // phasenzähler aktualisieren
+            state->counter.phase_counter += phase_change;
+            // Gesamt-counter inkrementieren
+            state->counter.total_changes++;
          } else {
             state->error = true;
             return;
@@ -119,7 +129,7 @@ void phase_process(Phase current) {
       }
    }
    state->has_previous = true;
-   state->previous = current;
+   state->previous_bits = phase_bits;
 }
 
 bool phase_has_error(void) { return phase_state.error; }
@@ -127,12 +137,5 @@ bool phase_has_error(void) { return phase_state.error; }
 Direction phase_get_last_direction(void) { return phase_state.last_direction; }
 
 PhaseCountSnapshot phase_get_counter_sample(void) {
-   PhaseCountSnapshot result = {
-       .count = phase_state.phase_counter,
-       .change_ticks = phase_state.last_change_ticks,
-       .change_number = phase_state.change_number,
-       .has_last_change = phase_state.has_last_change,
-   };
-
-   return result;
+   return phase_state.counter;
 }

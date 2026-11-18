@@ -15,6 +15,7 @@
 #include "phase.h"
 #include "stm32f429xx.h"
 #include "timer.h"
+#include "timer_hm.h"
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -43,17 +44,27 @@ void init_display_output() {
    snprintf(angle_buff, sizeof(angle_buff), "%8.1f", 0.0);
    snprintf(speed_buff, sizeof(speed_buff), "%8.1f", 0.0);
    lcdGotoXY(X_START_WRITE, Y_COORD_WRITE_ANGLE);
-   lcdPrintlnS("Winkel:");
+   lcdPrintlnS("Winkel (in Grad):");
    lcdGotoXY(X_START_WRITE, Y_COORD_WRITE_SPEED);
-   lcdPrintlnS("Geschwindigkeit:");
+   lcdPrintlnS("Geschwindigkeit (in Grad/s):");
    lcdGotoXY(X_OFFSET_WRITE_ANGLE, Y_COORD_WRITE_ANGLE);
    lcdPrintlnS(angle_buff);
-   lcdGotoXY(X_OFFSET_WRITE_ANGLE + BUFF_SIZE, Y_COORD_WRITE_ANGLE);
-   lcdPrintlnS("Grad");
+   //    lcdGotoXY(X_OFFSET_WRITE_ANGLE + BUFF_SIZE, Y_COORD_WRITE_ANGLE);
+   //    lcdPrintlnS("Grad");
    lcdGotoXY(X_OFFSET_WRITE_SPEED, Y_COORD_WRITE_SPEED);
    lcdPrintlnS(speed_buff);
-   lcdGotoXY(X_OFFSET_WRITE_SPEED + BUFF_SIZE, Y_COORD_WRITE_SPEED);
-   lcdPrintlnS("Grad/s");
+   //    lcdGotoXY(X_OFFSET_WRITE_SPEED + BUFF_SIZE, Y_COORD_WRITE_SPEED);
+   //    lcdPrintlnS("Grad/s");
+}
+
+// ============ Display reset ============
+void reset_display() {
+   snprintf(angle_buff, sizeof(angle_buff), "%8.1f", 0.0);
+   snprintf(speed_buff, sizeof(speed_buff), "%8.1f", 0.0);
+   lcdGotoXY(X_OFFSET_WRITE_ANGLE, Y_COORD_WRITE_ANGLE);
+   lcdPrintlnS(angle_buff);
+   lcdGotoXY(X_OFFSET_WRITE_SPEED, Y_COORD_WRITE_SPEED);
+   lcdPrintlnS(speed_buff);
 }
 
 // ============ Display Ausgabe ============
@@ -122,7 +133,7 @@ uint8_t read_phase(uint8_t gpiof) {
 // READ ALL INPUTS
 void read_all_inputs(IoInputs *input) {
    uint8_t gpiof_input = read_gpiof_pins();
-   input->raw_timer_ticks = read_time();
+   input->timer_ticks = timer_extend(read_time());
    input->phase_bits = read_phase(gpiof_input);
    input->reset_pressed = is_reset_button_pressed(gpiof_input);
 }

@@ -19,8 +19,8 @@
 #define X_START_WRITE 1
 #define Y_COORD_WRITE_ANGLE 3
 #define Y_COORD_WRITE_SPEED 5
-#define X_OFFSET_WRITE_ANGLE 20
-#define X_OFFSET_WRITE_SPEED 20
+#define X_OFFSET_WRITE_ANGLE 30
+#define X_OFFSET_WRITE_SPEED 30
 #define MAX_INDEX 8
 
 extern char angle_buff[BUFF_SIZE];
@@ -28,12 +28,14 @@ extern char speed_buff[BUFF_SIZE];
 
 // struct für input
 typedef struct {
-   bool reset_pressed;       // Zustand von S6
-   uint8_t phase_bits;       // Kodierung: (A << 1) | B
-   uint32_t raw_timer_ticks; // Rohwert des 32-Bit-Hardwaretimers
+   bool reset_pressed;   // Zustand von S6
+   uint8_t phase_bits;   // Kodierung: (A << 1) | B
+   uint64_t timer_ticks; // auf 64 Bit erweiterter Wert des timers
 } IoInputs;
 
 void init_display_output();
+
+void reset_display();
 
 void display_update(double angle, double speed);
 

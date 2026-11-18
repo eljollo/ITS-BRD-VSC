@@ -12,12 +12,6 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-// struct als datentyp für inhalt / informationen der Phase
-typedef struct {
-   uint8_t phase_bits;
-   uint64_t timer_ticks;
-} Phase;
-
 // enum für direction
 typedef enum {
    DIRECTION_UNKNOWN = 0,
@@ -25,35 +19,10 @@ typedef enum {
    DIRECTION_BACKWARD,
 } Direction;
 
-// struct als datentyp für Zustand der Phase
 typedef struct {
-   Phase previous;
-   bool has_previous;
-
-   int64_t phase_counter;
-
-   uint64_t last_change_ticks; // für phasenwechsel und phasenzähler gleich
-   bool has_last_change; // gab es seit reset einen gültigen phassenwechsel
-
-   uint64_t change_number; // anzahl an phasenwechsel (richtungsunabhängig)
-
-   Direction last_direction;
-   bool error;
-} PhaseState;
-
-/**
- ******************************************************************************
- * @author  Thomas Ramba, Matr.Num.: 2842594
- * @brief   .
- * @return  .
- ******************************************************************************
- */
-// KOPIE der zählerzustände für berechnungen
-typedef struct {
-   int64_t count;          // = phasenzähler
+   int64_t phase_counter;  // = phasenzähler
    uint64_t change_ticks;  // zeitpunkt letzter gültiger wechsel
-   uint64_t change_number; // zähöer für alle wechsel seit start / reset
-   bool has_last_change;   // s.o. gab es gültigern Phasenwechsel
+   uint64_t total_changes; // zähöer für alle wechsel seit start / reset
 } PhaseCountSnapshot;
 
 /**
@@ -70,7 +39,7 @@ void phase_reset();
  * @brief   .
  ******************************************************************************
  */
-void phase_process(Phase current);
+void phase_process(uint8_t phase_bits, uint64_t timer_ticks);
 
 /**
  ******************************************************************************

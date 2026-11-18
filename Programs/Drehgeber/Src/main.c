@@ -7,117 +7,72 @@
  * Darstellung von Winkel und Winkelgeschwindigkeit auf dem Display.
  */
 
-/* Includes ------------------------------------------------------------------*/
-
-// #include "main.h"
+// ============ INLCUDES ============
 #include "LCD_GUI.h"
-// #include "LCD_Touch.h"
 #include "calculations.h"
 #include "i_o_module.h"
 #include "init.h"
-// #include "lcd.h"
-// #include "stm32f4xx.h"
-// #include "stm32f4xx_hal.h"
-
-#include <stdbool.h>
-#include <stdint.h>
-// #include <stdio.h>
-
-// #include "inputoutput.h"
 #include "phase.h"
 #include "timer.h"
 #include "timer_hm.h"
+#include <stdbool.h>
+#include <stdint.h>
 
+// ============ Konstanten ============
 static const uint64_t TICKS_300_MS = 27000000ULL;
 static const uint64_t TICKS_3_S = 270000000ULL;
 
 // #define OSZI
+
+typedef struct {
+   PhaseCountSnapshot starter;
+   uint64_t start_ticks;
+} CalcWindow;
 
 int main(void) {
    // Initialisierung
    initITSboard();
    initTimer();
    GUI_init(DEFAULT_BRIGHTNESS);
-
-   init_display_output(); // Display initialisueren
-
+   init_display_output();
    timer_reset_extension();
-
    phase_reset();
 
-   CalcOutput calc;
+   CalcOutput calc_output;
 
    IoInputs input;
 
-   PhaseCountSnapshot calc_starting_point = {0};
+   read_all_inputs(&input);
 
-   bool has_calc_starting_point = false;
+   CalcWindow window = {.starter = {0}, .start_ticks = input.timer_ticks};
 
-   // letzte ticks des zeitfensters für berechnung
-   uint64_t last_calculation_ticks = 0;
-   // wird mMn nicht benötigt, da in PhaseCountSnapshot change_ticks existiert
-   // oder ist dies nochmal losgelöst für die berechnung?
-   // Sollte dann aber dennoch in PhaseCountSnapshot angelegt sein
-   // oder ich müsste es in PhaseCalcSnapshot übersetzen oder so
-   // --> checken wie häufig was wo bereits existiert
-
-   // gibt es schon eine startzeit
-   bool has_initial_time = false;
-
-   // zähler für phasenwechsel
-   uint64_t last_displayed_change_number = 0; // zähler für phasenwechsel
-
-   // START SUPERLOOP
-   // ####################################################
-   // ####################################################
-   // ####################################################
+   // ###################################################
+   // ################# START SUPERLOOP #################
+   // ###################################################
    while (true) {
 #ifdef OSZI
-      reset_pin_for_oszilloskop();
+      set_pin_for_oszilloskop();
 #endif
 
       read_all_inputs(&input);
 
-      uint64_t now_ticks = timer_extend(input.raw_timer_ticks);
-
-      // setze eingelesene bits & timestamp in struct von phase.c
-      Phase current = {
-          .phase_bits = input.phase_bits,
-          .timer_ticks = now_ticks,
-      };
-
-      // check ob es bereits ein start des 300ms Zeitfensters gibt (ansonsten
-      // wird aktueller tick gesetzt)
-      if (!has_initial_time) {
-         last_calculation_ticks = now_ticks;
-         has_initial_time = true;
-      }
-
       // falls S6 gedrückt
       if (input.reset_pressed) {
-         phase_reset(); // aus phase.c
-
-         init_display_output();
-
+         phase_reset();
+         reset_display();
          reset_all_leds();
 
-         has_calc_starting_point = false;
-         // resets PhaseCounterSnapshot informationen
-         calc_starting_point = (PhaseCountSnapshot){0};
-         last_displayed_change_number = 0;
-         last_calculation_ticks = now_ticks;
+         window.starter = (PhaseCountSnapshot){0};
+         window.start_ticks = input.timer_ticks;
 
          continue; // neuer Superloop Durchlauf
       }
 
-      // alles tutti und die aktuelle Phase wird prozessiert => mit eingelesenen
-      // Werten arbeiten
-      phase_process(current);
+      // alles tutti und Input wird in phase_state überführt
+      phase_process(input.phase_bits, input.timer_ticks);
 
       if (phase_has_error()) {
-
          set_gpioe_error(true);
-
          continue;
       }
 
@@ -127,47 +82,35 @@ int main(void) {
       // nimmt drehrichtung entgegen
       Direction direction = phase_get_last_direction();
 
-      // wenn es noch keinen starzeitpunkt für berechnung gab und ein legiter
-      // phasenwechsel stattgefunden hat wird startpunkt für zeitfenster gesetzt
-      // und der check ob startpunkt vorhanden auf true gesetzt
-      if (!has_calc_starting_point && latest.has_last_change) {
-         calc_starting_point = latest;
-         has_calc_starting_point = true;
-      }
-
       // verstrichene Zeit = aktueller tick wert minus ticks der letzten
-      // berechnung (im 1. durchgang die aktuellen ticks )
-      uint64_t elapsed = now_ticks - last_calculation_ticks;
+      uint64_t elapsed = input.timer_ticks - window.start_ticks;
+
+      // check auf Phasenwechsel stattgefunden
+      bool phase_changed = latest.total_changes != window.starter.total_changes;
 
       // check ob seit verstrichener Zeit > 300ms eine phase gewechselt hat
       if (elapsed >= TICKS_300_MS) {
-         bool change_since_last_display =
-             latest.change_number != last_displayed_change_number;
+         if (phase_changed) {
+            // Berechnung
+            calc_output.angle = calculate_angle(latest.phase_counter);
+            calc_output.speed = calculate_speed(window.starter, latest);
 
-         if (change_since_last_display) {
-            // Winkelberechnung
-            calc.angle = calculate_angle(latest.count);
-            calc.speed = calculate_speed(calc_starting_point, latest);
-
-            // aktueller durchlauf nach berechnung wird startpunkt von neuem
-            // zeitfenster
-            calc_starting_point = latest;
-            has_calc_starting_point = latest.has_last_change;
-            last_displayed_change_number = latest.change_number;
-            last_calculation_ticks = now_ticks;
+            // aktueller durchlauf wird startpunkt von neuem zeitfenster
+            window.starter = latest;
+            window.start_ticks = input.timer_ticks;
 
          } else if (elapsed >= TICKS_3_S) { // wenn 3s nichts passiert
-            calc.angle = calculate_angle(latest.count);
-            calc.speed = calculate_speed(calc_starting_point, latest);
+            calc_output.angle = calculate_angle(latest.phase_counter);
+            calc_output.speed = calculate_speed(window.starter, latest);
 
             // Zeitpunkt für startzeitfenster wird aktualisiert
-            last_calculation_ticks = now_ticks;
+            window.start_ticks = input.timer_ticks;
          }
       }
 
-      set_all_output(direction, phase_has_error(), latest.count);
+      set_all_output(direction, phase_has_error(), latest.phase_counter);
+      display_update(calc_output.angle, calc_output.speed);
 
-      display_update(calc.angle, calc.speed);
 #ifdef OSZI
       reset_pin_for_oszilloskop();
 #endif

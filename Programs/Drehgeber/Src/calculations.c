@@ -23,7 +23,8 @@ double calculate_angle(int64_t phase_count) {
 }
 
 double calculate_speed(PhaseCountSnapshot start, PhaseCountSnapshot end) {
-   double count_difference = (double)end.count - (double)start.count;
+   double count_difference =
+       (double)end.phase_counter - (double)start.phase_counter;
    double tick_difference = (double)(end.change_ticks - start.change_ticks);
    if (tick_difference == 0) {
       return 0.0;
