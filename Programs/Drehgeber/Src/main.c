@@ -142,7 +142,7 @@ int main(void) {
 
       // WICHTIG!!! I/O MODUL
       // Umwandlung nach uint8_t liefert die niederwertigsten acht bit
-      write_phase_number_to_led((uint8_t)latest.count);
+      write_phase_number_to_led(latest.count);
       // WICHTIG!!! I/O MODUL
       write_phase_number_to_led(direction);
 
