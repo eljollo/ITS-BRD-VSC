@@ -21,8 +21,8 @@ typedef struct {
 /**
  ******************************************************************************
  * @author  Thomas Ramba, Matr.Num.: 2842594
- * @brief   .
- * @return  .
+ * @brief   Berechnet Winkel.
+ * @return  gibt Wert für Winkel zurück.
  ******************************************************************************
  */
 double calculate_angle(int64_t phase_count);
@@ -30,8 +30,8 @@ double calculate_angle(int64_t phase_count);
 /**
  ******************************************************************************
  * @author  Thomas Ramba, Matr.Num.: 2842594
- * @brief   .
- * @return  Gibt false zurück, wenn noch keine berechenbare Zeitspanne vorliegt.
+ * @brief   Berechnet Winkelgeschwindigkeit.
+ * @return  gibt Wert für Winkelgeschwindigkeit zurück.
  ******************************************************************************
  */
 double calculate_speed(PhaseCountSnapshot start, PhaseCountSnapshot end);

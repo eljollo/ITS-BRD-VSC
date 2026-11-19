@@ -14,6 +14,7 @@
 #include "lcd.h"
 #include "phase.h"
 #include "stm32f429xx.h"
+#include "stm32f4xx_hal.h"
 #include "timer.h"
 #include "timer_hm.h"
 #include <stdbool.h>
@@ -141,23 +142,25 @@ void read_all_inputs(IoInputs *input) {
 // ============ OUTPUT SETZEN ============
 // RESET ALL LEDs
 void reset_all_leds() {
-   GPIOE->ODR = 0;
-   GPIOD->ODR = 0;
+   GPIOE->BSRR = MASK_ALL << BSRR_DELETE_AREA;
+   GPIOD->BSRR = MASK_ALL << BSRR_DELETE_AREA;
 }
 
 // RICHTUNG (D23 -> PE7 = vorwärts, D22 -> PE6 = rückwärts)
-void set_gpioe_direction(Direction direction) {
+static void set_gpioe_direction(Direction direction) {
    if (direction == DIRECTION_FORWARD) {
-      GPIOE->ODR = MASK_PIN_7;
+      GPIOE->BSRR = MASK_PIN_7;
+      GPIOE->BSRR = MASK_PIN_6 << BSRR_DELETE_AREA;
    } else if (direction == DIRECTION_BACKWARD) {
-      GPIOE->ODR = MASK_PIN_6;
+      GPIOE->BSRR = MASK_PIN_6;
+      GPIOE->BSRR = MASK_PIN_7 << BSRR_DELETE_AREA;
    }
 }
 
 // FEHLER (D21 -> PE5)
 void set_gpioe_error(bool error) {
    if (error) {
-      GPIOE->ODR = GPIOE->ODR | MASK_PIN_5;
+      GPIOE->BSRR = MASK_PIN_5;
    }
 }
 
@@ -174,8 +177,12 @@ void set_all_output(Direction direction, bool error, int64_t phase_changes) {
 }
 
 // SET PIN FOR OSZILLOSKOP (D16 -> PE0)
-void set_pin_for_oszilloskop() { GPIOE->BSRR = MASK_PIN_0; }
+void set_pin_for_oszilloskop() {
+   GPIOE->ODR ^= MASK_PIN_0;
+   //    HAL_Delay(1000);
+}
 
 void reset_pin_for_oszilloskop() {
    GPIOE->BSRR = MASK_PIN_0 << BSRR_DELETE_AREA;
+   //    HAL_Delay(1000);
 }

@@ -14,8 +14,7 @@
 /**
  ******************************************************************************
  * @author  Thomas Ramba, Matr.Num.: 2842594
- * @brief   .
- * @return  .
+ * @brief   setzt die lokalen timer-Variablen zurück.
  ******************************************************************************
  */
 void timer_reset_extension(void);
@@ -23,8 +22,8 @@ void timer_reset_extension(void);
 /**
  ******************************************************************************
  * @author  Thomas Ramba, Matr.Num.: 2842594
- * @brief   .
- * @return  .
+ * @brief   erweitert die gelesenen timer_ticks von 32 auf 64 Bit.
+ * @return  gibt erweiterten Timerstand zurück.
  ******************************************************************************
  */
 uint64_t timer_extend(uint32_t raw_ticks);

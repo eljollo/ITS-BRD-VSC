@@ -22,7 +22,7 @@
 static const uint64_t TICKS_300_MS = 27000000ULL;
 static const uint64_t TICKS_3_S = 270000000ULL;
 
-// #define OSZI
+#define OSZI
 
 typedef struct {
    PhaseCountSnapshot starter;
@@ -111,9 +111,9 @@ int main(void) {
       set_all_output(direction, phase_has_error(), latest.phase_counter);
       display_update(calc_output.angle, calc_output.speed);
 
-#ifdef OSZI
-      reset_pin_for_oszilloskop();
-#endif
+      // #ifdef OSZI
+      //       reset_pin_for_oszilloskop();
+      // #endif
    }
 }
 

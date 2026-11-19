@@ -28,7 +28,8 @@ typedef struct {
 /**
  ******************************************************************************
  * @author  Thomas Ramba, Matr.Num.: 2842594
- * @brief   .
+ * @brief   setztt gespeicherte informationen zur aktuellen / letzten Phase
+ * zurück.
  ******************************************************************************
  */
 void phase_reset();
@@ -36,7 +37,8 @@ void phase_reset();
 /**
  ******************************************************************************
  * @author  Thomas Ramba, Matr.Num.: 2842594
- * @brief   .
+ * @brief   bekommt input und überführt input abhängig von Phaseninformationen
+ * in zugehörigen struct.
  ******************************************************************************
  */
 void phase_process(uint8_t phase_bits, uint64_t timer_ticks);
@@ -44,8 +46,10 @@ void phase_process(uint8_t phase_bits, uint64_t timer_ticks);
 /**
  ******************************************************************************
  * @author  Thomas Ramba, Matr.Num.: 2842594
- * @brief   .
- * @return  .
+ * @brief   liest zustand der Phase bzgl. error und gibt bool abhängig von
+ * Fehlerzustand zurück.
+ * @return  true = Phase wurde übersprungen -> Fehler. false = kein Fehler
+ * (Default)
  ******************************************************************************
  */
 bool phase_has_error(void);
@@ -53,8 +57,8 @@ bool phase_has_error(void);
 /**
  ******************************************************************************
  * @author  Thomas Ramba, Matr.Num.: 2842594
- * @brief   .
- * @return  .
+ * @brief   gibt Drehrichtung des Drehgebers zurück.
+ * @return  gibt Drehrichtung des Drehgebers zurück.
  ******************************************************************************
  */
 Direction phase_get_last_direction(void);
@@ -62,8 +66,8 @@ Direction phase_get_last_direction(void);
 /**
  ******************************************************************************
  * @author  Thomas Ramba, Matr.Num.: 2842594
- * @brief   .
- * @return  .
+ * @brief   Gibt Informationen zur aktuellen Phase zurück.
+ * @return  struct mit Phaseninformationen.
  ******************************************************************************
  */
 PhaseCountSnapshot phase_get_counter_sample(void);
