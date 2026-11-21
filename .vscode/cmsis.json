@@ -14,8 +14,11 @@
         },
         "Programs/Drehgeber/Drehgeber": {
             "activeTargetType": "ITSboard"
+        },
+        "Programs/BitmapDisplay/BitmapDisplay": {
+            "activeTargetType": "ITSboard"
         }
     },
-    "activeSolution": "../Programs/Drehgeber/Drehgeber.csolution.yml",
+    "activeSolution": "../Programs/BitmapDisplay/BitmapDisplay.csolution.yml",
     "activeTarget": "ITSboard"
 }
