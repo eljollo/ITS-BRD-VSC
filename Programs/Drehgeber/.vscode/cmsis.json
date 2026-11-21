@@ -1,0 +1,9 @@
+{
+    "targetSet": {
+        "Drehgeber": {
+            "activeTargetType": "ITSboard"
+        }
+    },
+    "activeSolution": "../Drehgeber.csolution.yml",
+    "activeTarget": "ITSboard"
+}

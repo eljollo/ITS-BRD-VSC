@@ -1,36 +1,21 @@
 /**
  ******************************************************************************
- * @file    i_o_module.c
+ * @file    display_output.c
  * @author  Thomas Ramba, Matr.Num.: 2842594
  * @date Nov 2026
  *
- * @brief   enthält Definitionen, bzw. Implementierungen der in i_o_module.h
+ * @brief   enthält Definitionen, bzw. Implementierungen der in display_output.h
  * deklarierten Funktionen
  ******************************************************************************
  */
 
 // ============ INLCUDES ============
-#include "i_o_module.h"
+#include "display_output.h"
 #include "lcd.h"
-#include "phase.h"
-#include "stm32f429xx.h"
-#include "stm32f4xx_hal.h"
-#include "timer.h"
-#include "timer_hm.h"
 #include <stdbool.h>
-#include <stdint.h>
 #include <stdio.h>
 
 // ============ Konstanten ============
-// für Hardware IO Bitoperationen
-#define MASK_PIN_0 (0x01U << 0) // drehgeber IN0 -> PF0
-#define MASK_PIN_1 (0x01U << 1) // drehgeber IN1 -> PF1
-#define MASK_PIN_5 (0x01U << 5) // error
-#define MASK_PIN_6 (0x01U << 6) // backward | reset button
-#define MASK_PIN_7 (0x01U << 7) // forward
-#define MASK_ALL 0xFF
-#define BSRR_DELETE_AREA 16
-
 char angle_buff[BUFF_SIZE];
 char speed_buff[BUFF_SIZE];
 
@@ -109,80 +94,4 @@ void display_update(double angle, double speed) {
    } else {
       write_speed_on_display(speed);
    }
-}
-
-// ============ INPUT LESEN ============
-// Read all Input Pins
-uint8_t read_gpiof_pins() { return GPIOF->IDR; }
-
-// Reset (S6 -> PF6)
-bool is_reset_button_pressed(uint8_t gpiof) {
-   return MASK_PIN_6 != (gpiof & MASK_PIN_6);
-}
-
-// Zeitstempel
-uint32_t read_time() { return getTimeStamp(); }
-
-// Phase (Phase-Bits) (GPIO PF0 & PF1)
-uint8_t read_phase(uint8_t gpiof) {
-   uint8_t channel_a = gpiof & MASK_PIN_0;
-   uint8_t channel_b = gpiof & MASK_PIN_1;
-   uint8_t phase_bits = channel_a << 1 | channel_b >> 1;
-   return phase_bits;
-}
-
-// READ ALL INPUTS
-void read_all_inputs(IoInputs *input) {
-   uint8_t gpiof_input = read_gpiof_pins();
-   input->timer_ticks = timer_extend(read_time());
-   input->phase_bits = read_phase(gpiof_input);
-   input->reset_pressed = is_reset_button_pressed(gpiof_input);
-}
-
-// ============ OUTPUT SETZEN ============
-// RESET ALL LEDs
-void reset_all_leds() {
-   GPIOE->BSRR = MASK_ALL << BSRR_DELETE_AREA;
-   GPIOD->BSRR = MASK_ALL << BSRR_DELETE_AREA;
-}
-
-// RICHTUNG (D23 -> PE7 = vorwärts, D22 -> PE6 = rückwärts)
-static void set_gpioe_direction(Direction direction) {
-   if (direction == DIRECTION_FORWARD) {
-      GPIOE->BSRR = MASK_PIN_7;
-      GPIOE->BSRR = MASK_PIN_6 << BSRR_DELETE_AREA;
-   } else if (direction == DIRECTION_BACKWARD) {
-      GPIOE->BSRR = MASK_PIN_6;
-      GPIOE->BSRR = MASK_PIN_7 << BSRR_DELETE_AREA;
-   }
-}
-
-// FEHLER (D21 -> PE5)
-void set_gpioe_error(bool error) {
-   if (error) {
-      GPIOE->BSRR = MASK_PIN_5;
-   }
-}
-
-// ANZAHL PHASENWECHSEL (D8-D15 (8 LEDs) -> PD0-PD7)
-void set_gpio_number_changes(int64_t phase_changes) {
-   GPIOD->ODR = phase_changes & MASK_ALL;
-}
-
-// SET ALL OUTPUTS
-void set_all_output(Direction direction, bool error, int64_t phase_changes) {
-   set_gpioe_direction(direction);
-   set_gpioe_error(error);
-   set_gpio_number_changes(phase_changes);
-}
-
-// SET PIN FOR OSZILLOSKOP (D16 -> PE0)
-void set_pin_for_oszilloskop() {
-   GPIOE->ODR ^= MASK_PIN_0;
-   //    HAL_Delay(1000);
-}
-
-void reset_pin_for_oszilloskop() {
-   GPIOE->BSRR = MASK_PIN_0 << BSRR_DELETE_AREA;
-   //    HAL_Delay(1000);
 }

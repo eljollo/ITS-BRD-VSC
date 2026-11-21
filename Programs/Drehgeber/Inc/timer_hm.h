@@ -3,7 +3,8 @@
  * @author Thomas Ramba, Matr.Num.: 2842594
  * @date Nov 2026
  *
- * @brief .
+ * @brief Resettet und erweitert Timer-Informationen u.a. um Timer-Überlauf zu
+ * vermeiden bzw. zu umschiffen.
  */
 
 #ifndef TIMER_HM_H

@@ -177,7 +177,10 @@ project:
         - file: ../../DisplayWaveshare/Inc/LCD_general.h
         - file: Inc/main.h
         - file: Inc/calculations.h
-        - file: Inc/i_o_module.h
+        - file: Inc/input_module.h
+        - file: Inc/bit_masken.h
+        - file: Inc/display_output.h
+        - file: Inc/led_output.h
         - file: Inc/phase.h
         - file: Inc/timer_hm.h
 
@@ -187,7 +190,9 @@ project:
         - file: Src/main.c
         - file: Src/phase.c
         - file: Src/calculations.c
-        - file: Src/i_o_module.c
+        - file: Src/input_module.c
+        - file: Src/display_output.c
+        - file: Src/led_output.c
         - file: Src/timer_hm.c
 
   components:

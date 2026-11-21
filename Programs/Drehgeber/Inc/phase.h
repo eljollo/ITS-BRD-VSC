@@ -3,7 +3,7 @@
  * @author Thomas Ramba, Matr.Num.: 2842594
  * @date Nov 2026
  *
- * @brief .
+ * @brief Speichert und verarbeitet Phasen-relevante Informationen.
  */
 
 #ifndef PHASE_H

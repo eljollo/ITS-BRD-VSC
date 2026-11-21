@@ -10,8 +10,10 @@
 // ============ INLCUDES ============
 #include "LCD_GUI.h"
 #include "calculations.h"
-#include "i_o_module.h"
+#include "display_output.h"
 #include "init.h"
+#include "input_module.h"
+#include "led_output.h"
 #include "phase.h"
 #include "timer.h"
 #include "timer_hm.h"

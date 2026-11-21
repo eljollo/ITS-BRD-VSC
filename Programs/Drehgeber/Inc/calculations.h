@@ -3,7 +3,7 @@
  * @author Thomas Ramba, Matr.Num.: 2842594
  * @date Nov 2026
  *
- * @brief .
+ * @brief Modul zur Berechnung von Winkel und Winkelgeschwindigkeit.
  */
 
 #ifndef CALCULATIONS_H
