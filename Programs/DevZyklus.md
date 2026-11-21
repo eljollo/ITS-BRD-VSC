@@ -63,6 +63,7 @@ anpassen(also @param, etc.)
     1. pull/fetch, um neueste Änderungen zu integrieren.
     2. Änderungen vornehmen.
     3. für erfolgreichen Build sorgen.
-    4. auf main pushen.
+    4. Coding-Style regeln final prüfen.
+    5. auf main pushen.
 
 # 10. letzten Stand vor Abgabe passend taggen.
