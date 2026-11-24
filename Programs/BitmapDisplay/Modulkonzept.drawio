@@ -1,17 +1,59 @@
 <mxfile host="65bd71144e">
     <diagram id="_ombKpHf33DZM-f1Z-wb" name="Page-1">
-        <mxGraphModel dx="690" dy="456" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="663" dy="743" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="vEpa7nhGxunqwdOYXYfn-1" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="main" vertex="1">
-                    <mxGeometry height="52" width="140" x="280" y="30" as="geometry"/>
+                    <mxGeometry height="211" width="140" x="280" y="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="oz4FGWfNloS7tpGncjOR-8" parent="vEpa7nhGxunqwdOYXYfn-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;span style=&quot;color: rgb(29, 138, 32);&quot;&gt;taster auslesen,&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;color: rgb(29, 138, 32);&quot;&gt;header auslesen,&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: rgb(255, 79, 25);&quot;&gt;header checken,&lt;br&gt;Farbkonvertierung,&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: rgb(255, 102, 102);&quot;&gt;Bilddaten auslesen(bytewise),&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: rgb(255, 51, 51);&quot;&gt;Displaydarstellung&lt;/span&gt;&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="185" width="140" y="26" as="geometry"/>
                 </mxCell>
                 <mxCell id="vEpa7nhGxunqwdOYXYfn-5" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="input" vertex="1">
-                    <mxGeometry height="52" width="140" x="480" y="200" as="geometry"/>
+                    <mxGeometry height="56" width="140" x="480" y="200" as="geometry"/>
                 </mxCell>
-                <mxCell id="vEpa7nhGxunqwdOYXYfn-6" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="header" vertex="1">
-                    <mxGeometry height="52" width="140" x="50" y="200" as="geometry"/>
+                <mxCell id="oz4FGWfNloS7tpGncjOR-14" parent="vEpa7nhGxunqwdOYXYfn-5" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="bereitgestellt, siehe header" vertex="1">
+                    <mxGeometry height="30" width="140" y="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="vEpa7nhGxunqwdOYXYfn-6" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="headers" vertex="1">
+                    <mxGeometry height="130" width="140" x="50" y="190" as="geometry"/>
+                </mxCell>
+                <mxCell id="oz4FGWfNloS7tpGncjOR-16" parent="vEpa7nhGxunqwdOYXYfn-6" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="bereitgestellte Funktionen für auslesen der Bitmap-Header, siehe headers.h" vertex="1">
+                    <mxGeometry height="104" width="140" y="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="vEpa7nhGxunqwdOYXYfn-7" edge="1" parent="1" source="vEpa7nhGxunqwdOYXYfn-1" style="endArrow=open;endSize=12;dashed=1;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;edgeStyle=orthogonalEdgeStyle;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="vEpa7nhGxunqwdOYXYfn-5" value="">
+                    <mxGeometry relative="1" width="160" as="geometry">
+                        <mxPoint x="280" y="250" as="sourcePoint"/>
+                        <mxPoint x="440" y="250" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="vEpa7nhGxunqwdOYXYfn-8" edge="1" parent="1" source="vEpa7nhGxunqwdOYXYfn-1" style="endArrow=open;endSize=12;dashed=1;html=1;edgeStyle=orthogonalEdgeStyle;entryX=0.45;entryY=-0.058;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" target="vEpa7nhGxunqwdOYXYfn-6" value="">
+                    <mxGeometry relative="1" width="160" x="-0.1558" as="geometry">
+                        <mxPoint x="140" y="100" as="sourcePoint"/>
+                        <mxPoint x="220" y="160" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="oz4FGWfNloS7tpGncjOR-9" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="BytesToDisplay" vertex="1">
+                    <mxGeometry height="96" width="140" x="30" y="380" as="geometry"/>
+                </mxCell>
+                <mxCell id="oz4FGWfNloS7tpGncjOR-17" parent="oz4FGWfNloS7tpGncjOR-9" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Parameter lcd_GUI.h-funktionen übergeben" vertex="1">
+                    <mxGeometry height="70" width="140" y="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="oz4FGWfNloS7tpGncjOR-18" edge="1" parent="oz4FGWfNloS7tpGncjOR-9" source="oz4FGWfNloS7tpGncjOR-17" style="edgeStyle=orthogonalEdgeStyle;html=1;innerLoopWaypoints=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.568;entryY=0.039;entryDx=0;entryDy=0;entryPerimeter=0;" target="oz4FGWfNloS7tpGncjOR-17">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="oz4FGWfNloS7tpGncjOR-23" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="headercheck" vertex="1">
+                    <mxGeometry height="156" width="140" x="210" y="360" as="geometry"/>
+                </mxCell>
+                <mxCell id="oz4FGWfNloS7tpGncjOR-27" parent="oz4FGWfNloS7tpGncjOR-23" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="funktionen ggf. in bestehendes Modul packen.&lt;br&gt;&lt;br&gt;Nimmt ausgelesen daten von headers-Funktionen entgegen und prüft, ob Codierung für weitere Verarbeitung passt." vertex="1">
+                    <mxGeometry height="130" width="140" y="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="oz4FGWfNloS7tpGncjOR-28" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="farbmodul" vertex="1">
+                    <mxGeometry height="182" width="230" x="410" y="349.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="oz4FGWfNloS7tpGncjOR-30" parent="oz4FGWfNloS7tpGncjOR-28" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;enthält Farbkonvertierungsfunktionen, sowie das Array der verwendeten Farbpalette&lt;/span&gt;&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="156" width="230" y="26" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
