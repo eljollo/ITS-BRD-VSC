@@ -1,12 +1,8 @@
 from gui import GUI
-from pi.pi_protocol import PiProtocol
+from basics.serial_wrapper import *
 
 if __name__ == '__main__':
-    pi = PiProtocol()
-    gui = GUI(pi)
+    ser = SerialWrapper()
+    gui = GUI(ser)
     gui.start()
-    # Clean Up
-    pi.close()
-    pi.answer_queue.thread.join()
-    pi.text_queue.thread.join()
-    print("done")
+    print("Done")

@@ -10,7 +10,7 @@ class MyMsgBox(tk.Toplevel):
         tk.Toplevel.__init__(self, master)
         self.configure(background="white")
         self.title(kwargs.pop('title', "Help"))
-        self.geometry(kwargs.pop('geometry', "650x320"))
+        self.geometry(kwargs.pop('geometry', "550x320"))
         orientation = {'left': (tk.NW, tk.LEFT), 'center': (tk.CENTER, tk.LEFT)}
         anchor = orientation[kwargs.pop('anchor', 'center')]
         self.label = ttk.Label(self, style='MsgBox.TLabel', text=text, anchor=anchor[0], justify=anchor[1])
