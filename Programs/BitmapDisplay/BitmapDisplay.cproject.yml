@@ -187,6 +187,7 @@ project:
     - group: Program/User/Inc
       files:
         - file: ../../ITS_BRD_LIB/Inc/lcd.h
+        - file: Inc/colors.h
 
 
     # Benutzerdefinierte Programmdateien
