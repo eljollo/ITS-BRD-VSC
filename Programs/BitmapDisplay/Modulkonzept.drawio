@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="_ombKpHf33DZM-f1Z-wb" name="Page-1">
-        <mxGraphModel dx="769" dy="588" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="712" dy="544" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -66,10 +66,10 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="oz4FGWfNloS7tpGncjOR-9" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="bytesToDisplay" vertex="1">
-                    <mxGeometry height="237" width="140" x="40" y="480" as="geometry"/>
+                    <mxGeometry height="237" width="200" y="480" as="geometry"/>
                 </mxCell>
-                <mxCell id="oz4FGWfNloS7tpGncjOR-31" parent="oz4FGWfNloS7tpGncjOR-9" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Gibt RLE_8-codiertes Bitmap-Bild Pixelweise/Zeilenweise auf Display aus.&lt;div&gt;Bündelt Aufrufe von lcdGUI_drawPoint() (und evtl.) lcdGUI_clear())&lt;/div&gt;&lt;div&gt;Enthält Funktionen zum Auslesen der Bytes im Pixelbereich&lt;/div&gt;&lt;div&gt;-&amp;nbsp;&lt;/div&gt;" vertex="1">
-                    <mxGeometry height="211" width="140" y="26" as="geometry"/>
+                <mxCell id="oz4FGWfNloS7tpGncjOR-31" parent="oz4FGWfNloS7tpGncjOR-9" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Gibt RLE_8-codiertes Bitmap-Bild Pixelweise/Zeilenweise auf Display aus.&lt;div&gt;Bündelt Aufrufe von lcdGUI_drawPoint() (und evtl.) lcdGUI_clear())&lt;/div&gt;&lt;div&gt;Enthält Funktionen zum Auslesen der Bytes im Pixelbereich&lt;/div&gt;&lt;div&gt;- display_bitmap_per_Pixel()&lt;/div&gt;&lt;div&gt;- check_bitmap_size()&lt;/div&gt;&lt;div&gt;- match_bitmap_size()&lt;/div&gt;&lt;div&gt;- drawPixel()&lt;/div&gt;&lt;div&gt;- drawPixel_encoded()&lt;/div&gt;&lt;div&gt;- drawPixel_absolute()&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="211" width="200" y="26" as="geometry"/>
                 </mxCell>
                 <mxCell id="oz4FGWfNloS7tpGncjOR-23" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="fileHeader.h" vertex="1">
                     <mxGeometry height="140.5" width="180" x="215" y="390" as="geometry"/>
