@@ -65,7 +65,9 @@ int main(void) {
          Tastendruck (egal wie lange) genuegt fuer den naechsten Header. */
       if (EOK != input_file_header()) {
          /*Platzhalter für Aufrufe der Funktionen für Farbkonvertierung und
-         Bildausgabe*/
+         Bildausgabe
+
+         */
          /* Fehler wurde bereits im Error-Handler auf dem LCD gemeldet und
             die laufende Operation abgebrochen; Meldung stehen lassen, erst
             S5 (PF5) fordert die naechste Datei an. */
