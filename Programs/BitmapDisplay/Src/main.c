@@ -34,6 +34,10 @@
 #include <timer.h>
 #include "colors.h"
 #include "bytesToDisplay.h"
+#ifndef _HEADERCHECK_H
+#endif
+#include "headercheck.h"
+#include <BMP_types.h>
 
 /**
  * @brief  Main program
@@ -64,16 +68,22 @@ int main(void) {
          Textausgabe auf S5 (PF5) und loescht dann das Display -- ein
          Tastendruck (egal wie lange) genuegt fuer den naechsten Header. */
       if (EOK != input_file_header()) {
-         /*Platzhalter für Aufrufe der Funktionen für Farbkonvertierung und
-         Bildausgabe:
-
-         fill_farbpalette();
-         display_bitmap_per_pixel(void);
-         */
          /* Fehler wurde bereits im Error-Handler auf dem LCD gemeldet und
             die laufende Operation abgebrochen; Meldung stehen lassen, erst
             S5 (PF5) fordert die naechste Datei an. */
          wait_for_s_i(BUTTON_S5);
+      }
+      else {
+         /*Platzhalter für Aufrufe der Funktionen für Farbkonvertierung und
+         Bildausgabe:
+
+
+         fill_farbpalette();
+         display_bitmap_per_pixel(void);
+         */
+         check_correct_format( &info_hdr2);
+         fill_farbpalette();
+         display_bitmap_per_pixel();
       }
    }
 }

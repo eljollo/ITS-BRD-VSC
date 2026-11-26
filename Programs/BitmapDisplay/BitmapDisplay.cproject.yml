@@ -189,6 +189,7 @@ project:
         - file: ../../ITS_BRD_LIB/Inc/lcd.h
         - file: Inc/colors.h
         - file: Inc/bytesToDisplay.h
+        - file: Inc/headercheck.h
 
     # Benutzerdefinierte Programmdateien
     - group: Program/User/Src
@@ -209,6 +210,7 @@ project:
         - file: Src/usbd_desc.c
         - file: Src/colors.c
         - file: Src/bytestodisplay.c
+        - file: Src/headercheck.c
 
 
   components:

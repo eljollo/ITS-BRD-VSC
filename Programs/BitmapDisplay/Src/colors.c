@@ -40,7 +40,10 @@
 *   @retval uint16_t color_val
  ******************************************************************************
  */
- uint16_t bytes_to_display() {}
+ uint16_t bytes_to_display() {
+    //byte-offset von dateistart bis pixelbereich ? wird durch nxt_chr()-Implementierung gesolved
+
+ }
 
   /**
  ******************************************************************************

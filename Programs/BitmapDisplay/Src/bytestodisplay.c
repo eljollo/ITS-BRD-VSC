@@ -9,7 +9,8 @@
 *           -  
  ******************************************************************************
  */
- #include "MS_basetypes.h"
+ #include "LCD_general.h"
+#include "MS_basetypes.h"
  #include "bytesToDisplay.h"
 
    /**
@@ -25,3 +26,19 @@
 void display_bitmap_per_pixel(void) {
     //match_bitmap_size(LONG bi_height, LONG bi_width);
 }
+
+ /**
+ ******************************************************************************
+ *          
+ *  @author  Lasse Bruhn, Matr.-Nr.: 2880211
+ *  @brief      prüft mit BITMAPINFOHEADER-Werten, ob aktuell verarbeitetes Bild(bzw. die Fläche in Pixeln davon)
+                 zu groß für LCD-Display ist.
+*   @param  int32_t bi_height, int32_t bi_width, ggf. als LONG-parameter annehmen und dann auf int32_t casten
+*   @retval bool size_correct = false, wenn zu groß, sonst true
+ ******************************************************************************
+ */
+ bool check_bitmap_size(LONG bi_height, LONG bi_width) {
+    return ((LCD_X_MAXPIXEL >= bi_width) && (LCD_Y_MAXPIXEL >= bi_height));
+ }
+
+ 

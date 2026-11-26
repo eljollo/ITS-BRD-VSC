@@ -68,8 +68,36 @@ void match_bitmap_size(LONG bi_height, LONG bi_width);
  ******************************************************************************
  *          
  *  @author  Lasse Bruhn, Matr.-Nr.: 2880211
+ *  @brief   werden in draw_pixel_absolute() aufgerufen, 
+             wenn byte2 den Wert des entsprechenden Escape-Falls(00, 01 oder 02) hat
+*   @param  uint8_t byte2
+*   @retval erstmal void
+ ******************************************************************************
+ */ 
+//end of line
+void draw_pixel_absolute00(void);   
+//end of Bitmap (returns EOK and finishes display_bitmap_per_pixel()-Execution via the return-Statement)
+void draw_pixel_absolute01(void);  
+ /**
+ ******************************************************************************
+ *          
+ *  @author  Lasse Bruhn, Matr.-Nr.: 2880211
+ *  @brief   delta: The two bytes following the escape 
+             contain unsigned values that indicate horizontal(Y) and vertical(x) offsets
+             Bedeutet, dass hier die nächsten 2 Bytes gelesen werden, gecastet, 
+             und dann lccGoto(X+(cast)horizontal_offset, Y+ (cast)vertical_offset) aufgerufen wird
+*   @param  void
+*   @retval erstmal void
+ ******************************************************************************
+ */ 
+void draw_pixel_absolute02(void);   
+
+ /**
+ ******************************************************************************
+ *          
+ *  @author  Lasse Bruhn, Matr.-Nr.: 2880211
  *  @brief  Durchläuft Pixelbereich der BMP-Datei 
-            liest per nxt_chr() zwei Bytes ein, castet diese jew. zu uint8_t und ruft, je nachdem wie diese sind, 
+            liest per nxt_chr() zwei Bytes ein, castet diese jew. evtl. zu uint8_t und ruft, je nachdem wie diese sind, 
             entsprechend draw_pixel_encoded(uint8_t byte1, uint8_t byte2) oder draw_pixel_absolute(uint8_t byte2)
 *   @param  void
 *   @retval erstmal void
