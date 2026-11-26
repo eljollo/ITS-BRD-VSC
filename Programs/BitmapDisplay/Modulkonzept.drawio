@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="_ombKpHf33DZM-f1Z-wb" name="Page-1">
-        <mxGraphModel dx="712" dy="544" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="938" dy="735" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -66,10 +66,10 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="oz4FGWfNloS7tpGncjOR-9" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="bytesToDisplay" vertex="1">
-                    <mxGeometry height="237" width="200" y="480" as="geometry"/>
+                    <mxGeometry height="320" width="200" y="480" as="geometry"/>
                 </mxCell>
-                <mxCell id="oz4FGWfNloS7tpGncjOR-31" parent="oz4FGWfNloS7tpGncjOR-9" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Gibt RLE_8-codiertes Bitmap-Bild Pixelweise/Zeilenweise auf Display aus.&lt;div&gt;Bündelt Aufrufe von lcdGUI_drawPoint() (und evtl.) lcdGUI_clear())&lt;/div&gt;&lt;div&gt;Enthält Funktionen zum Auslesen der Bytes im Pixelbereich&lt;/div&gt;&lt;div&gt;- display_bitmap_per_Pixel()&lt;/div&gt;&lt;div&gt;- check_bitmap_size()&lt;/div&gt;&lt;div&gt;- match_bitmap_size()&lt;/div&gt;&lt;div&gt;- drawPixel()&lt;/div&gt;&lt;div&gt;- drawPixel_encoded()&lt;/div&gt;&lt;div&gt;- drawPixel_absolute()&lt;/div&gt;" vertex="1">
-                    <mxGeometry height="211" width="200" y="26" as="geometry"/>
+                <mxCell id="oz4FGWfNloS7tpGncjOR-31" parent="oz4FGWfNloS7tpGncjOR-9" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Gibt RLE_8-codiertes Bitmap-Bild Pixelweise/Zeilenweise auf Display aus.&lt;div&gt;Bündelt Aufrufe von lcdGUI_drawPoint() (und evtl.) lcdGUI_clear())&lt;/div&gt;&lt;div&gt;Enthält Funktionen zum Auslesen der Bytes im Pixelbereich&lt;/div&gt;&lt;div&gt;- bool check_bitmap_size(LONG bi_height, LONG bi_width)&lt;/div&gt;&lt;div&gt;- void match_bitmap_size(LONG bi_height, LONG bi_width)&lt;/div&gt;&lt;div&gt;- draw_pixel_encoded(uint8_t byte1, uint8_t byte2)&lt;/div&gt;&lt;div&gt;- void draw_pixel_absolute(uint8_t byte2)&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="294" width="200" y="26" as="geometry"/>
                 </mxCell>
                 <mxCell id="oz4FGWfNloS7tpGncjOR-23" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="fileHeader.h" vertex="1">
                     <mxGeometry height="140.5" width="180" x="215" y="390" as="geometry"/>
@@ -80,7 +80,7 @@
                 <mxCell id="oz4FGWfNloS7tpGncjOR-28" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="colors" vertex="1">
                     <mxGeometry height="182" width="230" x="440" y="403" as="geometry"/>
                 </mxCell>
-                <mxCell id="oz4FGWfNloS7tpGncjOR-30" parent="oz4FGWfNloS7tpGncjOR-28" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;enthält Farbkonvertierungsfunktionen, sowie das Array der verwendeten Farbpalette&lt;br&gt;&lt;br&gt;- Array Farbpalette[255]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;- Farbkonvertierung(uint32_t)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;- BytesToColorValues(*Pixelbereich)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;- Fill_Farbpalette()&lt;/span&gt;&lt;/div&gt;" vertex="1">
+                <mxCell id="oz4FGWfNloS7tpGncjOR-30" parent="oz4FGWfNloS7tpGncjOR-28" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;enthält Farbkonvertierungsfunktionen, sowie das Array der verwendeten Farbpalette&lt;br&gt;&lt;br&gt;- static uint16_t farbpalette[MAX_COLOR_TABLE_SIZE]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;- uint16_t arbkonvertierung(uint32_t color)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;- uint16_t bytes_to_display()&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;- void fill_farbpalette()&lt;/span&gt;&lt;/div&gt;" vertex="1">
                     <mxGeometry height="156" width="230" y="26" as="geometry"/>
                 </mxCell>
                 <mxCell id="oz4FGWfNloS7tpGncjOR-45" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Legende:" vertex="1">

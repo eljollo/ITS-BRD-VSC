@@ -28,7 +28,7 @@ static uint16_t farbpalette[MAX_COLOR_TABLE_SIZE]; //wird mit fill_farbpalette b
  *  @author  Lasse Bruhn, Matr.-Nr.: 2880211
  *  @brief      liest 4 Bytes aus Palettenbereich der BMP-Datei, ruft mit diesem Wert farbkonvertierung(uint32_t color) auf,
                 und gibt den ermittelten 16Bit-Farbwert zurück
-*   @param  uint32_t color
+*   @param  uint32_t color (eher was anderes)
 *   @retval uint16_t color_val
  ******************************************************************************
  */
