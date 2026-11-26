@@ -9,5 +9,19 @@
 *           -  
  ******************************************************************************
  */
-
+ #include "MS_basetypes.h"
  #include "bytesToDisplay.h"
+
+   /**
+ ******************************************************************************
+ *          
+ *  @author  Lasse Bruhn, Matr.-Nr.: 2880211
+ *  @brief  Gibt aktuell verarbeitetes Bild (pixelweise) auf LCD-Display aus.
+            Ruft dafür die obigen Funktionen auf.
+*   @param  void
+*   @retval erstmal void
+ ******************************************************************************
+ */ 
+void display_bitmap_per_pixel(void) {
+    //match_bitmap_size(LONG bi_height, LONG bi_width);
+}

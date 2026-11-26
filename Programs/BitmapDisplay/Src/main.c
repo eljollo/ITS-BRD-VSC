@@ -65,8 +65,10 @@ int main(void) {
          Tastendruck (egal wie lange) genuegt fuer den naechsten Header. */
       if (EOK != input_file_header()) {
          /*Platzhalter für Aufrufe der Funktionen für Farbkonvertierung und
-         Bildausgabe
+         Bildausgabe:
 
+         fill_farbpalette();
+         display_bitmap_per_pixel(void);
          */
          /* Fehler wurde bereits im Error-Handler auf dem LCD gemeldet und
             die laufende Operation abgebrochen; Meldung stehen lassen, erst

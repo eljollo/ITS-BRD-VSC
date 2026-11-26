@@ -39,7 +39,7 @@ static uint16_t farbpalette[MAX_COLOR_TABLE_SIZE]; //wird mit fill_farbpalette b
  *          
  *  @author  Lasse Bruhn, Matr.-Nr.: 2880211
  *  @brief      durchläuft Bytes im Palettenbereich der BMP-Datei und ruft dabei
-                 (abh. von BITMAPINFOHEADER.abc ) bytes_to_display auf 
+                 (abh. von BITMAPINFOHEADER.abc ) bytes_to_display() auf 
                  und schreibt Ergebnis in Array Farbpalette[current_index] von [0] - [255]
 *   @param  uint32_t color
 *   @retval uint16_t color_val
