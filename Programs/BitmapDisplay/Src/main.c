@@ -1,6 +1,7 @@
 /**
  ******************************************************************************
  * @file    main.c  
+ * @author  Lasse Bruhn, Matr.-Nr.: 2880211
  * @brief   Modifizierte Version des bereitgestellten Testprogramms.
  *           
  *
@@ -31,6 +32,8 @@
 #include "input.h"        /* ask_transport, init_input */
 #include "usb_clock_config.h"
 #include <timer.h>
+#include "colors.h"
+#include "bytesToDisplay.h"
 
 /**
  * @brief  Main program

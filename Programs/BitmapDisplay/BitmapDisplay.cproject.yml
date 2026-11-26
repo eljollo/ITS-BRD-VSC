@@ -188,7 +188,7 @@ project:
       files:
         - file: ../../ITS_BRD_LIB/Inc/lcd.h
         - file: Inc/colors.h
-
+        - file: Inc/bytesToDisplay.h
 
     # Benutzerdefinierte Programmdateien
     - group: Program/User/Src
@@ -207,6 +207,8 @@ project:
         - file: Src/usbd_cdc_if.c
         - file: Src/usbd_conf.c
         - file: Src/usbd_desc.c
+        - file: Src/colors.c
+        - file: Src/bytestodisplay.c
 
 
   components:
