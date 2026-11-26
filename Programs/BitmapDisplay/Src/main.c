@@ -1,7 +1,8 @@
 /**
  ******************************************************************************
- * @file    main.c  --  Starthilfe zur BITMAP-Uebung
- * @brief   Rahmenprogramm, das den Studierenden als Starthilfe uebergeben wird. 
+ * @file    main.c  
+ * @brief   Modifizierte Version des bereitgestellten Testprogramms.
+ *           
  *
  *          Diese Version leistet bereits:
  *            1. Transport waehlen (S7/PF7 = USB-CDC, S6/PF6 = UART-via-USB)
@@ -60,6 +61,8 @@ int main(void) {
          Textausgabe auf S5 (PF5) und loescht dann das Display -- ein
          Tastendruck (egal wie lange) genuegt fuer den naechsten Header. */
       if (EOK != input_file_header()) {
+         /*Platzhalter für Aufrufe der Funktionen für Farbkonvertierung und
+         Bildausgabe*/
          /* Fehler wurde bereits im Error-Handler auf dem LCD gemeldet und
             die laufende Operation abgebrochen; Meldung stehen lassen, erst
             S5 (PF5) fordert die naechste Datei an. */
