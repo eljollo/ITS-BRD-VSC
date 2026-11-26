@@ -58,7 +58,7 @@ void match_bitmap_size(LONG bi_height, LONG bi_width);
                 falls byte2 0,1 oder 2 ist, werden die jew. escape-Fälle umgesetzt.
                 falls byte2 > 2, dann wird die entsprechende Anzahl an folgenden Bytes eingelesen, 
                 und jew. ein Pixel auf das Display ausgegeben, der die Farbe farbpalette[(uint8_t)byte] hat.
-*   @param  uint8_t byte1, uint8_t byte2
+*   @param  uint8_t byte2
 *   @retval erstmal void
  ******************************************************************************
  */ 
@@ -69,10 +69,22 @@ void match_bitmap_size(LONG bi_height, LONG bi_width);
  *          
  *  @author  Lasse Bruhn, Matr.-Nr.: 2880211
  *  @brief  Durchläuft Pixelbereich der BMP-Datei 
-            liest 2 Bytes ein, erzeugt daraus 2 uint8_t-Werte und ruft, je nachdem wie diese sind, 
+            liest per nxt_chr() zwei Bytes ein, castet diese jew. zu uint8_t und ruft, je nachdem wie diese sind, 
             entsprechend draw_pixel_encoded(uint8_t byte1, uint8_t byte2) oder draw_pixel_absolute(uint8_t byte2)
 *   @param  void
 *   @retval erstmal void
  ******************************************************************************
  */ 
  void draw_pixel(void);
+
+  /**
+ ******************************************************************************
+ *          
+ *  @author  Lasse Bruhn, Matr.-Nr.: 2880211
+ *  @brief  Gibt aktuell verarbeitetes Bild (pixelweise) auf LCD-Display aus.
+            Ruft dafür die obigen Funktionen auf.
+*   @param  void
+*   @retval erstmal void
+ ******************************************************************************
+ */ 
+void display_bitmap_per_pixel(void);
